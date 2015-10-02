@@ -4,13 +4,19 @@ import ConexionPSQL.Conexion;
 import Interface.Busqueda;
 import Interface.Login;
 import Interface.Principal;
+import Interface.Escritorio;
+
 
 public class Main {
 
     public static void main(String[] args) {
         
+      
+        
         //new Login().setVisible(true);    
-        new Principal().setVisible(true); 
+       // new Principal().setVisible(true); 
+        new Escritorio().setVisible(true);
+        
         /*
         String hostBase = "localhost";
         String nombreBase = "DamazoP1";
