@@ -39,6 +39,7 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -87,6 +88,15 @@ public class Escritorio extends javax.swing.JFrame {
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
         jMenu7.setText("Asignaciones");
+
+        jMenuItem3.setText("Asignacion");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem3);
+
         jMenuBar1.add(jMenu7);
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
@@ -154,8 +164,13 @@ public class Escritorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
         // TODO add your handling code here:
         new Eventos().setVisible(true);
+        Asignaciones asignaciones = new Asignaciones();
+        jDesktopPane1.add(asignaciones);
+        asignaciones.show();
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
