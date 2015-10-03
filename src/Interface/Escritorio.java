@@ -41,6 +41,7 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -102,6 +103,15 @@ public class Escritorio extends javax.swing.JFrame {
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
         jMenu8.setText("Calificaciones");
+
+        jMenuItem5.setText("Mostrar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem5);
+
         jMenuBar1.add(jMenu8);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
@@ -197,6 +207,12 @@ public class Escritorio extends javax.swing.JFrame {
         panel.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed1
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Calificaciones calificaciones = new Calificaciones();
+        jDesktopPane1.add(calificaciones);
+        calificaciones.show();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,6 +265,7 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 
 }
