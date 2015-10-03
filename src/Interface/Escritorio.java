@@ -36,10 +36,10 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        evento = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -72,13 +72,13 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         jMenu3.setText("Eventos");
 
-        jMenuItem3.setText("Abrir");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        evento.setText("Abrir");
+        evento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                eventoActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        jMenu3.add(evento);
 
         jMenuBar1.add(jMenu3);
 
@@ -89,13 +89,13 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
         jMenu7.setText("Asignaciones");
 
-        jMenuItem3.setText("Asignacion");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.setText("Asignacion");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem3);
+        jMenu7.add(jMenuItem4);
 
         jMenuBar1.add(jMenu7);
 
@@ -166,12 +166,20 @@ public class Escritorio extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
         // TODO add your handling code here:
-        new Eventos().setVisible(true);
+        
         Asignaciones asignaciones = new Asignaciones();
         jDesktopPane1.add(asignaciones);
         asignaciones.show();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void eventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventoActionPerformed
+        // TODO add your handling code here:
+        Eventos evento = new Eventos();
+        jDesktopPane1.add(evento);
+        evento.show();
+        
+    }//GEN-LAST:event_eventoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +217,7 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem evento;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -222,7 +231,7 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
 }
