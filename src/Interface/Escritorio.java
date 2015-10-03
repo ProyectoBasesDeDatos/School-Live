@@ -45,6 +45,7 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +127,15 @@ public class Escritorio extends javax.swing.JFrame {
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
         jMenu6.setText("Perfil");
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed1(evt);
+            }
+        });
+        jMenu6.add(jMenuItem3);
+
         jMenuBar1.add(jMenu6);
 
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
@@ -181,6 +191,12 @@ public class Escritorio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_eventoActionPerformed
 
+    private void jMenuItem3ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed1
+        Panel panel = new Panel();
+        jDesktopPane1.add(panel);
+        panel.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed1
+
     /**
      * @param args the command line arguments
      */
@@ -231,6 +247,7 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
