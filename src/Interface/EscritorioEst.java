@@ -37,6 +37,7 @@ public class EscritorioEst extends javax.swing.JFrame {
         eventosEst = new javax.swing.JMenu();
         mensajesEst = new javax.swing.JMenu();
         asignacionesEst = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         calificacionesEst = new javax.swing.JMenu();
         busquedaEst = new javax.swing.JMenu();
         perfilEst = new javax.swing.JMenu();
@@ -68,6 +69,15 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         asignacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
         asignacionesEst.setText("Asignaciones");
+
+        jMenuItem1.setText("Académicas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        asignacionesEst.add(jMenuItem1);
+
         jMenuBar1.add(asignacionesEst);
 
         calificacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
@@ -101,6 +111,13 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        AsignacionesEst asigEst= new AsignacionesEst();
+        escritorioEst.add(asigEst);
+        asigEst.show();
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +163,7 @@ public class EscritorioEst extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorioEst;
     private javax.swing.JMenu eventosEst;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mensajesEst;
     private javax.swing.JMenu perfilEst;
     // End of variables declaration//GEN-END:variables
