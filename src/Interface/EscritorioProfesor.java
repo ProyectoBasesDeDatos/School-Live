@@ -35,7 +35,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         menuProfesor = new javax.swing.JMenuBar();
         archivoProf = new javax.swing.JMenu();
         VerProf = new javax.swing.JMenu();
-        asignacionProf = new javax.swing.JMenuItem();
+        asignacionesProf = new javax.swing.JMenu();
+        crearAsignacionProf = new javax.swing.JMenuItem();
         eventosProf = new javax.swing.JMenuItem();
         calificacionesProf = new javax.swing.JMenuItem();
         mensajesProf = new javax.swing.JMenu();
@@ -65,9 +66,19 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         VerProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
         VerProf.setText("Ver");
 
-        asignacionProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
-        asignacionProf.setText("Asignaciones");
-        VerProf.add(asignacionProf);
+        asignacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        asignacionesProf.setText("Asignaciones");
+
+        crearAsignacionProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        crearAsignacionProf.setText("Crear");
+        crearAsignacionProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearAsignacionProfActionPerformed(evt);
+            }
+        });
+        asignacionesProf.add(crearAsignacionProf);
+
+        VerProf.add(asignacionesProf);
 
         eventosProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         eventosProf.setText("Eventos");
@@ -111,6 +122,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void crearAsignacionProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAsignacionProfActionPerformed
+        AsignacionesProf asigProf= new AsignacionesProf();
+        escritorioProf.add(asigProf);
+        asigProf.show();
+    }//GEN-LAST:event_crearAsignacionProfActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -150,9 +167,10 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JMenu VerProf;
     private javax.swing.JMenu alertaProf;
     private javax.swing.JMenu archivoProf;
-    private javax.swing.JMenuItem asignacionProf;
+    private javax.swing.JMenu asignacionesProf;
     private javax.swing.JMenu busquedaProf;
     private javax.swing.JMenuItem calificacionesProf;
+    private javax.swing.JMenuItem crearAsignacionProf;
     private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;
     private javax.swing.JMenu mensajesProf;
