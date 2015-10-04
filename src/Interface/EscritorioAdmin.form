@@ -6,16 +6,45 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="archivoAdmin">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/home.png&quot;))" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="eventosAdmin">
+        <Menu class="javax.swing.JMenu" name="verAdmin">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/calendar.png&quot;))" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/table.png&quot;))" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Eventos"/>
+            <Property name="text" type="java.lang.String" value="Ver"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="asignacionesAdmin">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/clipboard.png&quot;))" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Asignaciones"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eventosAdmin">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/calendar.png&quot;))" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eventos"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="calificacionesAdmin">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/3d bar chart.png&quot;))" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Calificaciones"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mensajesAdmin">
           <Properties>
@@ -23,22 +52,6 @@
               <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/mail.png&quot;))" type="code"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mensajes"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="asignacionesAdmin">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/clipboard.png&quot;))" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Asignaciones"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="calificacionesAdmin">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/3d bar chart.png&quot;))" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Calificaciones"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="busquedaAdmin">

@@ -34,11 +34,11 @@ public class EscritorioEst extends javax.swing.JFrame {
         escritorioEst = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivoEst = new javax.swing.JMenu();
-        eventosEst = new javax.swing.JMenu();
+        verEstudiante = new javax.swing.JMenu();
+        asignacionesEst = new javax.swing.JMenuItem();
+        eventosEst = new javax.swing.JMenuItem();
+        calificacionesEst = new javax.swing.JMenuItem();
         mensajesEst = new javax.swing.JMenu();
-        asignacionesEst = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        calificacionesEst = new javax.swing.JMenu();
         busquedaEst = new javax.swing.JMenu();
         perfilEst = new javax.swing.JMenu();
         alertasEst = new javax.swing.JMenu();
@@ -56,33 +56,35 @@ public class EscritorioEst extends javax.swing.JFrame {
             .addGap(0, 475, Short.MAX_VALUE)
         );
 
+        archivoEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoEst.setText("Archivo");
         jMenuBar1.add(archivoEst);
 
+        verEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
+        verEstudiante.setText("Ver");
+
+        asignacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        asignacionesEst.setText("Asignaciones");
+        asignacionesEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignacionesEstActionPerformed(evt);
+            }
+        });
+        verEstudiante.add(asignacionesEst);
+
         eventosEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         eventosEst.setText("Eventos");
-        jMenuBar1.add(eventosEst);
+        verEstudiante.add(eventosEst);
+
+        calificacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
+        calificacionesEst.setText("Calificaciones");
+        verEstudiante.add(calificacionesEst);
+
+        jMenuBar1.add(verEstudiante);
 
         mensajesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesEst.setText("Mensajes");
         jMenuBar1.add(mensajesEst);
-
-        asignacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
-        asignacionesEst.setText("Asignaciones");
-
-        jMenuItem1.setText("Académicas");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        asignacionesEst.add(jMenuItem1);
-
-        jMenuBar1.add(asignacionesEst);
-
-        calificacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
-        calificacionesEst.setText("Calificaciones");
-        jMenuBar1.add(calificacionesEst);
 
         busquedaEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
         busquedaEst.setText("Busqueda");
@@ -112,12 +114,12 @@ public class EscritorioEst extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void asignacionesEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignacionesEstActionPerformed
         AsignacionesEst asigEst= new AsignacionesEst();
         escritorioEst.add(asigEst);
         asigEst.show();
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_asignacionesEstActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,14 +159,14 @@ public class EscritorioEst extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu alertasEst;
     private javax.swing.JMenu archivoEst;
-    private javax.swing.JMenu asignacionesEst;
+    private javax.swing.JMenuItem asignacionesEst;
     private javax.swing.JMenu busquedaEst;
-    private javax.swing.JMenu calificacionesEst;
+    private javax.swing.JMenuItem calificacionesEst;
     private javax.swing.JDesktopPane escritorioEst;
-    private javax.swing.JMenu eventosEst;
+    private javax.swing.JMenuItem eventosEst;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mensajesEst;
     private javax.swing.JMenu perfilEst;
+    private javax.swing.JMenu verEstudiante;
     // End of variables declaration//GEN-END:variables
 }

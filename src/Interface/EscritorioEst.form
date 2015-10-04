@@ -6,16 +6,48 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="archivoEst">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/home.png&quot;))" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="eventosEst">
+        <Menu class="javax.swing.JMenu" name="verEstudiante">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/calendar.png&quot;))" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/table.png&quot;))" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Eventos"/>
+            <Property name="text" type="java.lang.String" value="Ver"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="asignacionesEst">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/clipboard.png&quot;))" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Asignaciones"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="asignacionesEstActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eventosEst">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/calendar.png&quot;))" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eventos"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="calificacionesEst">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/3d bar chart.png&quot;))" type="code"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Calificaciones"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mensajesEst">
           <Properties>
@@ -23,32 +55,6 @@
               <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/mail.png&quot;))" type="code"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mensajes"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="asignacionesEst">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/clipboard.png&quot;))" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Asignaciones"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Acad&#xe9;micas"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="calificacionesEst">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/3d bar chart.png&quot;))" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Calificaciones"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="busquedaEst">

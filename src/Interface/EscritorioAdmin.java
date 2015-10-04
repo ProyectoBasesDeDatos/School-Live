@@ -34,10 +34,11 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         escritorioAdmin = new javax.swing.JDesktopPane();
         menuAdmin = new javax.swing.JMenuBar();
         archivoAdmin = new javax.swing.JMenu();
-        eventosAdmin = new javax.swing.JMenu();
+        verAdmin = new javax.swing.JMenu();
+        asignacionesAdmin = new javax.swing.JMenuItem();
+        eventosAdmin = new javax.swing.JMenuItem();
+        calificacionesAdmin = new javax.swing.JMenuItem();
         mensajesAdmin = new javax.swing.JMenu();
-        asignacionesAdmin = new javax.swing.JMenu();
-        calificacionesAdmin = new javax.swing.JMenu();
         busquedaAdmin = new javax.swing.JMenu();
         perfilAdmin = new javax.swing.JMenu();
         alertasAdmin = new javax.swing.JMenu();
@@ -55,24 +56,30 @@ public class EscritorioAdmin extends javax.swing.JFrame {
             .addGap(0, 464, Short.MAX_VALUE)
         );
 
+        archivoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoAdmin.setText("Archivo");
         menuAdmin.add(archivoAdmin);
 
+        verAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
+        verAdmin.setText("Ver");
+
+        asignacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        asignacionesAdmin.setText("Asignaciones");
+        verAdmin.add(asignacionesAdmin);
+
         eventosAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         eventosAdmin.setText("Eventos");
-        menuAdmin.add(eventosAdmin);
+        verAdmin.add(eventosAdmin);
+
+        calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
+        calificacionesAdmin.setText("Calificaciones");
+        verAdmin.add(calificacionesAdmin);
+
+        menuAdmin.add(verAdmin);
 
         mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesAdmin.setText("Mensajes");
         menuAdmin.add(mensajesAdmin);
-
-        asignacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
-        asignacionesAdmin.setText("Asignaciones");
-        menuAdmin.add(asignacionesAdmin);
-
-        calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
-        calificacionesAdmin.setText("Calificaciones");
-        menuAdmin.add(calificacionesAdmin);
 
         busquedaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
         busquedaAdmin.setText("Busqueda");
@@ -140,13 +147,14 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu alertasAdmin;
     private javax.swing.JMenu archivoAdmin;
-    private javax.swing.JMenu asignacionesAdmin;
+    private javax.swing.JMenuItem asignacionesAdmin;
     private javax.swing.JMenu busquedaAdmin;
-    private javax.swing.JMenu calificacionesAdmin;
+    private javax.swing.JMenuItem calificacionesAdmin;
     private javax.swing.JDesktopPane escritorioAdmin;
-    private javax.swing.JMenu eventosAdmin;
+    private javax.swing.JMenuItem eventosAdmin;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;
+    private javax.swing.JMenu verAdmin;
     // End of variables declaration//GEN-END:variables
 }

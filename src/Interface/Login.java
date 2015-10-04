@@ -126,12 +126,16 @@ public class Login extends javax.swing.JFrame {
         if(validarUsuario(user.getText(), password.getPassword())){
             if(perfilUsuario(user.getText()).equals("estudiante")){
                 new EscritorioEst().setVisible(true);
+                this.setVisible(false);
             }else if(perfilUsuario(user.getText()).equals("profesor")){
                 new EscritorioProfesor().setVisible(true);
+                this.setVisible(false);
             }else if(perfilUsuario(user.getText()).equals("admin")){
                 new EscritorioAdmin().setVisible(true);
+                this.setVisible(false);
             }else{
-         
+            JOptionPane.showMessageDialog(null,
+                      "Perfil incorrecto", "Error de perfiles de seguridad",JOptionPane.ERROR_MESSAGE);
             }
         }else{
             JOptionPane.showMessageDialog(null,

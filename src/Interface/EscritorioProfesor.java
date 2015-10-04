@@ -34,10 +34,11 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         escritorioProf = new javax.swing.JDesktopPane();
         menuProfesor = new javax.swing.JMenuBar();
         archivoProf = new javax.swing.JMenu();
-        eventosProf = new javax.swing.JMenu();
+        VerProf = new javax.swing.JMenu();
+        asignacionProf = new javax.swing.JMenuItem();
+        eventosProf = new javax.swing.JMenuItem();
+        calificacionesProf = new javax.swing.JMenuItem();
         mensajesProf = new javax.swing.JMenu();
-        asignacionesProf = new javax.swing.JMenu();
-        calificacionesProf = new javax.swing.JMenu();
         busquedaProf = new javax.swing.JMenu();
         perfilProf = new javax.swing.JMenu();
         alertaProf = new javax.swing.JMenu();
@@ -57,24 +58,30 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         menuProfesor.setAutoscrolls(true);
 
+        archivoProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoProf.setText("Archivo");
         menuProfesor.add(archivoProf);
 
+        VerProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
+        VerProf.setText("Ver");
+
+        asignacionProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        asignacionProf.setText("Asignaciones");
+        VerProf.add(asignacionProf);
+
         eventosProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         eventosProf.setText("Eventos");
-        menuProfesor.add(eventosProf);
+        VerProf.add(eventosProf);
+
+        calificacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
+        calificacionesProf.setText("Calificaciones");
+        VerProf.add(calificacionesProf);
+
+        menuProfesor.add(VerProf);
 
         mensajesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesProf.setText("Mensajes");
         menuProfesor.add(mensajesProf);
-
-        asignacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
-        asignacionesProf.setText("Asignaciones");
-        menuProfesor.add(asignacionesProf);
-
-        calificacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
-        calificacionesProf.setText("Calificaciones");
-        menuProfesor.add(calificacionesProf);
 
         busquedaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
         busquedaProf.setText("Busqueda");
@@ -140,13 +147,14 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu VerProf;
     private javax.swing.JMenu alertaProf;
     private javax.swing.JMenu archivoProf;
-    private javax.swing.JMenu asignacionesProf;
+    private javax.swing.JMenuItem asignacionProf;
     private javax.swing.JMenu busquedaProf;
-    private javax.swing.JMenu calificacionesProf;
+    private javax.swing.JMenuItem calificacionesProf;
     private javax.swing.JDesktopPane escritorioProf;
-    private javax.swing.JMenu eventosProf;
+    private javax.swing.JMenuItem eventosProf;
     private javax.swing.JMenu mensajesProf;
     private javax.swing.JMenuBar menuProfesor;
     private javax.swing.JMenu perfilProf;
