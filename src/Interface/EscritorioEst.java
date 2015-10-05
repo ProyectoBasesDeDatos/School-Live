@@ -6,6 +6,7 @@
 package Interface;
 
 import Imagenes.ImagenFondo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,8 @@ public class EscritorioEst extends javax.swing.JFrame {
         escritorioEst = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivoEst = new javax.swing.JMenu();
+        cerrarSesionEst = new javax.swing.JMenuItem();
+        cerrarEst = new javax.swing.JMenuItem();
         verEstudiante = new javax.swing.JMenu();
         asignacionesEst = new javax.swing.JMenuItem();
         eventosEst = new javax.swing.JMenuItem();
@@ -58,6 +61,23 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         archivoEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoEst.setText("Archivo");
+
+        cerrarSesionEst.setText("Cerrar Sesión");
+        cerrarSesionEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarSesionEstActionPerformed(evt);
+            }
+        });
+        archivoEst.add(cerrarSesionEst);
+
+        cerrarEst.setText("Cerrar");
+        cerrarEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarEstActionPerformed(evt);
+            }
+        });
+        archivoEst.add(cerrarEst);
+
         jMenuBar1.add(archivoEst);
 
         verEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
@@ -121,6 +141,18 @@ public class EscritorioEst extends javax.swing.JFrame {
         
     }//GEN-LAST:event_asignacionesEstActionPerformed
 
+    private void cerrarSesionEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionEstActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cerrarSesionEstActionPerformed
+
+    private void cerrarEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarEstActionPerformed
+        int answ= JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea salir del sistema?");
+        if(answ==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_cerrarEstActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -162,6 +194,8 @@ public class EscritorioEst extends javax.swing.JFrame {
     private javax.swing.JMenuItem asignacionesEst;
     private javax.swing.JMenu busquedaEst;
     private javax.swing.JMenuItem calificacionesEst;
+    private javax.swing.JMenuItem cerrarEst;
+    private javax.swing.JMenuItem cerrarSesionEst;
     private javax.swing.JDesktopPane escritorioEst;
     private javax.swing.JMenuItem eventosEst;
     private javax.swing.JMenuBar jMenuBar1;
