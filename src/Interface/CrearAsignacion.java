@@ -9,12 +9,12 @@ package Interface;
  *
  * @author fugalde
  */
-public class AsignacionesProf extends javax.swing.JInternalFrame {
+public class CrearAsignacion extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AsignacionesProf
      */
-    public AsignacionesProf() {
+    public CrearAsignacion() {
         initComponents();
     }
 
@@ -42,7 +42,6 @@ public class AsignacionesProf extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Crear Asignación");
         setToolTipText("");

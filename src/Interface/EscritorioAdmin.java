@@ -38,7 +38,10 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         cerrarSesionAdmin = new javax.swing.JMenuItem();
         cerrarAdmin = new javax.swing.JMenuItem();
         verAdmin = new javax.swing.JMenu();
-        asignacionesAdmin = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        crearAsigAdmin = new javax.swing.JMenuItem();
+        editarAsigAdmin = new javax.swing.JMenuItem();
+        eliminarAsigAdmin = new javax.swing.JMenuItem();
         eventosAdmin = new javax.swing.JMenuItem();
         calificacionesAdmin = new javax.swing.JMenuItem();
         mensajesAdmin = new javax.swing.JMenu();
@@ -85,9 +88,37 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         verAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
         verAdmin.setText("Ver");
 
-        asignacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
-        asignacionesAdmin.setText("Asignaciones");
-        verAdmin.add(asignacionesAdmin);
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        jMenu1.setText("Asignaciones");
+
+        crearAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        crearAsigAdmin.setText("Crear");
+        crearAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearAsigAdminActionPerformed(evt);
+            }
+        });
+        jMenu1.add(crearAsigAdmin);
+
+        editarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        editarAsigAdmin.setText("Editar");
+        editarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAsigAdminActionPerformed(evt);
+            }
+        });
+        jMenu1.add(editarAsigAdmin);
+
+        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        eliminarAsigAdmin.setText("Eliminar");
+        eliminarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarAsigAdminActionPerformed(evt);
+            }
+        });
+        jMenu1.add(eliminarAsigAdmin);
+
+        verAdmin.add(jMenu1);
 
         eventosAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         eventosAdmin.setText("Eventos");
@@ -143,6 +174,23 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cerrarAdminActionPerformed
 
+    private void crearAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAsigAdminActionPerformed
+        CrearAsignacion asig= new CrearAsignacion();
+        escritorioAdmin.add(asig);
+        asig.show();
+    }//GEN-LAST:event_crearAsigAdminActionPerformed
+
+    private void editarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAsigAdminActionPerformed
+        EditarAsignacion editAsig= new EditarAsignacion();
+        escritorioAdmin.add(editAsig);
+        editAsig.show();        
+    }//GEN-LAST:event_editarAsigAdminActionPerformed
+
+    private void eliminarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAsigAdminActionPerformed
+        EliminarAsignacion elimAsig = new EliminarAsignacion();
+        escritorioAdmin.add(elimAsig);
+        elimAsig.show();    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,13 +229,16 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu alertasAdmin;
     private javax.swing.JMenu archivoAdmin;
-    private javax.swing.JMenuItem asignacionesAdmin;
     private javax.swing.JMenu busquedaAdmin;
     private javax.swing.JMenuItem calificacionesAdmin;
     private javax.swing.JMenuItem cerrarAdmin;
     private javax.swing.JMenuItem cerrarSesionAdmin;
+    private javax.swing.JMenuItem crearAsigAdmin;
+    private javax.swing.JMenuItem editarAsigAdmin;
+    private javax.swing.JMenuItem eliminarAsigAdmin;
     private javax.swing.JDesktopPane escritorioAdmin;
     private javax.swing.JMenuItem eventosAdmin;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;

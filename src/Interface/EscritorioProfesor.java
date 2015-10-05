@@ -40,6 +40,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         VerProf = new javax.swing.JMenu();
         asignacionesProf = new javax.swing.JMenu();
         crearAsignacionProf = new javax.swing.JMenuItem();
+        editarAsigProf = new javax.swing.JMenuItem();
+        eliminarAsigAdmin = new javax.swing.JMenuItem();
         eventosProf = new javax.swing.JMenuItem();
         calificacionesProf = new javax.swing.JMenuItem();
         mensajesProf = new javax.swing.JMenu();
@@ -100,6 +102,24 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         asignacionesProf.add(crearAsignacionProf);
 
+        editarAsigProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        editarAsigProf.setText("Editar");
+        editarAsigProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAsigProfActionPerformed(evt);
+            }
+        });
+        asignacionesProf.add(editarAsigProf);
+
+        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        eliminarAsigAdmin.setText("Eliminar");
+        eliminarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarAsigAdminActionPerformed(evt);
+            }
+        });
+        asignacionesProf.add(eliminarAsigAdmin);
+
         VerProf.add(asignacionesProf);
 
         eventosProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
@@ -145,7 +165,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearAsignacionProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAsignacionProfActionPerformed
-        AsignacionesProf asigProf= new AsignacionesProf();
+        CrearAsignacion asigProf= new CrearAsignacion();
         escritorioProf.add(asigProf);
         asigProf.show();
     }//GEN-LAST:event_crearAsignacionProfActionPerformed
@@ -162,6 +182,18 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cmbUserProfActionPerformed
+
+    private void editarAsigProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAsigProfActionPerformed
+        EditarAsignacion editAsig= new EditarAsignacion();
+        escritorioProf.add(editAsig);
+        editAsig.show();
+    }//GEN-LAST:event_editarAsigProfActionPerformed
+
+    private void eliminarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAsigAdminActionPerformed
+        EliminarAsignacion elimAsig = new EliminarAsignacion();
+        escritorioProf.add(elimAsig);
+        elimAsig.show();
+    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,6 +240,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JMenuItem cerrarProf;
     private javax.swing.JMenuItem cmbUserProf;
     private javax.swing.JMenuItem crearAsignacionProf;
+    private javax.swing.JMenuItem editarAsigProf;
+    private javax.swing.JMenuItem eliminarAsigAdmin;
     private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;
     private javax.swing.JMenu mensajesProf;
