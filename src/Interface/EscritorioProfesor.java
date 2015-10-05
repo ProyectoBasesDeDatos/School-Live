@@ -6,6 +6,7 @@
 package Interface;
 
 import Imagenes.ImagenFondo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         escritorioProf = new javax.swing.JDesktopPane();
         menuProfesor = new javax.swing.JMenuBar();
         archivoProf = new javax.swing.JMenu();
+        cmbUserProf = new javax.swing.JMenuItem();
+        cerrarProf = new javax.swing.JMenuItem();
         VerProf = new javax.swing.JMenu();
         asignacionesProf = new javax.swing.JMenu();
         crearAsignacionProf = new javax.swing.JMenuItem();
@@ -61,6 +64,25 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         archivoProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoProf.setText("Archivo");
+
+        cmbUserProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        cmbUserProf.setText("Cambiar de usuario");
+        cmbUserProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbUserProfActionPerformed(evt);
+            }
+        });
+        archivoProf.add(cmbUserProf);
+
+        cerrarProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/turn off.png")));
+        cerrarProf.setText("Cerrar");
+        cerrarProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarProfActionPerformed(evt);
+            }
+        });
+        archivoProf.add(cerrarProf);
+
         menuProfesor.add(archivoProf);
 
         VerProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
@@ -128,6 +150,19 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         asigProf.show();
     }//GEN-LAST:event_crearAsignacionProfActionPerformed
 
+    private void cerrarProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarProfActionPerformed
+        int answ= JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea salir del sistema?");
+        if(answ==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+        
+    }//GEN-LAST:event_cerrarProfActionPerformed
+
+    private void cmbUserProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUserProfActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cmbUserProfActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -170,6 +205,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JMenu asignacionesProf;
     private javax.swing.JMenu busquedaProf;
     private javax.swing.JMenuItem calificacionesProf;
+    private javax.swing.JMenuItem cerrarProf;
+    private javax.swing.JMenuItem cmbUserProf;
     private javax.swing.JMenuItem crearAsignacionProf;
     private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;

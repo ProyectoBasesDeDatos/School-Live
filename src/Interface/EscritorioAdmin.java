@@ -6,6 +6,7 @@
 package Interface;
 
 import Imagenes.ImagenFondo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,8 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         escritorioAdmin = new javax.swing.JDesktopPane();
         menuAdmin = new javax.swing.JMenuBar();
         archivoAdmin = new javax.swing.JMenu();
+        cerrarSesionAdmin = new javax.swing.JMenuItem();
+        cerrarAdmin = new javax.swing.JMenuItem();
         verAdmin = new javax.swing.JMenu();
         asignacionesAdmin = new javax.swing.JMenuItem();
         eventosAdmin = new javax.swing.JMenuItem();
@@ -58,6 +61,25 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         archivoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoAdmin.setText("Archivo");
+
+        cerrarSesionAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        cerrarSesionAdmin.setText("Cerrar sesión");
+        cerrarSesionAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarSesionAdminActionPerformed(evt);
+            }
+        });
+        archivoAdmin.add(cerrarSesionAdmin);
+
+        cerrarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/turn off.png")));
+        cerrarAdmin.setText("Cerrar");
+        cerrarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarAdminActionPerformed(evt);
+            }
+        });
+        archivoAdmin.add(cerrarAdmin);
+
         menuAdmin.add(archivoAdmin);
 
         verAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
@@ -109,6 +131,18 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cerrarSesionAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionAdminActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cerrarSesionAdminActionPerformed
+
+    private void cerrarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarAdminActionPerformed
+        int answ= JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea salir del sistema?");
+        if(answ==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_cerrarAdminActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -150,6 +184,8 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem asignacionesAdmin;
     private javax.swing.JMenu busquedaAdmin;
     private javax.swing.JMenuItem calificacionesAdmin;
+    private javax.swing.JMenuItem cerrarAdmin;
+    private javax.swing.JMenuItem cerrarSesionAdmin;
     private javax.swing.JDesktopPane escritorioAdmin;
     private javax.swing.JMenuItem eventosAdmin;
     private javax.swing.JMenu mensajesAdmin;
