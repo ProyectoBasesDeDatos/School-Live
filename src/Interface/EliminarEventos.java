@@ -67,6 +67,9 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(TEliminar);
+        if (TEliminar.getColumnModel().getColumnCount() > 0) {
+            TEliminar.getColumnModel().getColumn(0).setPreferredWidth(5);
+        }
 
         jLabel2.setText("Seleccione los eventos a eliminar");
 

@@ -63,6 +63,7 @@ public class EscritorioEst extends javax.swing.JFrame {
         archivoEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
         archivoEst.setText("Archivo");
 
+        cerrarSesionEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
         cerrarSesionEst.setText("Cerrar Sesión");
         cerrarSesionEst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +72,7 @@ public class EscritorioEst extends javax.swing.JFrame {
         });
         archivoEst.add(cerrarSesionEst);
 
+        cerrarEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/turn off.png")));
         cerrarEst.setText("Cerrar");
         cerrarEst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
