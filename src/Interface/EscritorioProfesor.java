@@ -45,6 +45,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         eventosProf = new javax.swing.JMenuItem();
         calificacionesProf = new javax.swing.JMenuItem();
         mensajesProf = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         busquedaProf = new javax.swing.JMenu();
         perfilProf = new javax.swing.JMenu();
         alertaProf = new javax.swing.JMenu();
@@ -134,6 +135,15 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         mensajesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesProf.setText("Mensajes");
+
+        jMenuItem1.setText("Ver Mensajes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mensajesProf.add(jMenuItem1);
+
         menuProfesor.add(mensajesProf);
 
         busquedaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
@@ -195,6 +205,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         elimAsig.show();
     }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        MensajesProf mnjProf= new MensajesProf();
+        escritorioProf.add(mnjProf);
+        mnjProf.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,6 +260,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JMenuItem eliminarAsigAdmin;
     private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mensajesProf;
     private javax.swing.JMenuBar menuProfesor;
     private javax.swing.JMenu perfilProf;

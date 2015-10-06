@@ -45,6 +45,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         eventosAdmin = new javax.swing.JMenuItem();
         calificacionesAdmin = new javax.swing.JMenuItem();
         mensajesAdmin = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         busquedaAdmin = new javax.swing.JMenu();
         perfilAdmin = new javax.swing.JMenu();
         alertasAdmin = new javax.swing.JMenu();
@@ -132,6 +133,15 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesAdmin.setText("Mensajes");
+
+        jMenuItem1.setText("Ver Mensajes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mensajesAdmin.add(jMenuItem1);
+
         menuAdmin.add(mensajesAdmin);
 
         busquedaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
@@ -191,6 +201,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         escritorioAdmin.add(elimAsig);
         elimAsig.show();    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+     MensajesAdm mnjAdm= new MensajesAdm();
+     escritorioAdmin.add(mnjAdm);
+     mnjAdm.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,6 +255,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorioAdmin;
     private javax.swing.JMenuItem eventosAdmin;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;
