@@ -50,6 +50,11 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         jLabel1.setText("Seleccione el curso al cual va a asignarle un trabajo");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jInternalFrame1.setBackground(new java.awt.Color(255, 255, 255));
         jInternalFrame1.setEnabled(false);
@@ -64,6 +69,11 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         jLabel3.setText("Fecha de entrega");
 
         guardarAsignButton.setText("Guardar");
+        guardarAsignButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarAsignButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -140,6 +150,14 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void guardarAsignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAsignButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarAsignButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

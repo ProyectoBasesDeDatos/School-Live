@@ -42,7 +42,10 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         crearAsigAdmin = new javax.swing.JMenuItem();
         editarAsigAdmin = new javax.swing.JMenuItem();
         eliminarAsigAdmin = new javax.swing.JMenuItem();
-        eventosAdmin = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        CrearEvento = new javax.swing.JMenuItem();
+        EditarEvento = new javax.swing.JMenuItem();
+        EliminarEvento = new javax.swing.JMenuItem();
         calificacionesAdmin = new javax.swing.JMenuItem();
         mensajesAdmin = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -121,9 +124,37 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         verAdmin.add(jMenu1);
 
-        eventosAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
-        eventosAdmin.setText("Eventos");
-        verAdmin.add(eventosAdmin);
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.png")));
+        jMenu2.setText("Eventos");
+
+        CrearEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        CrearEvento.setText("Crear");
+        CrearEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearEventoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(CrearEvento);
+
+        EditarEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        EditarEvento.setText("Editar ");
+        EditarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarEventoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(EditarEvento);
+
+        EliminarEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        EliminarEvento.setText("Eliminar");
+        EliminarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarEventoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(EliminarEvento);
+
+        verAdmin.add(jMenu2);
 
         calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
         calificacionesAdmin.setText("Calificaciones");
@@ -207,6 +238,24 @@ public class EscritorioAdmin extends javax.swing.JFrame {
      mnjAdm.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearEventoActionPerformed
+        CrearEventos cEvento = new CrearEventos();
+        escritorioAdmin.add(cEvento);
+        cEvento.show(); 
+    }//GEN-LAST:event_CrearEventoActionPerformed
+
+    private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
+        EditarEventos eEvento = new EditarEventos();
+        escritorioAdmin.add(eEvento);
+        eEvento.show(); 
+    }//GEN-LAST:event_EditarEventoActionPerformed
+
+    private void EliminarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEventoActionPerformed
+        EliminarEventos eEvento = new EliminarEventos();
+        escritorioAdmin.add(eEvento);
+        eEvento.show(); 
+    }//GEN-LAST:event_EliminarEventoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +292,9 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CrearEvento;
+    private javax.swing.JMenuItem EditarEvento;
+    private javax.swing.JMenuItem EliminarEvento;
     private javax.swing.JMenu alertasAdmin;
     private javax.swing.JMenu archivoAdmin;
     private javax.swing.JMenu busquedaAdmin;
@@ -253,8 +305,8 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem editarAsigAdmin;
     private javax.swing.JMenuItem eliminarAsigAdmin;
     private javax.swing.JDesktopPane escritorioAdmin;
-    private javax.swing.JMenuItem eventosAdmin;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;

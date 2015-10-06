@@ -95,6 +95,11 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         eventosEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
         eventosEst.setText("Eventos");
+        eventosEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventosEstActionPerformed(evt);
+            }
+        });
         verEstudiante.add(eventosEst);
 
         calificacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
@@ -168,6 +173,12 @@ public class EscritorioEst extends javax.swing.JFrame {
        escritorioEst.add(mnjEst);
        mnjEst.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void eventosEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosEstActionPerformed
+        VerEventos vEvento= new VerEventos();
+        escritorioEst.add(vEvento);
+        vEvento.show();
+    }//GEN-LAST:event_eventosEstActionPerformed
 
     /**
      * @param args the command line arguments
