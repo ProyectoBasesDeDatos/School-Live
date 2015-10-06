@@ -43,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\fugalde\\Documents\\GitHub\\School-Live\\src\\Imagenes\\logo.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Mega\\Documentos\\GitHub\\School-Live\\src\\Imagenes\\logo.jpg")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Usuario");

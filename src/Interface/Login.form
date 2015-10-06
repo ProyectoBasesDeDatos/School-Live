@@ -107,7 +107,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\fugalde\Documents\GitHub\School-Live\src\Imagenes\logo.jpg"/>
+              <Image iconType="2" name="D:\Mega\Documentos\GitHub\School-Live\src\Imagenes\logo.jpg"/>
             </Property>
           </Properties>
         </Component>
