@@ -224,10 +224,20 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
         jMenuItem3.setText("Estudiante");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
         jMenuItem4.setText("Padre Familia");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/female.png")));
@@ -347,6 +357,18 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         escritorioAdmin.add(dAdmin);
         dAdmin.show();
     }//GEN-LAST:event_ItemDirectorioActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       CrearPerfilEst perfilEst= new CrearPerfilEst();
+       escritorioAdmin.add(perfilEst);
+       perfilEst.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        CrearPerfilFamiliar perfilFam= new CrearPerfilFamiliar();
+        escritorioAdmin.add(perfilFam);
+        perfilFam.show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

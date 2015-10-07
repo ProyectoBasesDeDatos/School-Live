@@ -66,7 +66,7 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Crear prefil profesor");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
 
         jLabel5.setText("Identificación");
 
@@ -101,7 +101,7 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Dirección");
 
-        jButton1.setText("Actualizar");
+        jButton1.setText("Guardar");
 
         jTextField4.setToolTipText("");
 
@@ -252,9 +252,9 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -278,8 +278,10 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
     DefaultListModel dlm = new DefaultListModel();
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        
         dlm.addElement(listaMateriasDisponibles.getSelectedValue());
         listaMateriasAsignadas.setModel(dlm);
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
