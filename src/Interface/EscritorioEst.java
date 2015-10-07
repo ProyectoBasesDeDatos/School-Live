@@ -43,8 +43,10 @@ public class EscritorioEst extends javax.swing.JFrame {
         calificacionesEst = new javax.swing.JMenuItem();
         mensajesEst = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         busquedaEst = new javax.swing.JMenu();
         perfilEst = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         alertasEst = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,13 +115,23 @@ public class EscritorioEst extends javax.swing.JFrame {
         mensajesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesEst.setText("Mensajes");
 
-        jMenuItem1.setText("Ver Mensajes");
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
+        jMenuItem1.setText("Grupo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         mensajesEst.add(jMenuItem1);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
+        jMenuItem3.setText("Escuela");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        mensajesEst.add(jMenuItem3);
 
         jMenuBar1.add(mensajesEst);
 
@@ -129,6 +141,16 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         perfilEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
         perfilEst.setText("Perfil");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
+        jMenuItem2.setText("Datos Personales");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        perfilEst.add(jMenuItem2);
+
         jMenuBar1.add(perfilEst);
 
         alertasEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
@@ -182,6 +204,18 @@ public class EscritorioEst extends javax.swing.JFrame {
         vEvento.show();
     }//GEN-LAST:event_eventosEstActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        PerfilEst perfEst= new PerfilEst();
+        escritorioEst.add(perfEst);
+        perfEst.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        MensajesEscuela mnjEsc= new MensajesEscuela();
+        escritorioEst.add(mnjEsc);
+        mnjEsc.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,6 +263,8 @@ public class EscritorioEst extends javax.swing.JFrame {
     private javax.swing.JMenuItem eventosEst;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu mensajesEst;
     private javax.swing.JMenu perfilEst;
     private javax.swing.JMenu verEstudiante;

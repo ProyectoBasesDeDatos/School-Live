@@ -51,6 +51,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         busquedaAdmin = new javax.swing.JMenu();
         perfilAdmin = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         alertasAdmin = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -165,7 +166,8 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
         mensajesAdmin.setText("Mensajes");
 
-        jMenuItem1.setText("Ver Mensajes");
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
+        jMenuItem1.setText("Crear Mensaje");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -181,6 +183,16 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
         perfilAdmin.setText("Perfil");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
+        jMenuItem2.setText("Ver/Crear Perfil");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        perfilAdmin.add(jMenuItem2);
+
         menuAdmin.add(perfilAdmin);
 
         alertasAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
@@ -256,6 +268,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         eEvento.show(); 
     }//GEN-LAST:event_EliminarEventoActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        PerfilAdm perfAdm = new PerfilAdm();
+        escritorioAdmin.add(perfAdm);
+        perfAdm.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +326,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;
