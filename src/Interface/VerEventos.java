@@ -37,6 +37,7 @@ public class VerEventos extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setTitle("Ver Eventos");
 
         jLabel1.setText("Limitar por tipo");
 
