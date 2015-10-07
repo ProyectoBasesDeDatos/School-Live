@@ -48,6 +48,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         busquedaProf = new javax.swing.JMenu();
+        ItemDirectorio = new javax.swing.JMenuItem();
         perfilProf = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         alertaProf = new javax.swing.JMenu();
@@ -165,6 +166,16 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         busquedaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
         busquedaProf.setText("Busqueda");
+
+        ItemDirectorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone number.png"))); // NOI18N
+        ItemDirectorio.setText("Directorio");
+        ItemDirectorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemDirectorioActionPerformed(evt);
+            }
+        });
+        busquedaProf.add(ItemDirectorio);
+
         menuProfesor.add(busquedaProf);
 
         perfilProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
@@ -256,6 +267,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         mnjEsc.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void ItemDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemDirectorioActionPerformed
+        DirectorioProf dProf = new DirectorioProf();
+        escritorioProf.add(dProf);
+        dProf.show();
+    }//GEN-LAST:event_ItemDirectorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -292,6 +309,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ItemDirectorio;
     private javax.swing.JMenu VerProf;
     private javax.swing.JMenu alertaProf;
     private javax.swing.JMenu archivoProf;

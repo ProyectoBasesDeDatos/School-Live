@@ -45,6 +45,7 @@ public class EscritorioEst extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         busquedaEst = new javax.swing.JMenu();
+        ItemContDir = new javax.swing.JMenuItem();
         perfilEst = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         alertasEst = new javax.swing.JMenu();
@@ -137,6 +138,16 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         busquedaEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
         busquedaEst.setText("Busqueda");
+
+        ItemContDir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone number.png"))); // NOI18N
+        ItemContDir.setText("Contactos y Directorio");
+        ItemContDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemContDirActionPerformed(evt);
+            }
+        });
+        busquedaEst.add(ItemContDir);
+
         jMenuBar1.add(busquedaEst);
 
         perfilEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
@@ -216,6 +227,12 @@ public class EscritorioEst extends javax.swing.JFrame {
         mnjEsc.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void ItemContDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemContDirActionPerformed
+        ContactosEst cEst = new ContactosEst();
+        escritorioEst.add(cEst);
+        cEst.show();
+    }//GEN-LAST:event_ItemContDirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,6 +269,7 @@ public class EscritorioEst extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ItemContDir;
     private javax.swing.JMenu alertasEst;
     private javax.swing.JMenu archivoEst;
     private javax.swing.JMenuItem asignacionesEst;

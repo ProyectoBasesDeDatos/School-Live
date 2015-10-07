@@ -50,6 +50,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         mensajesAdmin = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         busquedaAdmin = new javax.swing.JMenu();
+        ItemDirectorio = new javax.swing.JMenuItem();
         perfilAdmin = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         alertasAdmin = new javax.swing.JMenu();
@@ -179,6 +180,16 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         busquedaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
         busquedaAdmin.setText("Busqueda");
+
+        ItemDirectorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone number.png"))); // NOI18N
+        ItemDirectorio.setText("Directorio");
+        ItemDirectorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemDirectorioActionPerformed(evt);
+            }
+        });
+        busquedaAdmin.add(ItemDirectorio);
+
         menuAdmin.add(busquedaAdmin);
 
         perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
@@ -274,6 +285,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         perfAdm.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void ItemDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemDirectorioActionPerformed
+        DirectorioAdmin dAdmin = new DirectorioAdmin();
+        escritorioAdmin.add(dAdmin);
+        dAdmin.show();
+    }//GEN-LAST:event_ItemDirectorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -313,6 +330,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem CrearEvento;
     private javax.swing.JMenuItem EditarEvento;
     private javax.swing.JMenuItem EliminarEvento;
+    private javax.swing.JMenuItem ItemDirectorio;
     private javax.swing.JMenu alertasAdmin;
     private javax.swing.JMenu archivoAdmin;
     private javax.swing.JMenu busquedaAdmin;
