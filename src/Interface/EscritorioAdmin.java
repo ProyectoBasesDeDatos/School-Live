@@ -52,8 +52,18 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         busquedaAdmin = new javax.swing.JMenu();
         ItemDirectorio = new javax.swing.JMenuItem();
         perfilAdmin = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         alertasAdmin = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,7 +206,11 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
         perfilAdmin.setText("Perfil");
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        jMenuItem11.setText("Mi perfil");
+        perfilAdmin.add(jMenuItem11);
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
         jMenu3.setText("Crear");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
@@ -208,7 +222,44 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
+        jMenuItem3.setText("Estudiante");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
+        jMenuItem4.setText("Padre Familia");
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/female.png")));
+        jMenuItem5.setText("Administrador");
+        jMenu3.add(jMenuItem5);
+
         perfilAdmin.add(jMenu3);
+
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/sync.png")));
+        jMenu4.setText("Actualizar");
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        jMenuItem7.setText("Profesor");
+        jMenu4.add(jMenuItem7);
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
+        jMenuItem8.setText("Estudiante");
+        jMenu4.add(jMenuItem8);
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
+        jMenuItem9.setText("Padre Familia");
+        jMenu4.add(jMenuItem9);
+
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/female.png")));
+        jMenuItem10.setText("Administrador");
+        jMenu4.add(jMenuItem10);
+
+        perfilAdmin.add(jMenu4);
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        jMenuItem6.setText("Eliminar");
+        perfilAdmin.add(jMenuItem6);
 
         menuAdmin.add(perfilAdmin);
 
@@ -350,8 +401,18 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;
