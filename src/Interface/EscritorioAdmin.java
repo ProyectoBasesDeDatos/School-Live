@@ -52,6 +52,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         busquedaAdmin = new javax.swing.JMenu();
         ItemDirectorio = new javax.swing.JMenuItem();
         perfilAdmin = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         alertasAdmin = new javax.swing.JMenu();
 
@@ -195,14 +196,19 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
         perfilAdmin.setText("Perfil");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
-        jMenuItem2.setText("Ver/Crear Perfil");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        jMenu3.setText("Crear");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
+        jMenuItem2.setText("Profesor");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        perfilAdmin.add(jMenuItem2);
+        jMenu3.add(jMenuItem2);
+
+        perfilAdmin.add(jMenu3);
 
         menuAdmin.add(perfilAdmin);
 
@@ -280,9 +286,9 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarEventoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        PerfilAdm perfAdm = new PerfilAdm();
-        escritorioAdmin.add(perfAdm);
-        perfAdm.show();
+        CrearPerfilProf perfProf = new CrearPerfilProf();
+        escritorioAdmin.add(perfProf);
+        perfProf.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void ItemDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemDirectorioActionPerformed
@@ -343,6 +349,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorioAdmin;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu mensajesAdmin;

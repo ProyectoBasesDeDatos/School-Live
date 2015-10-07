@@ -256,7 +256,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_eventosProfActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        PerfilProf perfProf= new PerfilProf();
+        CrearPerfilProf perfProf= new CrearPerfilProf();
         escritorioProf.add(perfProf);
         perfProf.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed

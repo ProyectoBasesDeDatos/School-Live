@@ -37,6 +37,8 @@ public class MensajesEscuela extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Mensaje Escuela");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
 
         jLabel1.setText("Mensajes");
 

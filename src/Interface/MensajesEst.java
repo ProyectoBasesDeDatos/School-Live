@@ -42,6 +42,8 @@ public class MensajesEst extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Mensajes de Grupo");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
 
         jInternalFrame1.setVisible(true);
 
@@ -76,7 +78,7 @@ public class MensajesEst extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jToggleButton1)
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addGap(0, 63, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jTextPane3);

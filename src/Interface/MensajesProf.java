@@ -42,6 +42,8 @@ public class MensajesProf extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Crear mensaje");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/new document.png")));
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
