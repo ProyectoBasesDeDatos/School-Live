@@ -5,6 +5,10 @@
  */
 package Interface;
 
+import java.util.Date;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+
 /**
  *
  * @author fugalde
@@ -37,6 +41,8 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         dateChooserPanel1 = new datechooser.beans.DateChooserPanel();
         guardarAsignButton = new javax.swing.JButton();
+        LHora = new javax.swing.JLabel();
+        SHora = new JSpinner( new SpinnerDateModel() );
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
@@ -76,6 +82,12 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
             }
         });
 
+        LHora.setText("Hora");
+
+        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(SHora, "HH:mm");
+        SHora.setEditor(timeEditor);
+        SHora.setValue(new Date());
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -92,7 +104,12 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(dateChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(guardarAsignButton)))
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(guardarAsignButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(LHora)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -101,14 +118,18 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(dateChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(guardarAsignButton))
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LHora)
+                            .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(guardarAsignButton))
+                    .addComponent(dateChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -174,6 +195,8 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LHora;
+    private javax.swing.JSpinner SHora;
     private datechooser.beans.DateChooserPanel dateChooserPanel1;
     private javax.swing.JButton guardarAsignButton;
     private javax.swing.JComboBox jComboBox1;

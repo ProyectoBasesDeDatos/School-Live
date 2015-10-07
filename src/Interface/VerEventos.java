@@ -38,6 +38,7 @@ public class VerEventos extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Ver Eventos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.png"))); // NOI18N
 
         jLabel1.setText("Limitar por tipo");
 

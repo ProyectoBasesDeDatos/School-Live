@@ -54,6 +54,8 @@ public class CrearEventos extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Crear Evento");
+        setFocusable(false);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
 
         CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nuevo Tipo", "Cultural", "Deportivo"}));
         CBTipo.addActionListener(new java.awt.event.ActionListener() {
