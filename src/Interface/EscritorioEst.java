@@ -108,6 +108,11 @@ public class EscritorioEst extends javax.swing.JFrame {
 
         calificacionesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
         calificacionesEst.setText("Calificaciones");
+        calificacionesEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calificacionesEstActionPerformed(evt);
+            }
+        });
         verEstudiante.add(calificacionesEst);
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
@@ -226,6 +231,12 @@ public class EscritorioEst extends javax.swing.JFrame {
         escritorioEst.add(cEst);
         cEst.show();
     }//GEN-LAST:event_ItemContDirActionPerformed
+
+    private void calificacionesEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesEstActionPerformed
+        VistaCalificaciones visCal= new VistaCalificaciones();
+        escritorioEst.add(visCal);
+        visCal.show();
+    }//GEN-LAST:event_calificacionesEstActionPerformed
 
     /**
      * @param args the command line arguments

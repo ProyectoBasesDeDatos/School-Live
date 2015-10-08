@@ -169,6 +169,11 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
         calificacionesAdmin.setText("Calificaciones");
+        calificacionesAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calificacionesAdminActionPerformed(evt);
+            }
+        });
         verAdmin.add(calificacionesAdmin);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Female.png"))); // NOI18N
@@ -414,6 +419,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         escritorioAdmin.add(miPerfil);
         miPerfil.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void calificacionesAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesAdminActionPerformed
+        CalificacionesGrupo caGru= new CalificacionesGrupo();
+        escritorioAdmin.add(caGru);
+        caGru.show();
+    }//GEN-LAST:event_calificacionesAdminActionPerformed
 
     /**
      * @param args the command line arguments

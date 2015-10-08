@@ -136,6 +136,11 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         calificacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
         calificacionesProf.setText("Calificaciones");
+        calificacionesProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calificacionesProfActionPerformed(evt);
+            }
+        });
         VerProf.add(calificacionesProf);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
@@ -266,6 +271,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         escritorioProf.add(perfilP);
         perfilP.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void calificacionesProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesProfActionPerformed
+        CalificacionesGrupo caGru= new CalificacionesGrupo();
+        escritorioProf.add(caGru);
+        caGru.show();
+    }//GEN-LAST:event_calificacionesProfActionPerformed
 
     /**
      * @param args the command line arguments

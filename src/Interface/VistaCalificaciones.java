@@ -41,8 +41,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
+        setTitle("Calificaciones");
 
         jLabel1.setText("Estudiante");
 
