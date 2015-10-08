@@ -30,36 +30,36 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        TPeriodo4 = new javax.swing.JTable();
-        jComboBox3 = new javax.swing.JComboBox();
+        TGrupo = new javax.swing.JTable();
+        ComboGrupo = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        ComboPeriodo = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox();
+        ComboMateria = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TPeriodo1 = new javax.swing.JTable();
+        TPeriodo1Est = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TPeriodo2 = new javax.swing.JTable();
+        TPeriodo2Est = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        TPeriodo3 = new javax.swing.JTable();
+        TPeriodo3Est = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        TAnual = new javax.swing.JTable();
+        TAnualEst = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        ComboGrupoEstudiante = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ComboEstudiante = new javax.swing.JComboBox();
+        Guardar = new javax.swing.JButton();
+        Reporte = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Calificaciones");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png"))); // NOI18N
 
-        TPeriodo4.setModel(new javax.swing.table.DefaultTableModel(
+        TGrupo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -101,20 +101,20 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 "Estudiante", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"
             }
         ));
-        TPeriodo4.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(TPeriodo4);
+        TGrupo.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(TGrupo);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText("Grupo");
 
         jLabel1.setText("Periodo");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Materia");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,15 +125,15 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox5, 0, 148, Short.MAX_VALUE)
+                .addComponent(ComboMateria, 0, 148, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
         );
         jPanel2Layout.setVerticalGroup(
@@ -142,11 +142,11 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -154,7 +154,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Vista Grupal", jPanel2);
 
-        TPeriodo1.setModel(new javax.swing.table.DefaultTableModel(
+        TPeriodo1Est.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -173,12 +173,12 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 "Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"
             }
         ));
-        TPeriodo1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(TPeriodo1);
+        TPeriodo1Est.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(TPeriodo1Est);
 
         jTabbedPane2.addTab("1er Periodo", jScrollPane1);
 
-        TPeriodo2.setModel(new javax.swing.table.DefaultTableModel(
+        TPeriodo2Est.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -197,12 +197,12 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 "Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"
             }
         ));
-        TPeriodo2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(TPeriodo2);
+        TPeriodo2Est.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(TPeriodo2Est);
 
         jTabbedPane2.addTab("2do Periodo", jScrollPane2);
 
-        TPeriodo3.setModel(new javax.swing.table.DefaultTableModel(
+        TPeriodo3Est.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -221,12 +221,12 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 "Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"
             }
         ));
-        TPeriodo3.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(TPeriodo3);
+        TPeriodo3Est.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(TPeriodo3Est);
 
         jTabbedPane2.addTab("3er Periodo", jScrollPane3);
 
-        TAnual.setModel(new javax.swing.table.DefaultTableModel(
+        TAnualEst.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -245,18 +245,18 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 "Materia", "1er Periodo", "2do Periodo", "3er Periodo", "Promedio Anual", "Aprobado"
             }
         ));
-        TAnual.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(TAnual);
+        TAnualEst.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(TAnualEst);
 
         jTabbedPane2.addTab("Anual", jScrollPane4);
 
         jLabel2.setText("Grupo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboGrupoEstudiante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Estudiante");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboEstudiante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -266,11 +266,11 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboGrupoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
@@ -281,9 +281,9 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboGrupoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(379, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -294,9 +294,9 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Vista Estudiante", jPanel1);
 
-        jButton1.setText("Guardar");
+        Guardar.setText("Guardar");
 
-        jButton2.setText("Generar Reporte");
+        Reporte.setText("Generar Reporte");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -307,9 +307,9 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(Guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(Reporte)
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -318,8 +318,8 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Guardar)
+                    .addComponent(Reporte))
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
@@ -328,18 +328,18 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TAnual;
-    private javax.swing.JTable TPeriodo1;
-    private javax.swing.JTable TPeriodo2;
-    private javax.swing.JTable TPeriodo3;
-    private javax.swing.JTable TPeriodo4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
+    private javax.swing.JComboBox ComboEstudiante;
+    private javax.swing.JComboBox ComboGrupo;
+    private javax.swing.JComboBox ComboGrupoEstudiante;
+    private javax.swing.JComboBox ComboMateria;
+    private javax.swing.JComboBox ComboPeriodo;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JButton Reporte;
+    private javax.swing.JTable TAnualEst;
+    private javax.swing.JTable TGrupo;
+    private javax.swing.JTable TPeriodo1Est;
+    private javax.swing.JTable TPeriodo2Est;
+    private javax.swing.JTable TPeriodo3Est;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
