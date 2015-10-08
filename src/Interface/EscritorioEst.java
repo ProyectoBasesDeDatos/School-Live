@@ -41,13 +41,12 @@ public class EscritorioEst extends javax.swing.JFrame {
         asignacionesEst = new javax.swing.JMenuItem();
         eventosEst = new javax.swing.JMenuItem();
         calificacionesEst = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         mensajesEst = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         busquedaEst = new javax.swing.JMenu();
         ItemContDir = new javax.swing.JMenuItem();
-        perfilEst = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         alertasEst = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,6 +110,15 @@ public class EscritorioEst extends javax.swing.JFrame {
         calificacionesEst.setText("Calificaciones");
         verEstudiante.add(calificacionesEst);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
+        jMenuItem2.setText("Mi perfil");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        verEstudiante.add(jMenuItem2);
+
         jMenuBar1.add(verEstudiante);
 
         mensajesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
@@ -149,20 +157,6 @@ public class EscritorioEst extends javax.swing.JFrame {
         busquedaEst.add(ItemContDir);
 
         jMenuBar1.add(busquedaEst);
-
-        perfilEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
-        perfilEst.setText("Perfil");
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
-        jMenuItem2.setText("Datos Personales");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        perfilEst.add(jMenuItem2);
-
-        jMenuBar1.add(perfilEst);
 
         alertasEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
         alertasEst.setText("Alertas");
@@ -284,7 +278,6 @@ public class EscritorioEst extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu mensajesEst;
-    private javax.swing.JMenu perfilEst;
     private javax.swing.JMenu verEstudiante;
     // End of variables declaration//GEN-END:variables
 }

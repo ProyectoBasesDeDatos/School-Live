@@ -47,6 +47,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         EditarEvento = new javax.swing.JMenuItem();
         EliminarEvento = new javax.swing.JMenuItem();
         calificacionesAdmin = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         mensajesAdmin = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         busquedaAdmin = new javax.swing.JMenu();
@@ -170,6 +171,15 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         calificacionesAdmin.setText("Calificaciones");
         verAdmin.add(calificacionesAdmin);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Female.png"))); // NOI18N
+        jMenuItem5.setText("Mi perfil");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        verAdmin.add(jMenuItem5);
+
         menuAdmin.add(verAdmin);
 
         mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
@@ -201,7 +211,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         menuAdmin.add(busquedaAdmin);
 
         perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
-        perfilAdmin.setText("Perfil");
+        perfilAdmin.setText("Usuarios");
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
         jMenu3.setText("Crear");
@@ -399,6 +409,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         perfilFam.show();
     }//GEN-LAST:event_ItemEditEncActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        PerfilAdm miPerfil= new PerfilAdm();
+        escritorioAdmin.add(miPerfil);
+        miPerfil.show();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -460,6 +476,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
