@@ -44,13 +44,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         eliminarAsigAdmin = new javax.swing.JMenuItem();
         eventosProf = new javax.swing.JMenuItem();
         calificacionesProf = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         mensajesProf = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         busquedaProf = new javax.swing.JMenu();
         ItemDirectorio = new javax.swing.JMenuItem();
-        perfilProf = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         alertaProf = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,6 +138,15 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         calificacionesProf.setText("Calificaciones");
         VerProf.add(calificacionesProf);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        jMenuItem4.setText("Mi perfil");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        VerProf.add(jMenuItem4);
+
         menuProfesor.add(VerProf);
 
         mensajesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
@@ -177,20 +185,6 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         busquedaProf.add(ItemDirectorio);
 
         menuProfesor.add(busquedaProf);
-
-        perfilProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
-        perfilProf.setText("Perfil");
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
-        jMenuItem2.setText("Datos Personales");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        perfilProf.add(jMenuItem2);
-
-        menuProfesor.add(perfilProf);
 
         alertaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
         alertaProf.setText("Alertas");
@@ -255,12 +249,6 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         vEvento.show();
     }//GEN-LAST:event_eventosProfActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        CrearPerfilProf perfProf= new CrearPerfilProf();
-        escritorioProf.add(perfProf);
-        perfProf.show();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         MensajesEscuela mnjEsc= new MensajesEscuela();
         escritorioProf.add(mnjEsc);
@@ -272,6 +260,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         escritorioProf.add(dProf);
         dProf.show();
     }//GEN-LAST:event_ItemDirectorioActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        PerfilProf perfilP= new PerfilProf();
+        escritorioProf.add(perfilP);
+        perfilP.show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,10 +318,9 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu mensajesProf;
     private javax.swing.JMenuBar menuProfesor;
-    private javax.swing.JMenu perfilProf;
     // End of variables declaration//GEN-END:variables
 }
