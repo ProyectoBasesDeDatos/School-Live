@@ -6,8 +6,8 @@
 package Interface;
 
 
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
+import Imagenes.JDesktopPaneImg;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -15,14 +15,24 @@ import javax.swing.JOptionPane;
  * @author fugalde
  */
 public class EscritorioProfesor extends javax.swing.JFrame {
-
+private JDesktopPaneImg escritorioProf;
     /**
      * Creates new form EscritorioProfesor
      */
     public EscritorioProfesor() {
         initComponents();
-        escritorioProf.setLayout(new BorderLayout());
-        escritorioProf.add(new JLabel(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg"))), BorderLayout.CENTER);
+        escritorioProf = new JDesktopPaneImg();
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorioProf)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorioProf)
+        );
         this.setExtendedState(EscritorioProfesor.MAXIMIZED_BOTH);
     }
 
@@ -35,7 +45,6 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorioProf = new javax.swing.JDesktopPane();
         menuProfesor = new javax.swing.JMenuBar();
         archivoProf = new javax.swing.JMenu();
         cmbUserProf = new javax.swing.JMenuItem();
@@ -53,17 +62,6 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         ItemDirectorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout escritorioProfLayout = new javax.swing.GroupLayout(escritorioProf);
-        escritorioProf.setLayout(escritorioProfLayout);
-        escritorioProfLayout.setHorizontalGroup(
-            escritorioProfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
-        );
-        escritorioProfLayout.setVerticalGroup(
-            escritorioProfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
-        );
 
         menuProfesor.setAutoscrolls(true);
 
@@ -183,11 +181,11 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioProf)
+            .addGap(0, 864, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioProf)
+            .addGap(0, 484, Short.MAX_VALUE)
         );
 
         pack();
@@ -302,7 +300,6 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JMenuItem crearAsignacionProf;
     private javax.swing.JMenuItem editarAsigProf;
     private javax.swing.JMenuItem eliminarAsigAdmin;
-    private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuBar menuProfesor;

@@ -6,8 +6,8 @@
 package Interface;
 
 
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
+import Imagenes.JDesktopPaneImg;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -15,15 +15,25 @@ import javax.swing.JOptionPane;
  * @author fugalde
  */
 public class EscritorioEst extends javax.swing.JFrame {
-
+private JDesktopPaneImg escritorioEst;
     /**
      * Creates new form EscritorioEst
      */
     public EscritorioEst() {
         initComponents();
-     
-        escritorioEst.setLayout(new BorderLayout());
-        escritorioEst.add(new JLabel(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg"))), BorderLayout.CENTER);
+
+        escritorioEst = new JDesktopPaneImg();
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorioEst)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorioEst)
+        );
         this.setExtendedState(EscritorioProfesor.MAXIMIZED_BOTH);
     }
 
@@ -36,7 +46,6 @@ public class EscritorioEst extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorioEst = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivoEst = new javax.swing.JMenu();
         cerrarSesionEst = new javax.swing.JMenuItem();
@@ -51,17 +60,6 @@ public class EscritorioEst extends javax.swing.JFrame {
         ItemContDir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout escritorioEstLayout = new javax.swing.GroupLayout(escritorioEst);
-        escritorioEst.setLayout(escritorioEstLayout);
-        escritorioEstLayout.setHorizontalGroup(
-            escritorioEstLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 879, Short.MAX_VALUE)
-        );
-        escritorioEstLayout.setVerticalGroup(
-            escritorioEstLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
-        );
 
         archivoEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
         archivoEst.setText("Archivo");
@@ -156,11 +154,11 @@ public class EscritorioEst extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioEst)
+            .addGap(0, 879, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioEst)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         pack();
@@ -260,7 +258,6 @@ public class EscritorioEst extends javax.swing.JFrame {
     private javax.swing.JMenuItem calificacionesEst;
     private javax.swing.JMenuItem cerrarEst;
     private javax.swing.JMenuItem cerrarSesionEst;
-    private javax.swing.JDesktopPane escritorioEst;
     private javax.swing.JMenuItem eventosEst;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;

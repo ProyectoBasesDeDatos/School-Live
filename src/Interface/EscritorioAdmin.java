@@ -5,7 +5,10 @@
  */
 package Interface;
 
+import Imagenes.JDesktopPaneImg;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -14,20 +17,26 @@ import javax.swing.JOptionPane;
  * @author fugalde
  */
 public class EscritorioAdmin extends javax.swing.JFrame {
+    private JDesktopPaneImg escritorioAdmin;
 
     /**
      * Creates new form EscritorioAdmin
      */
     public EscritorioAdmin() {
         initComponents();
-        
-        //escritorioAdmin.setBorder(new ImagenFondo());
-        //escritorioAdmin.setL  
-       
-        escritorioAdmin.setLayout(new BorderLayout());
-        escritorioAdmin.add(new JLabel(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg"))), BorderLayout.CENTER);
-                
-        //jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg")));        
+        escritorioAdmin = new JDesktopPaneImg();
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorioAdmin)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(escritorioAdmin)
+        );
+
         this.setExtendedState(EscritorioProfesor.MAXIMIZED_BOTH);
     }
 
@@ -40,7 +49,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorioAdmin = new javax.swing.JDesktopPane();
         menuAdmin = new javax.swing.JMenuBar();
         archivoAdmin = new javax.swing.JMenu();
         cerrarSesionAdmin = new javax.swing.JMenuItem();
@@ -71,19 +79,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        escritorioAdmin.setDoubleBuffered(true);
-
-        javax.swing.GroupLayout escritorioAdminLayout = new javax.swing.GroupLayout(escritorioAdmin);
-        escritorioAdmin.setLayout(escritorioAdminLayout);
-        escritorioAdminLayout.setHorizontalGroup(
-            escritorioAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 956, Short.MAX_VALUE)
-        );
-        escritorioAdminLayout.setVerticalGroup(
-            escritorioAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
-        );
 
         archivoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
         archivoAdmin.setText("Archivo");
@@ -302,11 +297,11 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioAdmin)
+            .addGap(0, 956, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioAdmin)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
 
         pack();
@@ -477,7 +472,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem crearAsigAdmin;
     private javax.swing.JMenuItem editarAsigAdmin;
     private javax.swing.JMenuItem eliminarAsigAdmin;
-    private javax.swing.JDesktopPane escritorioAdmin;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
