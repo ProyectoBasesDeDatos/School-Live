@@ -42,6 +42,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Calificaciones");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png"))); // NOI18N
 
         jLabel1.setText("Estudiante");
 
