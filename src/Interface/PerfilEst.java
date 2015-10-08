@@ -110,7 +110,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
 
         jScrollPane6.setViewportView(jTextPane1);
 
-        jButton1.setText("Actualizar");
+        jButton1.setText("Guardar");
 
         jLabel11.setText("Nivel");
 
