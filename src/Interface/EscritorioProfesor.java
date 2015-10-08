@@ -48,12 +48,9 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         eventosProf = new javax.swing.JMenuItem();
         calificacionesProf = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        mensajesProf = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        MsjsMenu = new javax.swing.JMenuItem();
         busquedaProf = new javax.swing.JMenu();
         ItemDirectorio = new javax.swing.JMenuItem();
-        alertaProf = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,30 +152,16 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         VerProf.add(jMenuItem4);
 
+        MsjsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
+        MsjsMenu.setText("Mensajes/Alertas");
+        MsjsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MsjsMenuActionPerformed(evt);
+            }
+        });
+        VerProf.add(MsjsMenu);
+
         menuProfesor.add(VerProf);
-
-        mensajesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
-        mensajesProf.setText("Mensajes");
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
-        jMenuItem1.setText("Grupo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        mensajesProf.add(jMenuItem1);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
-        jMenuItem3.setText("Escuela");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        mensajesProf.add(jMenuItem3);
-
-        menuProfesor.add(mensajesProf);
 
         busquedaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Search.png"))); // NOI18N
         busquedaProf.setText("Busqueda");
@@ -193,10 +176,6 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         busquedaProf.add(ItemDirectorio);
 
         menuProfesor.add(busquedaProf);
-
-        alertaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Warning.png"))); // NOI18N
-        alertaProf.setText("Alertas");
-        menuProfesor.add(alertaProf);
 
         setJMenuBar(menuProfesor);
 
@@ -245,23 +224,11 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         elimAsig.show();
     }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    Mensajes msj= new Mensajes();
-    escritorioProf.add(msj);
-    msj.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void eventosProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosProfActionPerformed
         VerEventos vEvento= new VerEventos();
         escritorioProf.add(vEvento);
         vEvento.show();
     }//GEN-LAST:event_eventosProfActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Mensajes mnjEsc= new Mensajes();
-        escritorioProf.add(mnjEsc);
-        mnjEsc.show();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void ItemDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemDirectorioActionPerformed
         DirectorioProf dProf = new DirectorioProf();
@@ -280,6 +247,12 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         escritorioProf.add(caGru);
         caGru.show();
     }//GEN-LAST:event_calificacionesProfActionPerformed
+
+    private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
+        Mensajes msj= new Mensajes();
+        escritorioProf.add(msj);
+        msj.show();        // TODO add your handling code here:
+    }//GEN-LAST:event_MsjsMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,8 +291,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ItemDirectorio;
+    private javax.swing.JMenuItem MsjsMenu;
     private javax.swing.JMenu VerProf;
-    private javax.swing.JMenu alertaProf;
     private javax.swing.JMenu archivoProf;
     private javax.swing.JMenu asignacionesProf;
     private javax.swing.JMenu busquedaProf;
@@ -331,10 +304,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     private javax.swing.JMenuItem eliminarAsigAdmin;
     private javax.swing.JDesktopPane escritorioProf;
     private javax.swing.JMenuItem eventosProf;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenu mensajesProf;
     private javax.swing.JMenuBar menuProfesor;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,12 +46,9 @@ public class EscritorioEst extends javax.swing.JFrame {
         eventosEst = new javax.swing.JMenuItem();
         calificacionesEst = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        mensajesEst = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        MsjsMenu = new javax.swing.JMenuItem();
         busquedaEst = new javax.swing.JMenu();
         ItemContDir = new javax.swing.JMenuItem();
-        alertasEst = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,30 +125,16 @@ public class EscritorioEst extends javax.swing.JFrame {
         });
         verEstudiante.add(jMenuItem2);
 
+        MsjsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
+        MsjsMenu.setText("Mensajes/Alertas");
+        MsjsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MsjsMenuActionPerformed(evt);
+            }
+        });
+        verEstudiante.add(MsjsMenu);
+
         jMenuBar1.add(verEstudiante);
-
-        mensajesEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
-        mensajesEst.setText("Mensajes");
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
-        jMenuItem1.setText("Grupo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        mensajesEst.add(jMenuItem1);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
-        jMenuItem3.setText("Escuela");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        mensajesEst.add(jMenuItem3);
-
-        jMenuBar1.add(mensajesEst);
 
         busquedaEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Search.png"))); // NOI18N
         busquedaEst.setText("Busqueda");
@@ -166,10 +149,6 @@ public class EscritorioEst extends javax.swing.JFrame {
         busquedaEst.add(ItemContDir);
 
         jMenuBar1.add(busquedaEst);
-
-        alertasEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Warning.png"))); // NOI18N
-        alertasEst.setText("Alertas");
-        jMenuBar1.add(alertasEst);
 
         setJMenuBar(jMenuBar1);
 
@@ -206,12 +185,6 @@ public class EscritorioEst extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cerrarEstActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    Mensajes msj= new Mensajes();
-    escritorioEst.add(msj);
-    msj.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void eventosEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosEstActionPerformed
         VerEventos vEvento= new VerEventos();
         escritorioEst.add(vEvento);
@@ -223,12 +196,6 @@ public class EscritorioEst extends javax.swing.JFrame {
         escritorioEst.add(perfEst);
         perfEst.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        Mensajes mnjEsc= new Mensajes();
-        escritorioEst.add(mnjEsc);
-        mnjEsc.show();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void ItemContDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemContDirActionPerformed
         ContactosEst cEst = new ContactosEst();
@@ -242,6 +209,13 @@ public class EscritorioEst extends javax.swing.JFrame {
         visCal.show();
     }//GEN-LAST:event_calificacionesEstActionPerformed
 
+    private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
+        Mensajes msj= new Mensajes();
+        escritorioEst.add(msj);
+        msj.show();
+    }//GEN-LAST:event_MsjsMenuActionPerformed
+ 
+    
     /**
      * @param args the command line arguments
      */
@@ -279,7 +253,7 @@ public class EscritorioEst extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ItemContDir;
-    private javax.swing.JMenu alertasEst;
+    private javax.swing.JMenuItem MsjsMenu;
     private javax.swing.JMenu archivoEst;
     private javax.swing.JMenuItem asignacionesEst;
     private javax.swing.JMenu busquedaEst;
@@ -289,10 +263,7 @@ public class EscritorioEst extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorioEst;
     private javax.swing.JMenuItem eventosEst;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenu mensajesEst;
     private javax.swing.JMenu verEstudiante;
     // End of variables declaration//GEN-END:variables
 }

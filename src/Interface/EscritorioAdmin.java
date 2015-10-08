@@ -56,8 +56,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         EliminarEvento = new javax.swing.JMenuItem();
         calificacionesAdmin = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        mensajesAdmin = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MsjsMenu = new javax.swing.JMenuItem();
         busquedaAdmin = new javax.swing.JMenu();
         ItemDirectorio = new javax.swing.JMenuItem();
         perfilAdmin = new javax.swing.JMenu();
@@ -70,7 +69,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         ItemEditEst = new javax.swing.JMenuItem();
         ItemEditEnc = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        alertasAdmin = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,21 +193,16 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         verAdmin.add(jMenuItem5);
 
-        menuAdmin.add(verAdmin);
-
-        mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
-        mensajesAdmin.setText("Mensajes");
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
-        jMenuItem1.setText("Crear Mensaje");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        MsjsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
+        MsjsMenu.setText("Alertas/Mensajes");
+        MsjsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                MsjsMenuActionPerformed(evt);
             }
         });
-        mensajesAdmin.add(jMenuItem1);
+        verAdmin.add(MsjsMenu);
 
-        menuAdmin.add(mensajesAdmin);
+        menuAdmin.add(verAdmin);
 
         busquedaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Search.png"))); // NOI18N
         busquedaAdmin.setText("Busqueda");
@@ -303,10 +296,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         menuAdmin.add(perfilAdmin);
 
-        alertasAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Warning.png"))); // NOI18N
-        alertasAdmin.setText("Alertas");
-        menuAdmin.add(alertasAdmin);
-
         setJMenuBar(menuAdmin);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -351,12 +340,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         EliminarAsignacion elimAsig = new EliminarAsignacion();
         escritorioAdmin.add(elimAsig);
         elimAsig.show();    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-     Mensajes msj= new Mensajes();
-     escritorioAdmin.add(msj);
-     msj.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearEventoActionPerformed
         CrearEventos cEvento = new CrearEventos();
@@ -436,6 +419,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         caGru.show();
     }//GEN-LAST:event_calificacionesAdminActionPerformed
 
+    private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
+        Mensajes msj= new Mensajes();
+        escritorioAdmin.add(msj);
+        msj.show();        // TODO add your handling code here:
+    }//GEN-LAST:event_MsjsMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -479,7 +468,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem ItemEditEnc;
     private javax.swing.JMenuItem ItemEditEst;
     private javax.swing.JMenuItem ItemEditProf;
-    private javax.swing.JMenu alertasAdmin;
+    private javax.swing.JMenuItem MsjsMenu;
     private javax.swing.JMenu archivoAdmin;
     private javax.swing.JMenu busquedaAdmin;
     private javax.swing.JMenuItem calificacionesAdmin;
@@ -493,13 +482,11 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;
     private javax.swing.JMenu verAdmin;
