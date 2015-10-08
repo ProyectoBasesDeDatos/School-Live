@@ -343,9 +343,9 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         elimAsig.show();    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-     MensajesAdm mnjAdm= new MensajesAdm();
-     escritorioAdmin.add(mnjAdm);
-     mnjAdm.show();
+     Mensajes msj= new Mensajes();
+     escritorioAdmin.add(msj);
+     msj.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearEventoActionPerformed

@@ -243,9 +243,9 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        MensajesProf mnjProf= new MensajesProf();
-        escritorioProf.add(mnjProf);
-        mnjProf.show();
+    Mensajes msj= new Mensajes();
+    escritorioProf.add(msj);
+    msj.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void eventosProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosProfActionPerformed
@@ -255,7 +255,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_eventosProfActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        MensajesEscuela mnjEsc= new MensajesEscuela();
+        Mensajes mnjEsc= new Mensajes();
         escritorioProf.add(mnjEsc);
         mnjEsc.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed

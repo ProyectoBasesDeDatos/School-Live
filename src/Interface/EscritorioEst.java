@@ -203,9 +203,9 @@ public class EscritorioEst extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarEstActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       MensajesEst mnjEst= new MensajesEst();
-       escritorioEst.add(mnjEst);
-       mnjEst.show();
+    Mensajes msj= new Mensajes();
+    escritorioEst.add(msj);
+    msj.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void eventosEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosEstActionPerformed
@@ -221,7 +221,7 @@ public class EscritorioEst extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        MensajesEscuela mnjEsc= new MensajesEscuela();
+        Mensajes mnjEsc= new Mensajes();
         escritorioEst.add(mnjEsc);
         mnjEsc.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
