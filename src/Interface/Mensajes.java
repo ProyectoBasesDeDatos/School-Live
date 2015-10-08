@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import javax.swing.SwingUtilities;
+
 
 public class Mensajes extends javax.swing.JInternalFrame {
 
@@ -70,7 +72,7 @@ public class Mensajes extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -78,7 +80,14 @@ public class Mensajes extends javax.swing.JInternalFrame {
             }
         });
         TablaMsjs.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        TablaMsjs.setColumnSelectionAllowed(true);
+        TablaMsjs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMsjsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaMsjs);
+        TablaMsjs.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (TablaMsjs.getColumnModel().getColumnCount() > 0) {
             TablaMsjs.getColumnModel().getColumn(0).setResizable(false);
             TablaMsjs.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -176,6 +185,18 @@ public class Mensajes extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TablaMsjsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMsjsMouseClicked
+        if (evt.getClickCount() == 2) {
+            //JTable target = (JTable)e.getSource();
+            //int row = target.getSelectedRow();
+            //int column = target.getSelectedColumn();
+            
+           DetallesMsj msj= new DetallesMsj();
+           this.getParent().add(msj);
+           msj.show();
+        }
+    }//GEN-LAST:event_TablaMsjsMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
