@@ -57,6 +57,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Calificaciones");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png"))); // NOI18N
 
         TPeriodo4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,7 +303,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
