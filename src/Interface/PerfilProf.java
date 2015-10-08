@@ -56,7 +56,7 @@ public class PerfilProf extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Perfil Profesor");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
 
         jLabel1.setText("Identificación");
 
@@ -145,9 +145,7 @@ public class PerfilProf extends javax.swing.JInternalFrame {
                             .addComponent(jLabel11)
                             .addComponent(jScrollPane2))
                         .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)))
+                    .addComponent(jToggleButton1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

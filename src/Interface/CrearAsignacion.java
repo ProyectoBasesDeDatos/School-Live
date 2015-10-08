@@ -52,7 +52,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Crear Asignación");
         setToolTipText("");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
 
         jLabel1.setText("Grupo");
 

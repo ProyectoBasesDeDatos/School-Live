@@ -6,8 +6,8 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Crear Asignaci&#xf3;n"/>
     <Property name="toolTipText" type="java.lang.String" value=""/>
-    <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/list.png&quot;))" type="code"/>
+    <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+      <Image iconType="3" name="/Iconos/List.png"/>
     </Property>
   </Properties>
   <SyntheticProperties>

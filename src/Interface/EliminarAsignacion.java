@@ -44,7 +44,7 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Eliminar Asignación");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
 
         jLabel1.setText("Curso");
 

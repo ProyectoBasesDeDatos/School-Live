@@ -9,16 +9,16 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="archivoProf">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/home.png&quot;))" type="code"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Iconos/Home.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cmbUserProf">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/person.png&quot;))" type="code"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/Person.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cambiar de usuario"/>
               </Properties>
@@ -28,8 +28,8 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cerrarProf">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/turn off.png&quot;))" type="code"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/Turn off.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar"/>
               </Properties>
@@ -41,24 +41,24 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="VerProf">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/table.png&quot;))" type="code"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Iconos/Table.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ver"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="asignacionesProf">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/clipboard.png&quot;))" type="code"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/Clipboard.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Asignaciones"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="crearAsignacionProf">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/list.png&quot;))" type="code"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Iconos/List.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Crear"/>
                   </Properties>
@@ -68,8 +68,8 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="editarAsigProf">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/modify.png&quot;))" type="code"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Iconos/Modify.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
@@ -79,8 +79,8 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="eliminarAsigAdmin">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/delete.png&quot;))" type="code"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Iconos/Delete.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
                   </Properties>
@@ -92,8 +92,8 @@
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="eventosProf">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/calendar.png&quot;))" type="code"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/Calendar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eventos"/>
               </Properties>
@@ -103,8 +103,8 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="calificacionesProf">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/3d bar chart.png&quot;))" type="code"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/3d bar chart.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Calificaciones"/>
               </Properties>
@@ -114,8 +114,8 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/boss.png&quot;))" type="code"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/Boss.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mi perfil"/>
               </Properties>
@@ -127,8 +127,8 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mensajesProf">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/mail.png&quot;))" type="code"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Iconos/Mail.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mensajes"/>
           </Properties>
@@ -159,8 +159,8 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="busquedaProf">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/search.png&quot;))" type="code"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Iconos/Search.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Busqueda"/>
           </Properties>
@@ -180,8 +180,8 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="alertaProf">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/warning.png&quot;))" type="code"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Iconos/Warning.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Alertas"/>
           </Properties>

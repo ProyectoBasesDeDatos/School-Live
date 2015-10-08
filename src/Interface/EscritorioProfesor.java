@@ -5,7 +5,9 @@
  */
 package Interface;
 
-import Imagenes.ImagenFondo;
+
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +21,8 @@ public class EscritorioProfesor extends javax.swing.JFrame {
      */
     public EscritorioProfesor() {
         initComponents();
-        escritorioProf.setBorder(new ImagenFondo());
+        escritorioProf.setLayout(new BorderLayout());
+        escritorioProf.add(new JLabel(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg"))), BorderLayout.CENTER);
         this.setExtendedState(EscritorioProfesor.MAXIMIZED_BOTH);
     }
 
@@ -67,10 +70,10 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         menuProfesor.setAutoscrolls(true);
 
-        archivoProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
+        archivoProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
         archivoProf.setText("Archivo");
 
-        cmbUserProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        cmbUserProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Person.png"))); // NOI18N
         cmbUserProf.setText("Cambiar de usuario");
         cmbUserProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +82,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         archivoProf.add(cmbUserProf);
 
-        cerrarProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/turn off.png")));
+        cerrarProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Turn off.png"))); // NOI18N
         cerrarProf.setText("Cerrar");
         cerrarProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,13 +93,13 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         menuProfesor.add(archivoProf);
 
-        VerProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
+        VerProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Table.png"))); // NOI18N
         VerProf.setText("Ver");
 
-        asignacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        asignacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Clipboard.png"))); // NOI18N
         asignacionesProf.setText("Asignaciones");
 
-        crearAsignacionProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        crearAsignacionProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
         crearAsignacionProf.setText("Crear");
         crearAsignacionProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +108,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         asignacionesProf.add(crearAsignacionProf);
 
-        editarAsigProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        editarAsigProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Modify.png"))); // NOI18N
         editarAsigProf.setText("Editar");
         editarAsigProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +117,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         asignacionesProf.add(editarAsigProf);
 
-        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
         eliminarAsigAdmin.setText("Eliminar");
         eliminarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +128,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         VerProf.add(asignacionesProf);
 
-        eventosProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calendar.png")));
+        eventosProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.png"))); // NOI18N
         eventosProf.setText("Eventos");
         eventosProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +137,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         VerProf.add(eventosProf);
 
-        calificacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
+        calificacionesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png"))); // NOI18N
         calificacionesProf.setText("Calificaciones");
         calificacionesProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +146,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
         });
         VerProf.add(calificacionesProf);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
         jMenuItem4.setText("Mi perfil");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +157,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         menuProfesor.add(VerProf);
 
-        mensajesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
+        mensajesProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
         mensajesProf.setText("Mensajes");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
@@ -177,7 +180,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         menuProfesor.add(mensajesProf);
 
-        busquedaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
+        busquedaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Search.png"))); // NOI18N
         busquedaProf.setText("Busqueda");
 
         ItemDirectorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone number.png"))); // NOI18N
@@ -191,7 +194,7 @@ public class EscritorioProfesor extends javax.swing.JFrame {
 
         menuProfesor.add(busquedaProf);
 
-        alertaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
+        alertaProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Warning.png"))); // NOI18N
         alertaProf.setText("Alertas");
         menuProfesor.add(alertaProf);
 

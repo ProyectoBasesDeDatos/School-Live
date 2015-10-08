@@ -53,7 +53,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Editar Asignación");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Modify.png"))); // NOI18N
 
         jLabel1.setText("Grupo:");
 

@@ -5,7 +5,8 @@
  */
 package Interface;
 
-import Imagenes.ImagenFondo;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +20,14 @@ public class EscritorioAdmin extends javax.swing.JFrame {
      */
     public EscritorioAdmin() {
         initComponents();
-        escritorioAdmin.setBorder(new ImagenFondo());
+        
+        //escritorioAdmin.setBorder(new ImagenFondo());
+        //escritorioAdmin.setL  
+       
+        escritorioAdmin.setLayout(new BorderLayout());
+        escritorioAdmin.add(new JLabel(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg"))), BorderLayout.CENTER);
+                
+        //jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.jpg")));        
         this.setExtendedState(EscritorioProfesor.MAXIMIZED_BOTH);
     }
 
@@ -66,21 +74,23 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        escritorioAdmin.setDoubleBuffered(true);
+
         javax.swing.GroupLayout escritorioAdminLayout = new javax.swing.GroupLayout(escritorioAdmin);
         escritorioAdmin.setLayout(escritorioAdminLayout);
         escritorioAdminLayout.setHorizontalGroup(
             escritorioAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 865, Short.MAX_VALUE)
+            .addGap(0, 956, Short.MAX_VALUE)
         );
         escritorioAdminLayout.setVerticalGroup(
             escritorioAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
 
-        archivoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/home.png")));
+        archivoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Home.png"))); // NOI18N
         archivoAdmin.setText("Archivo");
 
-        cerrarSesionAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/person.png")));
+        cerrarSesionAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Person.png"))); // NOI18N
         cerrarSesionAdmin.setText("Cerrar sesión");
         cerrarSesionAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +99,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         archivoAdmin.add(cerrarSesionAdmin);
 
-        cerrarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/turn off.png")));
+        cerrarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Turn off.png"))); // NOI18N
         cerrarAdmin.setText("Cerrar");
         cerrarAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,13 +110,13 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         menuAdmin.add(archivoAdmin);
 
-        verAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/table.png")));
+        verAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Table.png"))); // NOI18N
         verAdmin.setText("Ver");
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Clipboard.png"))); // NOI18N
         jMenu1.setText("Asignaciones");
 
-        crearAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        crearAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
         crearAsigAdmin.setText("Crear");
         crearAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +125,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu1.add(crearAsigAdmin);
 
-        editarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        editarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Modify.png"))); // NOI18N
         editarAsigAdmin.setText("Editar");
         editarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +134,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu1.add(editarAsigAdmin);
 
-        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
         eliminarAsigAdmin.setText("Eliminar");
         eliminarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,10 +145,10 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         verAdmin.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.png")));
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.png"))); // NOI18N
         jMenu2.setText("Eventos");
 
-        CrearEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/list.png")));
+        CrearEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
         CrearEvento.setText("Crear");
         CrearEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +157,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu2.add(CrearEvento);
 
-        EditarEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png")));
+        EditarEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Modify.png"))); // NOI18N
         EditarEvento.setText("Editar ");
         EditarEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +166,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu2.add(EditarEvento);
 
-        EliminarEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        EliminarEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
         EliminarEvento.setText("Eliminar");
         EliminarEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +177,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         verAdmin.add(jMenu2);
 
-        calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png")));
+        calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png"))); // NOI18N
         calificacionesAdmin.setText("Calificaciones");
         calificacionesAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +197,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         menuAdmin.add(verAdmin);
 
-        mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mail.png")));
+        mensajesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
         mensajesAdmin.setText("Mensajes");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
@@ -201,7 +211,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         menuAdmin.add(mensajesAdmin);
 
-        busquedaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/search.png")));
+        busquedaAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Search.png"))); // NOI18N
         busquedaAdmin.setText("Busqueda");
 
         ItemDirectorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone number.png"))); // NOI18N
@@ -215,10 +225,10 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         menuAdmin.add(busquedaAdmin);
 
-        perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user group.png")));
+        perfilAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/User group.png"))); // NOI18N
         perfilAdmin.setText("Usuarios");
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
         jMenu3.setText("Crear");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
@@ -230,7 +240,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
         jMenuItem3.setText("Estudiante");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +249,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
         jMenuItem4.setText("Padre Familia");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,10 +260,10 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         perfilAdmin.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/sync.png")));
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Sync.png"))); // NOI18N
         jMenu4.setText("Actualizar");
 
-        ItemEditProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        ItemEditProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
         ItemEditProf.setText("Profesor");
         ItemEditProf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,7 +272,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu4.add(ItemEditProf);
 
-        ItemEditEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
+        ItemEditEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
         ItemEditEst.setText("Estudiante");
         ItemEditEst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +281,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         });
         jMenu4.add(ItemEditEst);
 
-        ItemEditEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
+        ItemEditEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
         ItemEditEnc.setText("Padre Familia");
         ItemEditEnc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +292,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         perfilAdmin.add(jMenu4);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png")));
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
         jMenuItem6.setText("Eliminar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,7 +303,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         menuAdmin.add(perfilAdmin);
 
-        alertasAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/warning.png")));
+        alertasAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Warning.png"))); // NOI18N
         alertasAdmin.setText("Alertas");
         menuAdmin.add(alertasAdmin);
 

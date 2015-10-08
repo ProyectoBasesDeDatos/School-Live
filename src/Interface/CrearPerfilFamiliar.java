@@ -60,9 +60,8 @@ public class CrearPerfilFamiliar extends javax.swing.JInternalFrame {
         listaMateriasDisponibles = new javax.swing.JList();
 
         setClosable(true);
-        setIconifiable(true);
         setTitle("Crear Perfil Encargado");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
 
         jLabel4.setText("Sexo");
 

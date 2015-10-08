@@ -61,8 +61,9 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setTitle("Crear Perfil Profesor");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Create.png"))); // NOI18N
 
         jLabel5.setText("Identificación");
 

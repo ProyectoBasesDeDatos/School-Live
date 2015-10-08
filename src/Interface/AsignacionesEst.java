@@ -68,11 +68,10 @@ public class AsignacionesEst extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setClosable(true);
         setIconifiable(true);
         setResizable(true);
         setTitle("Asignaciones");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clipboard.png")));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Clipboard.png"))); // NOI18N
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };

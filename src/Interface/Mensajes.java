@@ -41,6 +41,7 @@ public class Mensajes extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Mensajes");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Message.png"))); // NOI18N
 
         ComboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
