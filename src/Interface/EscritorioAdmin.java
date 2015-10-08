@@ -392,19 +392,19 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void ItemEditProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemEditProfActionPerformed
-        EditarPerfilProf perfProf = new EditarPerfilProf();
+        EditPerfProf perfProf = new EditPerfProf();
         escritorioAdmin.add(perfProf);
         perfProf.show();
     }//GEN-LAST:event_ItemEditProfActionPerformed
 
     private void ItemEditEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemEditEstActionPerformed
-        EditarPerfilEst perfilEst= new EditarPerfilEst();
+        EditPerfEst perfilEst= new EditPerfEst();
         escritorioAdmin.add(perfilEst);
         perfilEst.show();
     }//GEN-LAST:event_ItemEditEstActionPerformed
 
     private void ItemEditEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemEditEncActionPerformed
-        EditarPerfilFamiliar perfilFam= new EditarPerfilFamiliar();
+        EditPerfFamiliar perfilFam= new EditPerfFamiliar();
         escritorioAdmin.add(perfilFam);
         perfilFam.show();
     }//GEN-LAST:event_ItemEditEncActionPerformed
