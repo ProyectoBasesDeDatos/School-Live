@@ -54,7 +54,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Crear estudiante");
+        setTitle("Crear Perfil Estudiante");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/create.png")));
 
         jLabel7.setText("Dirección");

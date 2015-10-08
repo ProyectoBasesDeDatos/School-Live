@@ -57,9 +57,9 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        ItemEditProf = new javax.swing.JMenuItem();
+        ItemEditEst = new javax.swing.JMenuItem();
+        ItemEditEnc = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         alertasAdmin = new javax.swing.JMenu();
 
@@ -238,17 +238,32 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/sync.png")));
         jMenu4.setText("Actualizar");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
-        jMenuItem7.setText("Profesor");
-        jMenu4.add(jMenuItem7);
+        ItemEditProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png")));
+        ItemEditProf.setText("Profesor");
+        ItemEditProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemEditProfActionPerformed(evt);
+            }
+        });
+        jMenu4.add(ItemEditProf);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
-        jMenuItem8.setText("Estudiante");
-        jMenu4.add(jMenuItem8);
+        ItemEditEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png")));
+        ItemEditEst.setText("Estudiante");
+        ItemEditEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemEditEstActionPerformed(evt);
+            }
+        });
+        jMenu4.add(ItemEditEst);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
-        jMenuItem9.setText("Padre Familia");
-        jMenu4.add(jMenuItem9);
+        ItemEditEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png")));
+        ItemEditEnc.setText("Padre Familia");
+        ItemEditEnc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemEditEncActionPerformed(evt);
+            }
+        });
+        jMenu4.add(ItemEditEnc);
 
         perfilAdmin.add(jMenu4);
 
@@ -366,6 +381,24 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         elimPerfil.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void ItemEditProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemEditProfActionPerformed
+        EditarPerfilProf perfProf = new EditarPerfilProf();
+        escritorioAdmin.add(perfProf);
+        perfProf.show();
+    }//GEN-LAST:event_ItemEditProfActionPerformed
+
+    private void ItemEditEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemEditEstActionPerformed
+        EditarPerfilEst perfilEst= new EditarPerfilEst();
+        escritorioAdmin.add(perfilEst);
+        perfilEst.show();
+    }//GEN-LAST:event_ItemEditEstActionPerformed
+
+    private void ItemEditEncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemEditEncActionPerformed
+        EditarPerfilFamiliar perfilFam= new EditarPerfilFamiliar();
+        escritorioAdmin.add(perfilFam);
+        perfilFam.show();
+    }//GEN-LAST:event_ItemEditEncActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -406,6 +439,9 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem EditarEvento;
     private javax.swing.JMenuItem EliminarEvento;
     private javax.swing.JMenuItem ItemDirectorio;
+    private javax.swing.JMenuItem ItemEditEnc;
+    private javax.swing.JMenuItem ItemEditEst;
+    private javax.swing.JMenuItem ItemEditProf;
     private javax.swing.JMenu alertasAdmin;
     private javax.swing.JMenu archivoAdmin;
     private javax.swing.JMenu busquedaAdmin;
@@ -425,9 +461,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu mensajesAdmin;
     private javax.swing.JMenuBar menuAdmin;
     private javax.swing.JMenu perfilAdmin;

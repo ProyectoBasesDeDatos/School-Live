@@ -4,7 +4,7 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Crear estudiante"/>
+    <Property name="title" type="java.lang.String" value="Crear Perfil Estudiante"/>
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/Iconos/create.png&quot;))" type="code"/>
     </Property>
