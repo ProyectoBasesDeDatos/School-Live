@@ -6,6 +6,7 @@
 package Interface;
 
 import javax.swing.JOptionPane;
+import BaseDatos.ConexionBase;
 
 /**
  *
@@ -132,13 +133,13 @@ public class Login extends javax.swing.JFrame {
 
     private void ingresarLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarLoginButtonActionPerformed
         if(validarUsuario(user.getText(), password.getPassword())){
-            if(perfilUsuario(user.getText()).equals("estudiante")){
+            if(perfilUsuario(user.getText()).equals("E")){ // E: Estudiante
                 new EscritorioEst().setVisible(true);
                 this.setVisible(false);
-            }else if(perfilUsuario(user.getText()).equals("profesor")){
+            }else if(perfilUsuario(user.getText()).equals("P")){ //P:Profesor
                 new EscritorioProfesor().setVisible(true);
                 this.setVisible(false);
-            }else if(perfilUsuario(user.getText()).equals("admin")){
+            }else if(perfilUsuario(user.getText()).equals("A")){ //A: Administrador
                 new EscritorioAdmin().setVisible(true);
                 this.setVisible(false);
             }else{
@@ -188,19 +189,23 @@ public class Login extends javax.swing.JFrame {
     
     public boolean validarUsuario(String usuario, char[] password){
         //Hacer una función que verifique que sea un usuario válido
-        return true;
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            String contrasenna= new String(password);
+            return base.consultarUsuario(usuario, contrasenna);
+        }else{
+            return false;
+        }
     }
     
     public String perfilUsuario(String usuario){
-        String perfil="";
-        if(usuario.equals("estudiante")){
-            perfil= "estudiante";
-        }else if( usuario.equals("profesor")){
-            perfil="profesor";
-        }else if(usuario.equals("admin")){
-            perfil="admin";
+        //Metodo que devuelve el perfil del usuario (Administrador/Profesor/Estudiante/Padre
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.consultarTipoPerfil(usuario);
+        }else{
+            return null;
         }
-        return perfil;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
