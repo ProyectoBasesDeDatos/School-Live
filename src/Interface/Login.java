@@ -54,6 +54,11 @@ public class Login extends javax.swing.JFrame {
 
         user.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         user.setToolTipText("Ingrese el nombre de usuario");
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
 
         password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -154,6 +159,10 @@ public class Login extends javax.swing.JFrame {
                     "Contraseña o usuario inválido.", "Error de Credenciales",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ingresarLoginButtonActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
 
     /**
      * @param args the command line arguments

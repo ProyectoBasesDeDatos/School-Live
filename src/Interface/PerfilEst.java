@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import Interface.Login;
+
 /**
  *
  * @author Carlos
@@ -18,6 +21,149 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public String Identificacion(String idPersona, String Parametro){
+        //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
+        Parametro = jLabel5.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane5.setText(base.obtieneIdentificacion(idPersona, Parametro)); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneIdentificacion(idPersona, Parametro);
+    }
+    
+    public String Nombre(String idPersona, String Parametro){
+        //Metodo que devuelve el nombre del Estudiante/Padre de Familia
+        Parametro = jLabel1.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane2.setText(base.obtieneNombre(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneNombre(idPersona, Parametro);
+    }
+    
+    public String Apellido1(String idPersona, String Parametro){
+        //Metodo que devuelve el primer apellido del Estudiante/Padre de Familia
+        Parametro = jLabel2.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane4.setText(base.obtieneApellido1(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneApellido1(idPersona, Parametro);
+    }
+    
+    public String Apellido2(String idPersona, String Parametro){
+        //Metodo que devuelve el segundo apellido del Estudiante/Padre de Familia
+        Parametro = jLabel3.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane3.setText(base.obtieneApellido2(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneApellido2(idPersona, Parametro);
+    }
+    
+    public String Sexo(String idPersona, String Parametro){
+        //Metodo que devuelve el sexo del Estudiante/Padre de Familia
+        Parametro = jLabel4.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextField4.setText(base.obtieneSexo(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneSexo(idPersona, Parametro);
+    }
+    
+    public String FechaNacimiento(String idPersona, String Parametro){
+        //Metodo que devuelve la fecha de nacimiento del Estudiante/Padre de Familia
+        Parametro = jLabel6.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane10.setText(base.obtieneFechaNacimiento(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneFechaNacimiento(idPersona, Parametro);
+    }
+    
+    public String Email(String idPersona, String Parametro){
+        //Metodo que devuelve el correo electronico del Estudiante/Padre de Familia
+        Parametro = jLabel9.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane8.setText(base.obtieneEmail(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneEmail(idPersona, Parametro);
+    }
+    
+    public String Facebook(String idPersona, String Parametro){
+        //Metodo que devuelve el facebook del Estudiante/Padre de Familia
+        Parametro = jLabel10.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane9.setText(base.obtieneFacebook(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneFacebook(idPersona, Parametro);
+    }
+    
+    public String TipoPerfil(String idPersona, String Parametro){
+        //Metodo que devuelve tipo de usuario del Estudiante/Padre de Familia
+        Parametro = jLabel12.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane9.setText(base.obtieneTipoPerfil(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneTipoPerfil(idPersona, Parametro);
+    }
+    
+    public String Direccion(String idPersona, String Parametro){
+        //Metodo que devuelve la direccion del Estudiante/Padre de Familia
+        Parametro = jLabel7.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextArea1.setText(base.obtieneDireccion(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneDireccion(idPersona, Parametro);
+    }
+    
+    public String ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
+        //Metodo que actualiza los datos de Estudiante/Padre de Familia
+        Email = jLabel9.getText();
+        Facebook = jLabel10.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.actualizaDatosEstudiantePadreFamilia(IdPersona, Email, Facebook);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+    }
+    
+    public String ActualizaDireccionEstudiante(String IdPersona, String Direccion){
+        //Metodo que actualiza la direccion del Estudiante/Padre de Familia
+        Direccion = jLabel7.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.actualizaDireccionEstudiantePadreFamilia(IdPersona, Direccion);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,6 +257,11 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         jScrollPane6.setViewportView(jTextPane1);
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Nivel");
 
@@ -133,7 +284,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,7 +306,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +360,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,6 +416,10 @@ public class PerfilEst extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
