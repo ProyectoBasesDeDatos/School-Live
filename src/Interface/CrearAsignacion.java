@@ -20,6 +20,10 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
      */
     public CrearAsignacion() {
         initComponents();
+        
+        CBGrupo.removeAllItems();
+        CBMateria.removeAllItems();
+        //Agregar elementos a los combobox
     }
 
     /**
@@ -32,21 +36,21 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        CBGrupo = new javax.swing.JComboBox();
         jSplitPane1 = new javax.swing.JSplitPane();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TADescripcion = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        dateChooserPanel1 = new datechooser.beans.DateChooserPanel();
+        DFecha = new datechooser.beans.DateChooserPanel();
         guardarAsignButton = new javax.swing.JButton();
         LHora = new javax.swing.JLabel();
         SHora = new JSpinner( new SpinnerDateModel() );
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        LTipo = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        CBMateria = new javax.swing.JComboBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -56,10 +60,10 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Grupo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        CBGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                CBGrupoActionPerformed(evt);
             }
         });
 
@@ -69,9 +73,9 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Descripción");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        TADescripcion.setColumns(20);
+        TADescripcion.setRows(5);
+        jScrollPane2.setViewportView(TADescripcion);
 
         jLabel3.setText("Fecha de entrega");
 
@@ -102,7 +106,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(dateChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(guardarAsignButton, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -129,24 +133,34 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                             .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(guardarAsignButton))
-                    .addComponent(dateChooserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jSplitPane1.setRightComponent(jInternalFrame1);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        LTipo.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Tarea", "Quiz", "Examen", "Proyecto", "Trabajo ExtraClase" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        LTipo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                LTipoValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(LTipo);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
         jLabel4.setText("Materia");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBMateriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,8 +176,8 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 108, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(CBGrupo, 0, 108, Short.MAX_VALUE)
+                            .addComponent(CBMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,11 +186,11 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBMateria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -185,31 +199,44 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void CBGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBGrupoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_CBGrupoActionPerformed
 
     private void guardarAsignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAsignButtonActionPerformed
-        // TODO add your handling code here:
+        String tipo = LTipo.getSelectedValue().toString();
+        String materia = CBMateria.getSelectedObjects()[0].toString();
+        String grupo = CBGrupo.getSelectedObjects()[0].toString();
+        //String fecha = DFecha.
+        String hora = SHora.getValue().toString();
+        String descripcion = TADescripcion.getText();
     }//GEN-LAST:event_guardarAsignButtonActionPerformed
+
+    private void LTipoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LTipoValueChanged
+        
+    }//GEN-LAST:event_LTipoValueChanged
+
+    private void CBMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBMateriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CBGrupo;
+    private javax.swing.JComboBox CBMateria;
+    private datechooser.beans.DateChooserPanel DFecha;
     private javax.swing.JLabel LHora;
+    private javax.swing.JList LTipo;
     private javax.swing.JSpinner SHora;
-    private datechooser.beans.DateChooserPanel dateChooserPanel1;
+    private javax.swing.JTextArea TADescripcion;
     private javax.swing.JButton guardarAsignButton;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
