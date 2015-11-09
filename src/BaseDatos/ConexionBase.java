@@ -80,7 +80,6 @@ public class ConexionBase {
         
     }
     
-<<<<<<< HEAD
     
     public int crearAsignacion (String id, String tipo, String descripcion,String hora, String fecha, String grupo, String profesor, String materia){
         String sqlAsignacion = "insert into asignacion(idasignacion, tipo, descripcion, hora, fecha, grupo, profesor, materia) values(?,?,?,?,?,?,?,?)";
@@ -104,11 +103,6 @@ public class ConexionBase {
 
     }
 
-    private static class Time {
-
-        public Time() {
-        }
-=======
     public String obtieneIdentificacion(String idPersona, String Parametro) {
     
         String sqlIdentificacion = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
@@ -312,6 +306,5 @@ public class ConexionBase {
             return null;
         }
     return sqlactualizaestdir;
->>>>>>> origin/master
     }
 }
