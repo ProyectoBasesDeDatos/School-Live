@@ -20,13 +20,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-    
-    public String IdPersona(){
-        
-        ConexionBase.IdPersona = user.getText();
-        return ConexionBase.IdPersona;    
-    
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,6 +136,9 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarLoginButtonActionPerformed
+       ConexionBase base= new ConexionBase();
+       base.actualizarUsuarioLogeado(user.getText());
+        
         if(validarUsuario(user.getText(), password.getPassword())){
             if(perfilUsuario(user.getText()).equals("E")){ // E: Estudiante
                 new EscritorioEst().setVisible(true);

@@ -23,9 +23,10 @@ public class PerfilEst extends javax.swing.JInternalFrame {
 
     public String Identificacion(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
-        idPersona = ConexionBase.IdPersona;
-        Parametro = jLabel5.getText();
         ConexionBase base= new ConexionBase();
+        idPersona = base.obtenerUsuarioLogeado(); //Carlos: Este es un ejemplo del uso del metodo GET para tener el usuario logeado, crea un objeto ConexionBase y llama al metodo- Atte:Fabian
+        Parametro = jLabel5.getText();
+        
         if(base.getConexionCorrecta()!= -1){
             jTextPane5.setText(base.obtieneIdentificacion(idPersona, Parametro)); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
         }else{

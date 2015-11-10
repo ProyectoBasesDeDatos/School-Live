@@ -21,7 +21,7 @@ public class ConexionBase {
     int conexion_correcta = 0;
     Connection base = null;
     
-    public static String IdPersona;
+    private String IdPersona;
     
     /*public String IdPersona(){
         
@@ -29,7 +29,8 @@ public class ConexionBase {
       return IdPersona;
       
     }*/
-
+    
+    
     public ConexionBase() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -54,6 +55,14 @@ public class ConexionBase {
             return -1;
         }
     }
+    
+    public void actualizarUsuarioLogeado(String idUsuario){
+        this.IdPersona=idUsuario;
+    }
+    public String obtenerUsuarioLogeado(){
+        return this.IdPersona;
+    }
+    
         public boolean consultarUsuario(String idPersona, String contrasenna){
         //Metodo para validar que la contraseña y el usuario coinciden
         boolean usuarioValido;
