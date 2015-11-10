@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+
 /**
  *
  * @author Carlos
@@ -16,6 +18,172 @@ public class PerfilAdm extends javax.swing.JInternalFrame {
      */
     public PerfilAdm() {
         initComponents();
+    }
+    
+    public String Identificacion(String idPersona, String Parametro){
+        //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
+        Parametro = jLabel5.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane5.setText(base.obtieneIdentificacion(idPersona, Parametro)); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneIdentificacion(idPersona, Parametro);
+    }
+    
+    public String Nombre(String idPersona, String Parametro){
+        //Metodo que devuelve el nombre del Estudiante/Padre de Familia
+        Parametro = jLabel1.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane2.setText(base.obtieneNombre(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneNombre(idPersona, Parametro);
+    }
+    
+    public String Apellido1(String idPersona, String Parametro){
+        //Metodo que devuelve el primer apellido del Estudiante/Padre de Familia
+        Parametro = jLabel2.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane4.setText(base.obtieneApellido1(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneApellido1(idPersona, Parametro);
+    }
+    
+    public String Apellido2(String idPersona, String Parametro){
+        //Metodo que devuelve el segundo apellido del Estudiante/Padre de Familia
+        Parametro = jLabel3.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane3.setText(base.obtieneApellido2(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneApellido2(idPersona, Parametro);
+    }
+    
+    public String Sexo(String idPersona, String Parametro){
+        //Metodo que devuelve el sexo del Estudiante/Padre de Familia
+        Parametro = jLabel4.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextField4.setText(base.obtieneSexo(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneSexo(idPersona, Parametro);
+    }
+    
+    public String FechaNacimiento(String idPersona, String Parametro){
+        //Metodo que devuelve la fecha de nacimiento del Estudiante/Padre de Familia
+        Parametro = jLabel6.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane10.setText(base.obtieneFechaNacimiento(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneFechaNacimiento(idPersona, Parametro);
+    }
+    
+    public String Email(String idPersona, String Parametro){
+        //Metodo que devuelve el correo electronico del Estudiante/Padre de Familia
+        Parametro = jLabel9.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane8.setText(base.obtieneEmail(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneEmail(idPersona, Parametro);
+    }
+    
+    public String Facebook(String idPersona, String Parametro){
+        //Metodo que devuelve el facebook del Estudiante/Padre de Familia
+        Parametro = jLabel10.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane9.setText(base.obtieneFacebook(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneFacebook(idPersona, Parametro);
+    }
+    
+    public String TipoPerfil(String idPersona, String Parametro){
+        //Metodo que devuelve tipo de usuario del Estudiante/Padre de Familia
+        Parametro = jLabel12.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane1.setText(base.obtieneTipoPerfil(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneTipoPerfil(idPersona, Parametro);
+    }
+    
+    public String Direccion(String idPersona, String Parametro){
+        //Metodo que devuelve la direccion del Estudiante/Padre de Familia
+        Parametro = jLabel7.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextArea1.setText(base.obtieneDireccion(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneDireccion(idPersona, Parametro);
+    }
+    
+    public String Telefono(String idPersona, String Parametro){
+        //Metodo que devuelve el telefono del Estudiante/Padre de Familia
+        Parametro = jLabel8.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextField2.setText(base.obtieneTelefono(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneTelefono(idPersona, Parametro);
+    }
+    
+    public String ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
+        //Metodo que actualiza los datos de Estudiante/Padre de Familia
+        Email = jLabel9.getText();
+        Facebook = jLabel10.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.actualizaDatosEstudiantePadreFamilia(IdPersona, Email, Facebook);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+    }
+    
+    public String ActualizaDireccionEstudiante(String IdPersona, String Direccion){
+        //Metodo que actualiza la direccion del Estudiante/Padre de Familia
+        Direccion = jLabel7.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.actualizaDireccionEstudiantePadreFamilia(IdPersona, Direccion);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+    }
+    
+    public String ActualizaTelefonoEstudiante(String IdPersona, String Telefono){
+        //Metodo que actualiza el telefono del Estudiante/Padre de Familia
+        Telefono = jLabel8.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.actualizaTelefonoEstudiantePadreFamilia(IdPersona, Telefono);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
     }
 
     /**

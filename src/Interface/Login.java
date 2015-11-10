@@ -20,7 +20,13 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-
+    
+    public String IdPersona(){
+        
+        ConexionBase.IdPersona = user.getText();
+        return ConexionBase.IdPersona;    
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

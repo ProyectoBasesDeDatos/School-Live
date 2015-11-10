@@ -23,6 +23,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
 
     public String Identificacion(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
+        idPersona = ConexionBase.IdPersona;
         Parametro = jLabel5.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
@@ -141,6 +142,42 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         return base.obtieneDireccion(idPersona, Parametro);
     }
     
+    public String Telefono(String idPersona, String Parametro){
+        //Metodo que devuelve el telefono del Estudiante/Padre de Familia
+        Parametro = jLabel8.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextField2.setText(base.obtieneTelefono(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneTelefono(idPersona, Parametro);
+    }
+    
+    public String Nivel(String idPersona, String Parametro){
+        //Metodo que devuelve el Nivel del Estudiante/Padre de Familia
+        Parametro = jLabel11.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextField5.setText(base.obtieneNivel(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneNivel(idPersona, Parametro);
+    }
+    
+    public String Seccion(String idPersona, String Parametro){
+        //Metodo que devuelve la seccion del Estudiante/Padre de Familia
+        Parametro = jLabel13.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            jTextPane11.setText(base.obtieneSeccion(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+        return base.obtieneSeccion(idPersona, Parametro);
+    }
+    
     public String ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
         //Metodo que actualiza los datos de Estudiante/Padre de Familia
         Email = jLabel9.getText();
@@ -159,6 +196,17 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
             return base.actualizaDireccionEstudiantePadreFamilia(IdPersona, Direccion);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+        }else{
+            return null;
+        }
+    }
+    
+    public String ActualizaTelefonoEstudiante(String IdPersona, String Telefono){
+        //Metodo que actualiza el telefono del Estudiante/Padre de Familia
+        Telefono = jLabel8.getText();
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            return base.actualizaTelefonoEstudiantePadreFamilia(IdPersona, Telefono);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
         }else{
             return null;
         }

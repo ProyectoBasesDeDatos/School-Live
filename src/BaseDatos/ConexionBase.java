@@ -20,6 +20,15 @@ public class ConexionBase {
 
     int conexion_correcta = 0;
     Connection base = null;
+    
+    public static String IdPersona;
+    
+    /*public String IdPersona(){
+        
+      String IdPersona = " "; 
+      return IdPersona;
+      
+    }*/
 
     public ConexionBase() {
         try {
@@ -273,6 +282,57 @@ public class ConexionBase {
     return sqlDireccion;
     }
     
+    public String obtieneTelefono(String idPersona, String Parametro) {
+    
+        String sqlTelefono = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sqlTelefono);
+            sentencia.setString(1, idPersona);
+            sentencia.setString(2, Parametro);
+            sentencia.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    return sqlTelefono;
+    }
+    
+    public String obtieneNivel(String idPersona, String Parametro) {
+    
+        String sqlNivel = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sqlNivel);
+            sentencia.setString(1, idPersona);
+            sentencia.setString(2, Parametro);
+            sentencia.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    return sqlNivel;
+    }
+    
+    public String obtieneSeccion(String idPersona, String Parametro) {
+    
+        String sqlSeccion = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sqlSeccion);
+            sentencia.setString(1, idPersona);
+            sentencia.setString(2, Parametro);
+            sentencia.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    return sqlSeccion;
+    }
+    
     public String actualizaDatosEstudiantePadreFamilia(String IdPersona, String Email, String Facebook) {
     
         String sqlactualizaest = "update Persona set email = ?, facebook = ? where idpersona = ?;";
@@ -306,5 +366,22 @@ public class ConexionBase {
             return null;
         }
     return sqlactualizaestdir;
+    }
+    
+    public String actualizaTelefonoEstudiantePadreFamilia(String IdPersona, String Telefono) {
+    
+        String sqlactualizaesttel = "update Telefono set tipotelefono = 'Casa', numerotelefono = ? where idpersona = ?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sqlactualizaesttel);
+            sentencia.setString(1, Telefono);
+            sentencia.setString(2, IdPersona);
+            sentencia.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    return sqlactualizaesttel;
     }
 }
