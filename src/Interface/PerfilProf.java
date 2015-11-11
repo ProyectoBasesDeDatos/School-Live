@@ -16,12 +16,16 @@ public class PerfilProf extends javax.swing.JInternalFrame {
     /**
      * Creates new form PerfilProf
      */
-    public PerfilProf() {
+    private String idPersona;
+    
+    public PerfilProf(String idPersona) {
+        this.idPersona=idPersona;
         initComponents();
     }
     
     public String Identificacion(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
+        /*
         Parametro = jLabel1.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
@@ -29,7 +33,8 @@ public class PerfilProf extends javax.swing.JInternalFrame {
         }else{
             return null;
         }
-        return base.obtieneIdentificacion(idPersona, Parametro);
+        return base.obtieneIdentificacion(idPersona, Parametro);*/
+        return this.idPersona;
     }
     
     public String Nombre(String idPersona, String Parametro){

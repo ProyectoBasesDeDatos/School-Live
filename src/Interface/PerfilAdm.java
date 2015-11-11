@@ -16,20 +16,23 @@ public class PerfilAdm extends javax.swing.JInternalFrame {
     /**
      * Creates new form PerfilAdm
      */
-    public PerfilAdm() {
+    private String idPersona;
+    public PerfilAdm(String idPersona) {
+        this.idPersona=idPersona;
         initComponents();
     }
     
     public String Identificacion(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
-        Parametro = jLabel5.getText();
+        /*Parametro = jLabel5.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
             jTextPane5.setText(base.obtieneIdentificacion(idPersona, Parametro)); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
         }else{
             return null;
         }
-        return base.obtieneIdentificacion(idPersona, Parametro);
+        return base.obtieneIdentificacion(idPersona, Parametro);*/
+        return this.idPersona;
     }
     
     public String Nombre(String idPersona, String Parametro){

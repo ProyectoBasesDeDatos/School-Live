@@ -7,6 +7,7 @@ package Interface;
 
 import BaseDatos.ConexionBase;
 import Interface.Login;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,8 +18,13 @@ public class PerfilEst extends javax.swing.JInternalFrame {
     /**
      * Creates new form PerfilEst
      */
-    public PerfilEst() {
+    private String idPersona;
+    
+    public PerfilEst(String idPersona) {
+        this.idPersona=idPersona;
         initComponents();
+        JOptionPane.showMessageDialog(null,
+                      this.idPersona, "Ejemplo Nombre del Usuario",JOptionPane.ERROR_MESSAGE);
     }
 
     public String Identificacion(String idPersona){

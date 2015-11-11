@@ -18,12 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class EscritorioAdmin extends javax.swing.JFrame {
     private JDesktopPaneImg escritorioAdmin;
+    private String idPersona;
 
     /**
      * Creates new form EscritorioAdmin
      */
-    public EscritorioAdmin() {
+    public EscritorioAdmin(String idPersona) {
         initComponents();
+        this.idPersona=idPersona;
         escritorioAdmin = new JDesktopPaneImg();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -403,7 +405,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ItemEditEncActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        PerfilAdm miPerfil= new PerfilAdm();
+        PerfilAdm miPerfil= new PerfilAdm(this.idPersona);
         escritorioAdmin.add(miPerfil);
         miPerfil.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -450,7 +452,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EscritorioAdmin().setVisible(true);
+                new EscritorioAdmin("").setVisible(true);
             }
         });
     }

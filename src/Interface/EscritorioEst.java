@@ -16,11 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class EscritorioEst extends javax.swing.JFrame {
 private JDesktopPaneImg escritorioEst;
+private String idPersona;
     /**
      * Creates new form EscritorioEst
      */
-    public EscritorioEst() {
+    public EscritorioEst(String idPersona) {
         initComponents();
+        this.idPersona=idPersona;
 
         escritorioEst = new JDesktopPaneImg();
 
@@ -190,7 +192,7 @@ private JDesktopPaneImg escritorioEst;
     }//GEN-LAST:event_eventosEstActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        PerfilEst perfEst= new PerfilEst();
+        PerfilEst perfEst= new PerfilEst(this.idPersona);
         escritorioEst.add(perfEst);
         perfEst.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -244,7 +246,7 @@ private JDesktopPaneImg escritorioEst;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EscritorioEst().setVisible(true);
+                new EscritorioEst("").setVisible(true);
             }
         });
     }

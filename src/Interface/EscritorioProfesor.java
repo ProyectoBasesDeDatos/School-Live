@@ -16,10 +16,12 @@ import javax.swing.JOptionPane;
  */
 public class EscritorioProfesor extends javax.swing.JFrame {
 private JDesktopPaneImg escritorioProf;
+private String idPersona;
     /**
      * Creates new form EscritorioProfesor
      */
-    public EscritorioProfesor() {
+    public EscritorioProfesor(String idPersona) {
+        this.idPersona=idPersona;
         initComponents();
         escritorioProf = new JDesktopPaneImg();
 
@@ -235,7 +237,7 @@ private JDesktopPaneImg escritorioProf;
     }//GEN-LAST:event_ItemDirectorioActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        PerfilProf perfilP= new PerfilProf();
+        PerfilProf perfilP= new PerfilProf(this.idPersona);
         escritorioProf.add(perfilP);
         perfilP.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -282,7 +284,7 @@ private JDesktopPaneImg escritorioProf;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EscritorioProfesor().setVisible(true);
+                new EscritorioProfesor("").setVisible(true);
             }
         });
     }

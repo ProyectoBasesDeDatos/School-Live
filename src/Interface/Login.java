@@ -147,21 +147,19 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarLoginButtonActionPerformed
-       ConexionBase base= new ConexionBase();
-       base.actualizarUsuarioLogeado(user.getText());
-        
+    
         if(validarUsuario(user.getText(), password.getPassword())){
             if(perfilUsuario(user.getText()).equals("E")){ // E: Estudiante
-                new EscritorioEst().setVisible(true);
+                new EscritorioEst(user.getText()).setVisible(true);
                 this.setVisible(false);
             }else if(perfilUsuario(user.getText()).equals("P")){ //P:Profesor
-                new EscritorioProfesor().setVisible(true);
+                new EscritorioProfesor(user.getText()).setVisible(true);
                 this.setVisible(false);
             }else if(perfilUsuario(user.getText()).equals("A")){ //A: Administrador
-                new EscritorioAdmin().setVisible(true);
+                new EscritorioAdmin(user.getText()).setVisible(true);
                 this.setVisible(false);
             }else if(perfilUsuario(user.getText()).equals("F")){ //F: Padre de Familia
-                new EscritorioEst().setVisible(true);
+                new EscritorioEst(user.getText()).setVisible(true);
                 this.setVisible(false);
             }else{
             JOptionPane.showMessageDialog(null,
