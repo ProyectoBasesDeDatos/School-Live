@@ -5,7 +5,7 @@
 
 package Main;
 
-import ConexionPSQL.Conexion;
+
 import Interface.Login;
 
 import Interface.EscritorioAdmin;
