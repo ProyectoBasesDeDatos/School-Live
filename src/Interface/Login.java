@@ -13,6 +13,17 @@ import BaseDatos.ConexionBase;
  * @author fugalde
  */
 public class Login extends javax.swing.JFrame {
+    
+    private String IdPersona;
+    
+    public void actualizarUsuarioLogeado(String idUsuario){
+        this.IdPersona=idUsuario;
+    }
+    
+    public String obtenerUsuarioLogeado(){
+        actualizarUsuarioLogeado(user.getText());
+        return this.IdPersona;
+    }
 
     /**
      * Creates new form Login

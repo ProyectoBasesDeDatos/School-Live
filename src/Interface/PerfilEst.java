@@ -21,18 +21,19 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public String Identificacion(String idPersona, String Parametro){
+    public String Identificacion(String idPersona){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
         ConexionBase base= new ConexionBase();
-        idPersona = base.obtenerUsuarioLogeado(); //Carlos: Este es un ejemplo del uso del metodo GET para tener el usuario logeado, crea un objeto ConexionBase y llama al metodo- Atte:Fabian
-        Parametro = jLabel5.getText();
+        //idPersona = base.obtenerUsuarioLogeado(); //Carlos: Este es un ejemplo del uso del metodo GET para tener el usuario logeado, crea un objeto ConexionBase y llama al metodo- Atte:Fabian
+        //Parametro = jLabel5.getText();
         
         if(base.getConexionCorrecta()!= -1){
-            jTextPane5.setText(base.obtieneIdentificacion(idPersona, Parametro)); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneIdentificacion(idPersona, Parametro);
+        
     }
     
     public String Nombre(String idPersona, String Parametro){
@@ -52,7 +53,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         Parametro = jLabel2.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextPane4.setText(base.obtieneApellido1(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneApellido1(idPersona, Parametro);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
         }else{
             return null;
         }
@@ -468,6 +469,11 @@ public class PerfilEst extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //jTextPane5.setText(base.obtieneIdentificacion(idPersona));
+        Login login= new Login();
+        String prueba = login.obtenerUsuarioLogeado();
+        String prueba2 = Identificacion("147852");
+        jTextPane5.setText(prueba2);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

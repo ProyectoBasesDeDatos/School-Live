@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -121,21 +122,27 @@ public class ConexionBase {
 
     }
 
-    public String obtieneIdentificacion(String idPersona, String Parametro) {
+    public String obtieneIdentificacion(String idPersona) {
     
-        String sqlIdentificacion = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
+        String sqlIdentificacion = "select idpersona from persona where idpersona = ?;";
         PreparedStatement sentencia = null;
         try {
             sentencia = base.prepareStatement(sqlIdentificacion);
             sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
-            sentencia.execute();
+            ResultSet resultado = sentencia.executeQuery();
+            if (resultado.next()){
+                return resultado.getString("idpersona");
+            }
+            else {
+                return null;
+            }
+            //sentencia.setString(2, Parametro);
+            //sentencia.execute();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlIdentificacion;    
+        }   
     }
     
     public String obtieneNombre(String idPersona, String Parametro) {
