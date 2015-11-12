@@ -490,5 +490,23 @@ public class ConexionBase {
         }
         
     }
+    public int insertarDireccion(String id, String tipo, String idProvincia, String idCanton, String descripcion){
+        String sql= "Insert into dirpersona(idpersona,tipo,idprovincia,idcanton,descripcion) values (?,?,?,?,?);";
+        PreparedStatement sentencia = null;
+        try{
+            sentencia=base.prepareStatement(sql);
+            sentencia.setString(1, id);
+            sentencia.setString(2, tipo);
+            sentencia.setString(3, idProvincia);
+            sentencia.setString(4, idCanton);
+            sentencia.setString(5, descripcion);
+            sentencia.execute();
+
+            return 1;
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
     
 }

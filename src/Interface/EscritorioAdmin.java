@@ -369,7 +369,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ItemDirectorioActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       CrearPerfilEst perfilEst= new CrearPerfilEst();
+       CrearPerfilEst perfilEst= new CrearPerfilEst(this.idPersona);
        escritorioAdmin.add(perfilEst);
        perfilEst.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed

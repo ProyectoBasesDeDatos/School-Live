@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +18,31 @@ import javax.swing.JOptionPane;
  */
 public class CrearPerfilEst extends javax.swing.JInternalFrame {
 
+    private String idPersona;
     /**
      * Creates new form CrearPerfilEst
      */
-    public CrearPerfilEst() {
+    public CrearPerfilEst(String idPersona) {
+        this.idPersona=idPersona;
         initComponents();
+        
+        ConexionBase base= new ConexionBase();
+        listaProvincias.removeAllItems();
+        if (base.getConexionCorrecta() != -1) {
+            String[][] valoresProvincias = base.getDatosConsulta("select * from provincia");
+            String[][] valoresCantones = base.getDatosConsulta("select idcanton, descripcion from canton");
+
+            for (int i = 0; i < valoresProvincias.length; i++) {
+                listaProvincias.addItem(valoresProvincias[i][0]+"-"+valoresProvincias[i][1]);
+            }
+            for (int i = 0; i < valoresCantones.length; i++) {
+                listaCantones.addItem(valoresCantones[i][0]+"-"+valoresCantones[i][1]);
+            }
+        }else{
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+        
+        
     }
 
     /**
@@ -57,7 +78,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         grupo = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDirecciones = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -110,9 +131,8 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
 
         grupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDirecciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
@@ -129,11 +149,11 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tipoDireccion));
-            jTable1.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(listaProvincias));
-            jTable1.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(listaCantones));
+        jScrollPane2.setViewportView(tablaDirecciones);
+        if (tablaDirecciones.getColumnModel().getColumnCount() > 0) {
+            tablaDirecciones.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tipoDireccion));
+            tablaDirecciones.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(listaProvincias));
+            tablaDirecciones.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(listaCantones));
         }
 
         jLabel12.setText("Direcciones");
@@ -142,7 +162,6 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
                 {null, null},
                 {null, null},
                 {null, null}
@@ -293,9 +312,21 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             formatter = new SimpleDateFormat("dd-MM-yyyy");
             fechaNacimiento= jXDatePicker1.getDate();
             fechaString= formatter.format(fechaNacimiento);
-            
-            
-            if(base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "E")!=-1){
+            int res=0;
+            res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "E");
+           
+            DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
+            int nRow = dtm.getRowCount();
+            String codCanton;
+            String codProvincia;
+            for (int i = 0; i < nRow; i++){
+                codProvincia=String.valueOf( dtm.getValueAt(i,1));
+                codProvincia= codProvincia.substring(0,codProvincia.indexOf("-"));
+                codCanton=String.valueOf(dtm.getValueAt(i,2));
+                codCanton= codCanton.substring(0, codCanton.indexOf("-"));
+                base.insertarDireccion(this.idPersona,String.valueOf(dtm.getValueAt(i,0)),codProvincia,codCanton,String.valueOf(dtm.getValueAt(i,3)));
+            }
+            if(res>=2){
                 JOptionPane.showMessageDialog(null,"Se agregó exitosamente el nuevo estudiante","Exito",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
@@ -331,7 +362,6 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JComboBox listaCantones;
@@ -339,6 +369,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nombre1;
     private javax.swing.JTextField pwd;
     private javax.swing.JComboBox sexo;
+    private javax.swing.JTable tablaDirecciones;
     private javax.swing.JComboBox tipoDireccion;
     private javax.swing.JComboBox tiposTelefono;
     // End of variables declaration//GEN-END:variables
