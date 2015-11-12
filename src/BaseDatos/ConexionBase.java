@@ -582,7 +582,7 @@ public class ConexionBase {
         }
     }
         public int insertarTelefonos(String id, String tipo, String numero){
-        String sql= "Insert into dirpersona(idpersona,tipotelefono,numerotelefono) values (?,?,?);";
+        String sql= "Insert into telefono(idpersona,tipotelefono,numerotelefono) values (?,?,?);";
         PreparedStatement sentencia = null;
         try{
             sentencia=base.prepareStatement(sql);

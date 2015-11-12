@@ -28,6 +28,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
         
         ConexionBase base= new ConexionBase();
         listaProvincias.removeAllItems();
+        listaCantones.removeAllItems();
         if (base.getConexionCorrecta() != -1) {
             String[][] valoresProvincias = base.getDatosConsulta("select * from provincia");
             String[][] valoresCantones = base.getDatosConsulta("select idcanton, descripcion from canton");
@@ -35,8 +36,8 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             for (int i = 0; i < valoresProvincias.length; i++) {
                 listaProvincias.addItem(valoresProvincias[i][0]+"-"+valoresProvincias[i][1]);
             }
-            for (int i = 0; i < valoresCantones.length; i++) {
-                listaCantones.addItem(valoresCantones[i][0]+"-"+valoresCantones[i][1]);
+            for (int j = 0; j < valoresCantones.length; j++) {
+                listaCantones.addItem(valoresCantones[j][0]+"-"+valoresCantones[j][1]);
             }
         }else{
             System.err.println("No se ha logrado establecer conexión con la base de datos");
@@ -82,7 +83,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaTelefonos = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         pwd = new javax.swing.JTextField();
 
@@ -160,7 +161,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Telefonos");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTelefonos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -178,9 +179,9 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tiposTelefono));
+        jScrollPane3.setViewportView(tablaTelefonos);
+        if (tablaTelefonos.getColumnModel().getColumnCount() > 0) {
+            tablaTelefonos.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tiposTelefono));
         }
 
         jLabel14.setText("Contraseña");
@@ -320,8 +321,8 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             int nRow = dtm.getRowCount();
             String codCanton;
             String codProvincia;
-            for (int i = 0; i < nRow; i++) {
-                if (!String.valueOf(dtm.getValueAt(i, 0)).isEmpty()) {
+            for (int i = 0; i < nRow-1; i++) {
+                if (!(String.valueOf(dtm.getValueAt(i, 0)).equals(null)||String.valueOf(dtm.getValueAt(i, 0)).equals(""))) {
                     codProvincia = String.valueOf(dtm.getValueAt(i, 1));
                     codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
                     codCanton = String.valueOf(dtm.getValueAt(i, 2));
@@ -331,13 +332,13 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             }
             
             //Recorrer la tabla de telefonos para agregar uno a uno los telefonos
-            DefaultTableModel dtm2 = (DefaultTableModel) tablaDirecciones.getModel();
+            DefaultTableModel dtm2 = (DefaultTableModel) tablaTelefonos.getModel();
             int nRow2 = dtm2.getRowCount();
            
-            for (int i = 0; i < nRow2; i++) {
-                if (!String.valueOf(dtm2.getValueAt(i, 0)).isEmpty()) {
+            for (int j = 0; j < nRow2-1; j++) {
+                if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("")||String.valueOf(dtm2.getValueAt(j, 0)).equals(null))) {
  
-                    res += base.insertarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(i, 0)), String.valueOf(dtm2.getValueAt(i, 1)));
+                    res += base.insertarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(j, 0)), String.valueOf(dtm2.getValueAt(j, 1)));
                 }
             }
             
@@ -378,7 +379,6 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JComboBox listaCantones;
     private javax.swing.JComboBox listaProvincias;
@@ -386,6 +386,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JTextField pwd;
     private javax.swing.JComboBox sexo;
     private javax.swing.JTable tablaDirecciones;
+    private javax.swing.JTable tablaTelefonos;
     private javax.swing.JComboBox tipoDireccion;
     private javax.swing.JComboBox tiposTelefono;
     // End of variables declaration//GEN-END:variables
