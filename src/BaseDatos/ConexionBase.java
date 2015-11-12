@@ -14,6 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -463,5 +464,28 @@ public class ConexionBase {
             return null;
         }
     return sqlactualizaesttel;
+    }
+    
+    public String insertarEstudiante(String id, String nombre, String apellido1, String apellido2, String sexo, String fechaNac, String email, String fb, String pwd, String tPerfil){
+        String sql= "Insert into Persona(idPersona,nombre1,apellido1,apellido2,sexo,fecNacimiento,email,facebook,contrasenna,tipoPerfil) values (?,?,?,?,?,?,?,?,?,?);";
+        PreparedStatement sentencia = null;
+        try{
+            sentencia=base.prepareStatement(sql);
+            sentencia.setString(1, id);
+            sentencia.setString(2, nombre);
+            sentencia.setString(3, apellido1);
+            sentencia.setString(4, apellido2);
+            sentencia.setString(5, sexo);
+            sentencia.setString(6,fechaNac);
+            sentencia.setString(7, email);
+            sentencia.setString(8, fb);
+            sentencia.setString(9, pwd);
+            sentencia.setString(10, tPerfil);
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        
+        return sql;
     }
 }
