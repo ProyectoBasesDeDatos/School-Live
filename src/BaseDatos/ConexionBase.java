@@ -193,7 +193,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlIdentificacion);
+             sentencia = base.prepareCall(sqlIdentificacion);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -205,7 +205,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -218,7 +218,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlNombre);
+             sentencia = base.prepareCall(sqlNombre);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -230,7 +230,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -243,7 +243,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlApellido1);
+             sentencia = base.prepareCall(sqlApellido1);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -255,7 +255,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -268,7 +268,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlApellido2);
+             sentencia = base.prepareCall(sqlApellido2);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -280,7 +280,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -293,7 +293,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlSexo);
+             sentencia = base.prepareCall(sqlSexo);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -305,7 +305,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -314,11 +314,11 @@ public class ConexionBase {
     
     public String obtieneFechaNacimiento(String idPersona, String Parametro) {
     
-        String sqlFecNac = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        String sqlFechaNacimiento = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlFecNac);
+             sentencia = base.prepareCall(sqlFechaNacimiento);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -330,7 +330,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -343,7 +343,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlEmail);
+             sentencia = base.prepareCall(sqlEmail);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -355,32 +355,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
-        }    
-    }
-    
-    public String obtieneFacebook(String idPersona, String Parametro) {
-    
-        String sqlFacebook = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
-        CallableStatement sentencia = null;
-        String Resultado;
-        try {
-            sentencia = base.prepareCall(sqlFacebook);
-            sentencia.registerOutParameter(1, Types.VARCHAR);
-            sentencia.setString(2, idPersona);
-            sentencia.setString(3, Parametro);
-            sentencia.execute();
-            Resultado = sentencia.getString(1);
-            if (Resultado!=null){
-                return Resultado;
-            }
-            else {
-                return null;
-            }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -393,7 +368,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlTipoPerfil);
+             sentencia = base.prepareCall(sqlTipoPerfil);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -405,7 +380,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -418,7 +393,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlDireccion);
+             sentencia = base.prepareCall(sqlDireccion);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -430,7 +405,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -443,7 +418,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlTelefono);
+             sentencia = base.prepareCall(sqlTelefono);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -455,7 +430,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -468,7 +443,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlNivel);
+             sentencia = base.prepareCall(sqlNivel);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -480,7 +455,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -493,7 +468,7 @@ public class ConexionBase {
         CallableStatement sentencia = null;
         String Resultado;
         try {
-            sentencia = base.prepareCall(sqlSeccion);
+             sentencia = base.prepareCall(sqlSeccion);
             sentencia.registerOutParameter(1, Types.VARCHAR);
             sentencia.setString(2, idPersona);
             sentencia.setString(3, Parametro);
@@ -505,7 +480,7 @@ public class ConexionBase {
             else {
                 return null;
             }
-           
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
