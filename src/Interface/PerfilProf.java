@@ -25,130 +25,129 @@ public class PerfilProf extends javax.swing.JInternalFrame {
     
     public String Identificacion(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
-        /*
-        Parametro = jLabel1.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField1.setText(base.obtieneIdentificacion(idPersona, Parametro)); //La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneIdentificacion(idPersona, Parametro);*/
-        return this.idPersona;
+        
     }
     
     public String Nombre(String idPersona, String Parametro){
         //Metodo que devuelve el nombre del Estudiante/Padre de Familia
-        Parametro = jLabel3.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField4.setText(base.obtieneNombre(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneNombre(idPersona, Parametro);
     }
     
     public String Apellido1(String idPersona, String Parametro){
         //Metodo que devuelve el primer apellido del Estudiante/Padre de Familia
-        Parametro = jLabel2.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField2.setText(base.obtieneApellido1(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneApellido1(idPersona, Parametro);
     }
     
     public String Apellido2(String idPersona, String Parametro){
         //Metodo que devuelve el segundo apellido del Estudiante/Padre de Familia
-        Parametro = jLabel4.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField3.setText(base.obtieneApellido2(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneApellido2(idPersona, Parametro);
     }
     
     public String Sexo(String idPersona, String Parametro){
         //Metodo que devuelve el sexo del Estudiante/Padre de Familia
-        Parametro = jLabel7.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField7.setText(base.obtieneSexo(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneSexo(idPersona, Parametro);
     }
     
-    /*public String FechaNacimiento(String idPersona, String Parametro){
+    public String FechaNacimiento(String idPersona, String Parametro){
         //Metodo que devuelve la fecha de nacimiento del Estudiante/Padre de Familia
-        Parametro = jLabel9.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jXDatePicker1.setText(base.obtieneFechaNacimiento(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneFechaNacimiento(idPersona, Parametro);
-    }*/
+    }
     
     public String Email(String idPersona, String Parametro){
-        //Metodo que devuelve el correo electronico del Estudiante/Padre de Familia
-        Parametro = jLabel6.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField6.setText(base.obtieneEmail(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneEmail(idPersona, Parametro);
     }
     
     public String Facebook(String idPersona, String Parametro){
         //Metodo que devuelve el facebook del Estudiante/Padre de Familia
-        Parametro = jLabel8.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField8.setText(base.obtieneFacebook(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneFacebook(idPersona, Parametro);
     }
+    
+    /*public String TipoPerfil(String idPersona, String Parametro){
+        //Metodo que devuelve tipo de usuario del Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
+        }else{
+            return null;
+        }
+    }*/
     
     public String Direccion(String idPersona, String Parametro){
         //Metodo que devuelve la direccion del Estudiante/Padre de Familia
-        Parametro = jLabel10.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextArea1.setText(base.obtieneDireccion(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneDireccion(idPersona, Parametro);
     }
     
     public String Telefono(String idPersona, String Parametro){
         //Metodo que devuelve el telefono del Estudiante/Padre de Familia
-        Parametro = jLabel5.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            jTextField5.setText(base.obtieneTelefono(idPersona, Parametro));//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            return Consulta;
         }else{
             return null;
         }
-        return base.obtieneTelefono(idPersona, Parametro);
     }
     
     public String ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
         //Metodo que actualiza los datos de Estudiante/Padre de Familia
-        Email = jLabel6.getText();
-        Facebook = jLabel8.getText();
+        Email = jLabel9.getText();
+        Facebook = jLabel10.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
             return base.actualizaDatosEstudiantePadreFamilia(IdPersona, Email, Facebook);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
@@ -159,7 +158,7 @@ public class PerfilProf extends javax.swing.JInternalFrame {
     
     public String ActualizaDireccionEstudiante(String IdPersona, String Direccion){
         //Metodo que actualiza la direccion del Estudiante/Padre de Familia
-        Direccion = jLabel10.getText();
+        Direccion = jLabel7.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
             return base.actualizaDireccionEstudiantePadreFamilia(IdPersona, Direccion);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
@@ -170,7 +169,7 @@ public class PerfilProf extends javax.swing.JInternalFrame {
     
     public String ActualizaTelefonoEstudiante(String IdPersona, String Telefono){
         //Metodo que actualiza el telefono del Estudiante/Padre de Familia
-        Telefono = jLabel5.getText();
+        Telefono = jLabel8.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
             return base.actualizaTelefonoEstudiantePadreFamilia(IdPersona, Telefono);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
@@ -206,13 +205,14 @@ public class PerfilProf extends javax.swing.JInternalFrame {
         jTextField8 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jTextField9 = new javax.swing.JTextField();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -227,15 +227,15 @@ public class PerfilProf extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Segundo Apellido");
 
-        jLabel5.setText("Telefono");
+        jLabel5.setText("Teléfono");
 
-        jLabel6.setText("Correo Eléctronico");
+        jLabel6.setText("Correo Electrónico");
 
         jLabel7.setText("Sexo");
 
         jLabel8.setText("Facebook");
 
-        jLabel9.setText("Fecha Nacimiento");
+        jLabel9.setText("Fecha de Nacimiento");
 
         jLabel10.setText("Dirección");
 
@@ -252,7 +252,19 @@ public class PerfilProf extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jList1);
 
-        jToggleButton1.setText("Guardar");
+        jToggleButton1.setText("Ver");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setText("Guardar");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,39 +287,49 @@ public class PerfilProf extends javax.swing.JInternalFrame {
                             .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                        .addComponent(jTextField4)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel8)
-                                            .addGap(56, 56, 56)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField6)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))
-                            .addComponent(jLabel11)
-                            .addComponent(jScrollPane2))
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addComponent(jToggleButton1))
-                .addContainerGap())
+                                            .addComponent(jLabel6))
+                                        .addGap(29, 29, 29)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField6)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3))
+                                        .addGap(35, 35, 35)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField3)
+                                            .addComponent(jTextField4))))))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(jToggleButton2)
+                                .addContainerGap())
+                            .addComponent(jScrollPane2)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,28 +357,77 @@ public class PerfilProf extends javax.swing.JInternalFrame {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton1))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        {String Parametro = jLabel1.getText();
+        String prueba2 = Identificacion(this.idPersona, Parametro);
+        jTextField1.setText(prueba2);}
+        
+        {String Parametro = jLabel3.getText();
+        String prueba2 = Nombre(this.idPersona, Parametro);
+        jTextField4.setText(prueba2);}
+        
+        {String Parametro = jLabel2.getText();
+        String prueba2 = Apellido1(this.idPersona, Parametro);
+        jTextField2.setText(prueba2);}
+        
+        {String Parametro = jLabel4.getText();
+        String prueba2 = Apellido2(this.idPersona, Parametro);
+        jTextField3.setText(prueba2);}
+        
+        {String Parametro = jLabel7.getText();
+        String prueba2 = Sexo(this.idPersona, Parametro);
+        jTextField7.setText(prueba2);}
+        
+        {String Parametro = jLabel9.getText();
+        String prueba2 = FechaNacimiento(this.idPersona, Parametro);
+        jTextField9.setText(prueba2);}
+        
+        {String Parametro = jLabel6.getText();
+        String prueba2 = Email(this.idPersona, Parametro);
+        jTextField6.setText(prueba2);}
+        
+        {String Parametro = jLabel8.getText();
+        String prueba2 = Facebook(this.idPersona, Parametro);
+        jTextField8.setText(prueba2);}
+        
+        {String Parametro = jLabel10.getText();
+        String prueba2 = Direccion(this.idPersona, Parametro);
+        jTextArea1.setText(prueba2);}
+        
+        {String Parametro = jLabel5.getText();
+        String prueba2 = Telefono(this.idPersona, Parametro);
+        jTextField5.setText(prueba2);}
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -383,7 +454,8 @@ public class PerfilProf extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
 }

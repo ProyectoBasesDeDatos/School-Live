@@ -187,23 +187,25 @@ public class ConexionBase {
 
     }
 
-    public String obtieneIdentificacion(String idPersona) {
+    public String obtieneIdentificacion(String idPersona, String Parametro) {
     
-        String sqlIdentificacion = "select idpersona from persona where idpersona = ?;";
-        PreparedStatement sentencia = null;
+        String sqlIdentificacion = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlIdentificacion);
-            sentencia.setString(1, idPersona);
-            ResultSet resultado = sentencia.executeQuery();
-            if (resultado.next()){
-                return resultado.getString("idpersona");
+            sentencia = base.prepareCall(sqlIdentificacion);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
+            sentencia.execute();
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
             }
             else {
                 return null;
             }
-            //sentencia.setString(2, Parametro);
-            //sentencia.execute();
-
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
@@ -212,206 +214,302 @@ public class ConexionBase {
     
     public String obtieneNombre(String idPersona, String Parametro) {
     
-        String sqlNombre = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlNombre = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlNombre);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlNombre);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlNombre;    
+        }    
     }
     
     public String obtieneApellido1(String idPersona, String Parametro) {
     
-        String sqlApellido1 = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlApellido1 = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlApellido1);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlApellido1);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlApellido1;    
+        }    
     }
     
     public String obtieneApellido2(String idPersona, String Parametro) {
     
-        String sqlApellido2 = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlApellido2 = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlApellido2);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlApellido2);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlApellido2;    
+        }    
     }
     
     public String obtieneSexo(String idPersona, String Parametro) {
     
-        String sqlSexo = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlSexo = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlSexo);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlSexo);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlSexo;    
+        }    
     }
     
     public String obtieneFechaNacimiento(String idPersona, String Parametro) {
     
-        String sqlFechaNacimiento = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlFecNac = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlFechaNacimiento);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlFecNac);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlFechaNacimiento;    
+        }    
     }
     
     public String obtieneEmail(String idPersona, String Parametro) {
     
-        String sqlEmail = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlEmail = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlEmail);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlEmail);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlEmail;    
+        }    
     }
     
     public String obtieneFacebook(String idPersona, String Parametro) {
     
-        String sqlFacebook = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlFacebook = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlFacebook);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlFacebook);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlFacebook;    
+        }    
     }
     
     public String obtieneTipoPerfil(String idPersona, String Parametro) {
     
-        String sqlTipoPerfil = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlTipoPerfil = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlTipoPerfil);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlTipoPerfil);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-        }
-    return sqlTipoPerfil;    
+        }    
     }
     
     public String obtieneDireccion(String idPersona, String Parametro) {
     
-        String sqlDireccion = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlDireccion = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlDireccion);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlDireccion);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-    return sqlDireccion;
     }
     
     public String obtieneTelefono(String idPersona, String Parametro) {
     
-        String sqlTelefono = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlTelefono = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlTelefono);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlTelefono);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-    return sqlTelefono;
     }
     
     public String obtieneNivel(String idPersona, String Parametro) {
     
-        String sqlNivel = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlNivel = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlNivel);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlNivel);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-    return sqlNivel;
     }
     
     public String obtieneSeccion(String idPersona, String Parametro) {
     
-        String sqlSeccion = "select InformacionPerfilEstudiantePadreFamilia(?,?);";
-        PreparedStatement sentencia = null;
+        String sqlSeccion = "{ ? = call InformacionPerfilEstudiantePadreFamilia(?,?)}";
+        CallableStatement sentencia = null;
+        String Resultado;
         try {
-            sentencia = base.prepareStatement(sqlSeccion);
-            sentencia.setString(1, idPersona);
-            sentencia.setString(2, Parametro);
+            sentencia = base.prepareCall(sqlSeccion);
+            sentencia.registerOutParameter(1, Types.VARCHAR);
+            sentencia.setString(2, idPersona);
+            sentencia.setString(3, Parametro);
             sentencia.execute();
-
+            Resultado = sentencia.getString(1);
+            if (Resultado!=null){
+                return Resultado;
+            }
+            else {
+                return null;
+            }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-    return sqlSeccion;
     }
     
     public String actualizaDatosEstudiantePadreFamilia(String IdPersona, String Email, String Facebook) {
