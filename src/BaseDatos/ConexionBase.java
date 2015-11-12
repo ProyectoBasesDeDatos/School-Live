@@ -581,5 +581,22 @@ public class ConexionBase {
             return -1;
         }
     }
+        public int insertarTelefonos(String id, String tipo, String numero){
+        String sql= "Insert into dirpersona(idpersona,tipotelefono,numerotelefono) values (?,?,?);";
+        PreparedStatement sentencia = null;
+        try{
+            sentencia=base.prepareStatement(sql);
+            sentencia.setString(1, id);
+            sentencia.setString(2, tipo);
+            sentencia.setString(3, numero);
+
+            sentencia.execute();
+
+            return 1;
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
     
 }

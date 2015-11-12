@@ -315,18 +315,34 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             int res=0;
             res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "E");
            
+            //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
             DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
             int nRow = dtm.getRowCount();
             String codCanton;
             String codProvincia;
-            for (int i = 0; i < nRow; i++){
-                codProvincia=String.valueOf( dtm.getValueAt(i,1));
-                codProvincia= codProvincia.substring(0,codProvincia.indexOf("-"));
-                codCanton=String.valueOf(dtm.getValueAt(i,2));
-                codCanton= codCanton.substring(0, codCanton.indexOf("-"));
-                base.insertarDireccion(this.idPersona,String.valueOf(dtm.getValueAt(i,0)),codProvincia,codCanton,String.valueOf(dtm.getValueAt(i,3)));
+            for (int i = 0; i < nRow; i++) {
+                if (!String.valueOf(dtm.getValueAt(i, 0)).isEmpty()) {
+                    codProvincia = String.valueOf(dtm.getValueAt(i, 1));
+                    codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
+                    codCanton = String.valueOf(dtm.getValueAt(i, 2));
+                    codCanton = codCanton.substring(0, codCanton.indexOf("-"));
+                    res+=base.insertarDireccion(id.getText(), String.valueOf(dtm.getValueAt(i, 0)), codProvincia, codCanton, String.valueOf(dtm.getValueAt(i, 3)));
+                }
             }
-            if(res>=2){
+            
+            //Recorrer la tabla de telefonos para agregar uno a uno los telefonos
+            DefaultTableModel dtm2 = (DefaultTableModel) tablaDirecciones.getModel();
+            int nRow2 = dtm2.getRowCount();
+           
+            for (int i = 0; i < nRow2; i++) {
+                if (!String.valueOf(dtm2.getValueAt(i, 0)).isEmpty()) {
+ 
+                    res += base.insertarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(i, 0)), String.valueOf(dtm2.getValueAt(i, 1)));
+                }
+            }
+            
+            
+            if(res>=3){
                 JOptionPane.showMessageDialog(null,"Se agregó exitosamente el nuevo estudiante","Exito",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
