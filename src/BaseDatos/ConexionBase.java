@@ -466,8 +466,8 @@ public class ConexionBase {
     return sqlactualizaesttel;
     }
     
-    public String insertarEstudiante(String id, String nombre, String apellido1, String apellido2, String sexo, String fechaNac, String email, String fb, String pwd, String tPerfil){
-        String sql= "Insert into Persona(idPersona,nombre1,apellido1,apellido2,sexo,fecNacimiento,email,facebook,contrasenna,tipoPerfil) values (?,?,?,?,?,?,?,?,?,?);";
+    public int insertarEstudiante(String id, String nombre, String apellido1, String apellido2, String sexo, String fechaNac, String email, String fb, String pwd, String tPerfil){
+        String sql= "Insert into Persona(idPersona,nombre1,apellido1,apellido2,sexo,fecNacimiento,email,facebook,contrasenna,tipoPerfil) values (?,?,?,?,?,to_date(?,'dd/mm/yy'),?,?,?,?);";
         PreparedStatement sentencia = null;
         try{
             sentencia=base.prepareStatement(sql);
@@ -481,11 +481,14 @@ public class ConexionBase {
             sentencia.setString(8, fb);
             sentencia.setString(9, pwd);
             sentencia.setString(10, tPerfil);
+            sentencia.execute();
+
+            return 1;
         }catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return -1;
         }
         
-        return sql;
     }
+    
 }
