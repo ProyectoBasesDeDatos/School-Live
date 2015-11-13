@@ -598,5 +598,38 @@ public class ConexionBase {
             return -1;
         }
     }
+    public int insertarEstudianteEnGrupo(String id, String grupo) {
+        String sql = "Insert into estudiante(idpersona,idgrupo) values (?,?);";
+        PreparedStatement sentencia = null;
+        try {
+
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, id);
+            sentencia.setString(2, grupo);
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    public int insertarHijos(String id, String[] listaHijos) {
+        String sql = "Insert into padrefamilia(idpersona,idhijo) values (?,?);";
+        PreparedStatement sentencia = null;
+        try {
+            for (int i = 0; i < listaHijos.length; i++) {
+                sentencia = base.prepareStatement(sql);
+                sentencia.setString(1, id);
+                sentencia.setString(2, listaHijos[i]);
+                sentencia.execute();
+            }
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
     
 }

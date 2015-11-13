@@ -29,15 +29,20 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
         ConexionBase base= new ConexionBase();
         listaProvincias.removeAllItems();
         listaCantones.removeAllItems();
+        grupo.removeAllItems();
         if (base.getConexionCorrecta() != -1) {
             String[][] valoresProvincias = base.getDatosConsulta("select * from provincia");
             String[][] valoresCantones = base.getDatosConsulta("select idcanton, descripcion from canton");
+            String[][] gruposDisponibles= base.getDatosConsulta("select idgrupo,concat(anno,'.',seccion) from grupo");
 
             for (int i = 0; i < valoresProvincias.length; i++) {
                 listaProvincias.addItem(valoresProvincias[i][0]+"-"+valoresProvincias[i][1]);
             }
             for (int j = 0; j < valoresCantones.length; j++) {
                 listaCantones.addItem(valoresCantones[j][0]+"-"+valoresCantones[j][1]);
+            }
+            for (int k = 0; k < gruposDisponibles.length; k++) {
+                grupo.addItem(gruposDisponibles[k][0]+"-"+gruposDisponibles[k][1]);
             }
         }else{
             System.err.println("No se ha logrado establecer conexión con la base de datos");
@@ -313,9 +318,17 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             formatter = new SimpleDateFormat("dd-MM-yyyy");
             fechaNacimiento= jXDatePicker1.getDate();
             fechaString= formatter.format(fechaNacimiento);
-            int res=0;
+            int res=0;// numero de inserts que se han hecho
+            
+            //insertar datos generales del estudiante
             res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "E");
            
+            //insertar estudiante en un grupo
+            String grupoMatriculado;
+            grupoMatriculado= String.valueOf(grupo.getSelectedItem());
+            grupoMatriculado= grupoMatriculado.substring(0, grupoMatriculado.indexOf("-"));
+            res+=base.insertarEstudianteEnGrupo(id.getText(), grupoMatriculado);
+            
             //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
             DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
             int nRow = dtm.getRowCount();
@@ -345,7 +358,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             }
             
             
-            if(res>=3){
+            if(res>=4){
                 JOptionPane.showMessageDialog(null,"Se agregó exitosamente el nuevo estudiante","Exito",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
