@@ -632,4 +632,22 @@ public class ConexionBase {
         }
     }
     
+    public int insertarProfesor(String id, String[] listaMaterias) {
+        String sql = "insert into profesores(idpersona,idmateriaasignada)values(?,?);";
+        PreparedStatement sentencia = null;
+        try {
+            for (int i = 0; i < listaMaterias.length; i++) {
+                sentencia = base.prepareStatement(sql);
+                sentencia.setString(1, id);
+                sentencia.setString(2, listaMaterias[i]);
+                sentencia.execute();
+            }
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
 }

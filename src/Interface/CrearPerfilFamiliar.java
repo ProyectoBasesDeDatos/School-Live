@@ -31,7 +31,7 @@ public class CrearPerfilFamiliar extends javax.swing.JInternalFrame {
         this.idPersona=idPersona;
         initComponents();
         
-                ConexionBase base= new ConexionBase();
+        ConexionBase base = new ConexionBase();
         listaProvincias.removeAllItems();
         listaCantones.removeAllItems();
         if (base.getConexionCorrecta() != -1) {
@@ -39,20 +39,20 @@ public class CrearPerfilFamiliar extends javax.swing.JInternalFrame {
             String[][] valoresCantones = base.getDatosConsulta("select idcanton, descripcion from canton");
 
             for (int i = 0; i < valoresProvincias.length; i++) {
-                listaProvincias.addItem(valoresProvincias[i][0]+"-"+valoresProvincias[i][1]);
+                listaProvincias.addItem(valoresProvincias[i][0] + "-" + valoresProvincias[i][1]);
             }
             for (int j = 0; j < valoresCantones.length; j++) {
-                listaCantones.addItem(valoresCantones[j][0]+"-"+valoresCantones[j][1]);
+                listaCantones.addItem(valoresCantones[j][0] + "-" + valoresCantones[j][1]);
             }
-            String[][] estudiantes= base.getDatosConsulta("select idpersona, concat(nombre1,' ',apellido1,' ',apellido2) from persona where tipoperfil='E'");
-            
-            DefaultListModel model= new DefaultListModel();
+            String[][] estudiantes = base.getDatosConsulta("select idpersona, concat(nombre1,' ',apellido1,' ',apellido2) from persona where tipoperfil='E'");
+
+            DefaultListModel model = new DefaultListModel();
             for (int i = 0; i < estudiantes.length; i++) {
-                model.addElement(estudiantes[i][0]+"-"+estudiantes[i][1]);
+                model.addElement(estudiantes[i][0] + "-" + estudiantes[i][1]);
             }
             listaEstudiantes.setModel(model);
-            
-        }else{
+
+        } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
         }
         
@@ -345,7 +345,6 @@ public class CrearPerfilFamiliar extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jToggleButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -391,7 +390,7 @@ public class CrearPerfilFamiliar extends javax.swing.JInternalFrame {
             fechaNacimiento= jXDatePicker1.getDate();
             fechaString= formatter.format(fechaNacimiento);
             int res=0;
-            res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "P");
+            res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "F");
            
             //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
             DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
