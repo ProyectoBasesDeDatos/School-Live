@@ -23,14 +23,12 @@ public class PerfilEst extends javax.swing.JInternalFrame {
     public PerfilEst(String idPersona) {
         this.idPersona=idPersona;
         initComponents();
-        /*JOptionPane.showMessageDialog(null,
-                      this.idPersona, "Ejemplo Nombre del Usuario",JOptionPane.ERROR_MESSAGE);*/
     }
-    public String Identificacion(String idPersona, String Parametro){
+    public String Parametro(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            String Consulta = base.obtieneParametro(idPersona, Parametro); 
             return Consulta;
         }else{
             return null;
@@ -38,168 +36,36 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         
     }
     
-    public String Nombre(String idPersona, String Parametro){
-        //Metodo que devuelve el nombre del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Apellido1(String idPersona, String Parametro){
-        //Metodo que devuelve el primer apellido del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Apellido2(String idPersona, String Parametro){
-        //Metodo que devuelve el segundo apellido del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Sexo(String idPersona, String Parametro){
-        //Metodo que devuelve el sexo del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String FechaNacimiento(String idPersona, String Parametro){
-        //Metodo que devuelve la fecha de nacimiento del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Email(String idPersona, String Parametro){
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Facebook(String idPersona, String Parametro){
-        //Metodo que devuelve el facebook del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String TipoPerfil(String idPersona, String Parametro){
-        //Metodo que devuelve tipo de usuario del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Direccion(String idPersona, String Parametro){
-        //Metodo que devuelve la direccion del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Telefono(String idPersona, String Parametro){
-        //Metodo que devuelve el telefono del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Nivel(String idPersona, String Parametro){
-        //Metodo que devuelve el Nivel del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Seccion(String idPersona, String Parametro){
-        //Metodo que devuelve la seccion del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
+    public int ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
         //Metodo que actualiza los datos de Estudiante/Padre de Familia
-        Email = jLabel9.getText();
-        Facebook = jLabel10.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            return base.actualizaDatosEstudiantePadreFamilia(IdPersona, Email, Facebook);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            int Consulta = base.actualizaDatos(IdPersona, Email, Facebook); 
+            return Consulta;
         }else{
-            return null;
+            return -1;
         }
     }
     
-    public String ActualizaDireccionEstudiante(String IdPersona, String Direccion){
+    public int ActualizaDireccionEstudiante(String IdPersona, String Direccion){
         //Metodo que actualiza la direccion del Estudiante/Padre de Familia
-        Direccion = jLabel7.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            return base.actualizaDireccionEstudiantePadreFamilia(IdPersona, Direccion);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            int Consulta = base.actualizaDireccion(IdPersona, Direccion); 
+            return Consulta;
         }else{
-            return null;
+            return -1;
         }
     }
     
-    public String ActualizaTelefonoEstudiante(String IdPersona, String Telefono){
+    public int ActualizaTelefonoEstudiante(String IdPersona, String Telefono){
         //Metodo que actualiza el telefono del Estudiante/Padre de Familia
-        Telefono = jLabel8.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            return base.actualizaTelefonoEstudiantePadreFamilia(IdPersona, Telefono);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            int Consulta = base.actualizaTelefono(IdPersona, Telefono); 
+            return Consulta;
         }else{
-            return null;
+            return -1;
         }
     }
     
@@ -471,60 +337,67 @@ public class PerfilEst extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         {String Parametro = jLabel5.getText();
-        String prueba2 = Identificacion(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane5.setText(prueba2);}
         
         {String Parametro = jLabel1.getText();
-        String prueba2 = Nombre(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane2.setText(prueba2);}
         
         {String Parametro = jLabel2.getText();
-        String prueba2 = Apellido1(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane4.setText(prueba2);}
         
         {String Parametro = jLabel3.getText();
-        String prueba2 = Apellido2(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane3.setText(prueba2);}
         
         {String Parametro = jLabel4.getText();
-        String prueba2 = Sexo(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextField4.setText(prueba2);}
         
         {String Parametro = jLabel6.getText();
-        String prueba2 = FechaNacimiento(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane10.setText(prueba2);}
         
         {String Parametro = jLabel9.getText();
-        String prueba2 = Email(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane8.setText(prueba2);}
         
         {String Parametro = jLabel10.getText();
-        String prueba2 = Facebook(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane9.setText(prueba2);}
         
         {String Parametro = jLabel12.getText();
-        String prueba2 = TipoPerfil(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane1.setText(prueba2);}
         
         {String Parametro = jLabel7.getText();
-        String prueba2 = Direccion(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextArea1.setText(prueba2);}
         
         {String Parametro = jLabel8.getText();
-        String prueba2 = Telefono(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextField2.setText(prueba2);}
         
         {String Parametro = jLabel11.getText();
-        String prueba2 = Nivel(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextField5.setText(prueba2);}
         
         {String Parametro = jLabel13.getText();
-        String prueba2 = Seccion(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane11.setText(prueba2);}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String Email = jTextPane8.getText();
+         String Facebook = jTextPane9.getText();
+         ActualizaDatosEstudiante(this.idPersona, Email, Facebook);
+         String Direccion = jTextArea1.getText();
+         ActualizaDireccionEstudiante(this.idPersona, Direccion);
+         String Telefono = jTextField2.getText();
+         ActualizaTelefonoEstudiante(this.idPersona, Telefono);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
