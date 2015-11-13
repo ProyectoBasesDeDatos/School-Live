@@ -422,11 +422,14 @@ public class CrearPerfilFamiliar extends javax.swing.JInternalFrame {
             }
             
             //Recorrer la lista de hijos seleccionados y asociarlos a esta persona (Padre Familia)
-            String[] idHijosSelecciondos = null;
+            
             ListModel model= hijosSeleccionados.getModel();
+            String[] idHijosSelecciondos = new String[model.getSize()];
+            String idHijo;
             for (int i = 0; i < model.getSize(); i++) {
-                idHijosSelecciondos[i]=model.getElementAt(i).toString();
-                idHijosSelecciondos[i]=idHijosSelecciondos[i].substring(0, idHijosSelecciondos[i].indexOf("-"));
+                idHijo=model.getElementAt(i).toString();
+                idHijo= idHijo.substring(0, idHijo.indexOf("-"));
+                idHijosSelecciondos[i]=idHijo;
             }
             res+=base.insertarHijos(id.getText(), idHijosSelecciondos);
             
