@@ -321,13 +321,15 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             int nRow = dtm.getRowCount();
             String codCanton;
             String codProvincia;
+            String tDireccion= String.valueOf(dtm.getValueAt(0, 0));
             for (int i = 0; i < nRow-1; i++) {
-                if (!(String.valueOf(dtm.getValueAt(i, 0)).equals(null)||String.valueOf(dtm.getValueAt(i, 0)).equals(""))) {
+                if (!tDireccion.equals("null")||tDireccion.equals("")) {
                     codProvincia = String.valueOf(dtm.getValueAt(i, 1));
                     codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
                     codCanton = String.valueOf(dtm.getValueAt(i, 2));
                     codCanton = codCanton.substring(0, codCanton.indexOf("-"));
                     res+=base.insertarDireccion(id.getText(), String.valueOf(dtm.getValueAt(i, 0)), codProvincia, codCanton, String.valueOf(dtm.getValueAt(i, 3)));
+                    tDireccion= String.valueOf(dtm.getValueAt(i+1, 0));
                 }
             }
             
@@ -336,7 +338,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             int nRow2 = dtm2.getRowCount();
            
             for (int j = 0; j < nRow2-1; j++) {
-                if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("")||String.valueOf(dtm2.getValueAt(j, 0)).equals(null))) {
+                if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("")||String.valueOf(dtm2.getValueAt(j, 0)).equals("null"))) {
  
                     res += base.insertarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(j, 0)), String.valueOf(dtm2.getValueAt(j, 1)));
                 }
