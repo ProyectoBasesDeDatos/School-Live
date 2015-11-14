@@ -410,4 +410,80 @@ public class ConexionBase {
         }
     }
     
+    public int actualizarEstudiante(String nombre, String apellido1, String apellido2, String sexo, String fechaNac, String email, String fb, String pwd, String id) {
+        String sql = "Update persona set nombre1=?, apellido1=?, apellido2=?, sexo=?, fecnacimiento=to_date(?,'dd/mm/yy'),email=?,facebook=?,contrasenna=? where idpersona=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, apellido1);
+            sentencia.setString(3, apellido2);
+            sentencia.setString(4, sexo);
+            sentencia.setString(5, fechaNac);
+            sentencia.setString(6, email);
+            sentencia.setString(7, fb);
+            sentencia.setString(8, pwd);
+            sentencia.setString(9, id);
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
+    public int actualizarEstudianteEnGrupo(String id, String idGrupo){
+        String sql = "Update estudiante set idgrupo=? where idpersona=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, idGrupo);
+            sentencia.setString(2, id);
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }    
+    }
+    public int actualizarDireccion(String id, String tipo, String idProvincia, String idCanton, String descripcion) {
+        String sql = "Update dirpersona set idprovincia=?,idcanton=?,descripcion=? where idpersona=? and tipo=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+
+            sentencia.setString(1, idProvincia);
+            sentencia.setString(2, idCanton);
+            sentencia.setString(3, descripcion);
+            sentencia.setString(4, id);
+            sentencia.setString(5, tipo);
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
+    public int actualizarTelefonos(String id, String tipo, String numero) {
+        String sql = "Update telefono set numerotelefono=? where idpersona=? and tipotelefono=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, numero);
+            sentencia.setString(2, id);
+            sentencia.setString(3, tipo);
+
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
 }

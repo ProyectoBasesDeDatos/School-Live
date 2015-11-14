@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -83,7 +84,7 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         grupo = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
         id = new javax.swing.JTextField();
         apellido1 = new javax.swing.JTextField();
         nombre1 = new javax.swing.JTextField();
@@ -159,9 +160,12 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        grupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("Guardar");
+        Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
 
         id.setToolTipText("");
 
@@ -239,6 +243,11 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        tablaTelefonos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaTelefonosMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tablaTelefonos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -277,7 +286,7 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(485, 485, 485)
-                .addComponent(jButton1))
+                .addComponent(Guardar))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +382,7 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton1))
+                .addComponent(Guardar))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -426,16 +435,19 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
 
     private void listaEstudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaEstudiantesMouseClicked
         // TODO add your handling code here:
+        id.enableInputMethods(false);
         ConexionBase base = new ConexionBase();
         String[][] infoGeneral = null;
         String[][] direcciones = null;
         String[][] telefonos = null;
+        String[][] grupoMatriculado=null;
         if (base.getConexionCorrecta() != -1) {
             String idEst = String.valueOf(listaEstudiantes.getSelectedValue());
             idEst = idEst.substring(0, idEst.indexOf("-"));
             infoGeneral = base.getDatosConsulta("select * from persona where idpersona='" + idEst + "';");
             direcciones = base.getDatosConsulta("select tipo,idprovincia,idcanton,descripcion from dirpersona where idpersona='" + idEst + "';");
-            telefonos = base.getDatosConsulta("select * from telefono where idpersona='" + idEst + "';");
+            telefonos = base.getDatosConsulta("select tipotelefono,numerotelefono from telefono where idpersona='" + idEst + "';");
+            grupoMatriculado= base.getDatosConsulta("select concat(g.idgrupo,'-',g.anno,'.',g.seccion) from grupo g, estudiante e where e.idpersona='" + idEst + "' and e.idgrupo=g.idgrupo;");
         } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
         }
@@ -459,6 +471,12 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         fb.setText(infoGeneral[0][7]);
         pwd.setText(infoGeneral[0][8]);
         
+        //Desplegar grupo matriculado
+        try{
+        grupo.setSelectedItem(grupoMatriculado[0][0]);
+        }catch (Exception e){
+            System.err.println("No se encontró grupo matriculado para este estudiante");
+        }
         //Desplegar las direcciones 
         
         String nombreColumnas[]={"Tipo","Provincia","Canton","Direccion Exacta"};
@@ -474,6 +492,15 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         tablaDirecciones.setModel(tableModel);
         
         //Desplegar los telefonos
+        String nombreColumnasTel[]={"Tipo","Numero",};
+        DefaultTableModel tableModelTel= new DefaultTableModel(nombreColumnasTel,0);
+        tableModelTel.setRowCount(0);
+        tablaTelefonos.setModel(tableModelTel);
+        for (int i = 0; i < direcciones.length; i++) {
+           
+            tableModelTel.addRow(new Object[]{telefonos[i][0],telefonos[i][1]});
+        }
+        tablaTelefonos.setModel(tableModelTel);
     }//GEN-LAST:event_listaEstudiantesMouseClicked
 
     private void tablaDireccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDireccionesMouseClicked
@@ -484,10 +511,104 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tablaDireccionesMouseClicked
 
+    private void tablaTelefonosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTelefonosMouseClicked
+        // TODO add your handling code here:
+        tablaTelefonos.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tiposTelefono));
+    }//GEN-LAST:event_tablaTelefonosMouseClicked
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        // TODO add your handling code here:
+        int error=0;
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            Date fechaNacimiento;
+            String fechaString;
+            SimpleDateFormat formatter;
+            formatter = new SimpleDateFormat("dd-MM-yyyy");
+            fechaNacimiento = jXDatePicker1.getDate();
+            fechaString = formatter.format(fechaNacimiento);
+            int res = 0;// numero de inserts que se han hecho
+
+            //insertar datos generales del estudiante
+            try {
+                res += base.actualizarEstudiante(nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()), fechaString, email.getText(), fb.getText(), pwd.getText(), id.getText());
+            } catch (Exception e) {
+                System.err.println("Error al actualizar información general");
+                error++;
+            }
+            //insertar estudiante en un grupo
+            try {
+                String grupoMatriculado;
+                grupoMatriculado = String.valueOf(grupo.getSelectedItem());
+                grupoMatriculado = grupoMatriculado.substring(0, grupoMatriculado.indexOf("-"));
+                res += base.actualizarEstudianteEnGrupo(id.getText(), grupoMatriculado);
+            } catch (Exception e) {
+                System.err.println("Error al actualizar información general");
+                error++;
+            }
+
+            //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
+            try {
+                DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
+                int nRow = dtm.getRowCount();
+                String codCanton;
+                String codProvincia;
+     
+                String tDireccion = String.valueOf(dtm.getValueAt(0, 0));
+                for (int i = 0; i < nRow; i++) {
+                    if (!tDireccion.equals("null") || !tDireccion.equals("")) {
+                        codProvincia = String.valueOf(dtm.getValueAt(i, 1));
+                        codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
+                        codCanton = String.valueOf(dtm.getValueAt(i, 2));
+                        codCanton = codCanton.substring(0, codCanton.indexOf("-"));
+
+                        res += base.actualizarDireccion(id.getText(), String.valueOf(dtm.getValueAt(i, 0)), codProvincia, codCanton, String.valueOf(dtm.getValueAt(i, 3)));
+                        try {
+                            tDireccion = String.valueOf(dtm.getValueAt(i + 1, 0)); //Modificacion del ciclo
+                        } catch (Exception e) {
+                            System.err.println("Llego al final del ciclo");
+
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("No se han encontrado direcciones asociadas para actualizar");
+                error++;
+            }
+
+            //Recorrer la tabla de telefonos para agregar uno a uno los telefonos
+            try{
+            DefaultTableModel dtm2 = (DefaultTableModel) tablaTelefonos.getModel();
+            int nRow2 = dtm2.getRowCount();
+
+            for (int j = 0; j < nRow2; j++) {
+                if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("") || String.valueOf(dtm2.getValueAt(j, 0)).equals("null"))) {
+                   
+                    res += base.actualizarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(j, 0)), String.valueOf(dtm2.getValueAt(j, 1)));
+                }
+            }
+            }catch (Exception e){
+                System.err.println("No se han encontrado telefonos asociados para actualizar");
+                error++;
+            }
+
+            if (error==0) {
+                JOptionPane.showMessageDialog(null, "Se actualizo el perfil del estudiante", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se logró actualizar correctamente el perfil", "No se agregó ", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_GuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscar;
     private javax.swing.JTextField EBusqueda;
+    private javax.swing.JButton Guardar;
     private javax.swing.JTextField apellido1;
     private javax.swing.JTextField apellido2;
     private javax.swing.JComboBox cBusqueda;
@@ -495,7 +616,6 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fb;
     private javax.swing.JComboBox grupo;
     private javax.swing.JTextField id;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
