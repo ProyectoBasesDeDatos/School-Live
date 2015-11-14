@@ -485,22 +485,22 @@
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
-                          <Editor editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                            <Connection code="new DefaultCellEditor(tipoDireccion)" type="code"/>
+                          <Editor editor="org.netbeans.modules.form.ComponentChooserEditor">
+                            <ComponentRef name="null"/>
                           </Editor>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
-                          <Editor editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                            <Connection code="new DefaultCellEditor(listaProvincias)" type="code"/>
+                          <Editor editor="org.netbeans.modules.form.ComponentChooserEditor">
+                            <ComponentRef name="null"/>
                           </Editor>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
-                          <Editor editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                            <Connection code="new DefaultCellEditor(listaCantones)" type="code"/>
+                          <Editor editor="org.netbeans.modules.form.ComponentChooserEditor">
+                            <ComponentRef name="null"/>
                           </Editor>
                           <Renderer/>
                         </Column>
@@ -515,6 +515,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaDireccionesMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

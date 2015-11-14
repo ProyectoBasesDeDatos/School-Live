@@ -207,11 +207,16 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        tablaDirecciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaDireccionesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaDirecciones);
         if (tablaDirecciones.getColumnModel().getColumnCount() > 0) {
-            tablaDirecciones.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tipoDireccion));
-            tablaDirecciones.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(listaProvincias));
-            tablaDirecciones.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(listaCantones));
+            tablaDirecciones.getColumnModel().getColumn(0).setCellEditor(null);
+            tablaDirecciones.getColumnModel().getColumn(1).setCellEditor(null);
+            tablaDirecciones.getColumnModel().getColumn(2).setCellEditor(null);
         }
 
         jLabel14.setText("Telefonos");
@@ -429,7 +434,7 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
             String idEst = String.valueOf(listaEstudiantes.getSelectedValue());
             idEst = idEst.substring(0, idEst.indexOf("-"));
             infoGeneral = base.getDatosConsulta("select * from persona where idpersona='" + idEst + "';");
-            direcciones = base.getDatosConsulta("select * from dirpersona where idpersona='" + idEst + "';");
+            direcciones = base.getDatosConsulta("select tipo,idprovincia,idcanton,descripcion from dirpersona where idpersona='" + idEst + "';");
             telefonos = base.getDatosConsulta("select * from telefono where idpersona='" + idEst + "';");
         } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
@@ -454,13 +459,30 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         fb.setText(infoGeneral[0][7]);
         pwd.setText(infoGeneral[0][8]);
         
-        //Desplegar las direcciones ****************POR AQUI VOY *****************
+        //Desplegar las direcciones 
+        
         String nombreColumnas[]={"Tipo","Provincia","Canton","Direccion Exacta"};
         DefaultTableModel tableModel= new DefaultTableModel(nombreColumnas,0);
+        tableModel.setRowCount(0);
+        tablaDirecciones.setModel(tableModel);
         for (int i = 0; i < direcciones.length; i++) {
-            tableModel.addRow(new Object[]{direcciones[i][0]});
+            String[][] provincia= base.getDatosConsulta("select concat(idprovincia,'-',descripcion) from provincia where idprovincia='"+direcciones[i][1]+"';"); 
+            String [][] canton=base.getDatosConsulta("select concat(idcanton,'-',descripcion) from canton where idcanton='"+direcciones[i][2]+"' and idprovincia='"+direcciones[i][1]+"';"); 
+            
+            tableModel.addRow(new Object[]{direcciones[i][0],provincia[0][0],canton[0][0],direcciones[i][3]});
         }
+        tablaDirecciones.setModel(tableModel);
+        
+        //Desplegar los telefonos
     }//GEN-LAST:event_listaEstudiantesMouseClicked
+
+    private void tablaDireccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDireccionesMouseClicked
+        // TODO add your handling code here:
+        tablaDirecciones.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tipoDireccion));
+        tablaDirecciones.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(listaProvincias));
+        tablaDirecciones.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(listaCantones));
+        
+    }//GEN-LAST:event_tablaDireccionesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
