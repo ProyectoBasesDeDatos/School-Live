@@ -376,7 +376,7 @@ public class ConexionBase {
             return -1;
         }
     }
-    public int insertarEstudianteEnGrupo(String id, String grupo) {
+    /*public int insertarEstudianteEnGrupo(String id, String grupo) {
         String sql = "Insert into estudiante(idpersona,idgrupo) values (?,?);";
         PreparedStatement sentencia = null;
         try {
@@ -408,7 +408,7 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
-    }
+    }*/
     
     public int actualizarEstudiante(String nombre, String apellido1, String apellido2, String sexo, String fechaNac, String email, String fb, String pwd, String id) {
         String sql = "Update persona set nombre1=?, apellido1=?, apellido2=?, sexo=?, fecnacimiento=to_date(?,'dd/mm/yy'),email=?,facebook=?,contrasenna=? where idpersona=?;";
