@@ -248,14 +248,15 @@ public class ConexionBase {
     
     }
     
-    public int actualizaTelefono(String IdPersona, String Telefono) {
+    public int actualizaTelefono(String Tipo, String IdPersona, String Telefono) {
     
-        String sqlactualizaetel = "update Telefono set tipotelefono = 'Casa', numerotelefono = ? where idpersona = ?;";
+        String sqlactualizaetel = "update Telefono set tipotelefono = ?, numerotelefono = ? where idpersona = ?;";
         PreparedStatement sentencia = null;
         try {
             sentencia = base.prepareStatement(sqlactualizaetel);
-            sentencia.setString(1, Telefono);
-            sentencia.setString(2, IdPersona);
+            sentencia.setString(1, Tipo);
+            sentencia.setString(2, Telefono);
+            sentencia.setString(3, IdPersona);
             sentencia.execute();
             return 1;
 
