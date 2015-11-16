@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bryan Adams
@@ -37,6 +40,7 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -44,6 +48,7 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
@@ -51,6 +56,7 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -84,16 +90,15 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         });
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Año", "Sección"
@@ -124,6 +129,13 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        jButton4.setText("Consultar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,8 +152,12 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
                         .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +170,9 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Estudiantes", jPanel1);
@@ -170,16 +188,15 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "ID Estudiantes"
@@ -208,6 +225,13 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
             jTable3.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        jButton5.setText("Consultar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -224,8 +248,12 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
                         .addComponent(jButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +266,9 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Encargados", jPanel3);
@@ -254,16 +284,15 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         });
 
         jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Primer Apellido", "Segundo Apellido", "Materias"
@@ -292,6 +321,13 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
             jTable4.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        jButton6.setText("Consultar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -308,8 +344,12 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
                         .addComponent(jButton3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +362,9 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesores", jPanel4);
@@ -337,14 +379,14 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -373,11 +415,205 @@ public class DirectorioProf extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+        String [][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo");
+        String nombreColumnas[]={"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+        DefaultTableModel tableModel= new DefaultTableModel(nombreColumnas,0);
+        tableModel.setRowCount(0);
+        jTable1.setModel(tableModel);
+        for (int i = 0; i < sql.length; i++) {
+            String[][] sql2= base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo"); 
+            tableModel.addRow(new Object[]{sql2[i][0],sql2[i][1],sql2[i][2],sql2[i][3],sql2[i][4],sql2[i][5]});
+        }
+        jTable1.setModel(tableModel);
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String parametro = jComboBox1.getSelectedItem().toString();
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            if ("Nombre".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.nombre1 = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.nombre1 = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4], sql2[i][5]});
+                }
+                jTable1.setModel(tableModel);
+            } else if ("Año".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.anno = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.anno = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4], sql2[i][5]});
+                }
+                jTable1.setModel(tableModel);
+            } else if ("Sección".equals(parametro)){
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.seccion = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.seccion = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4], sql2[i][5]});
+                }
+                jTable1.setModel(tableModel);
+            }
+            else {
+               String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.idpersona = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.idpersona = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4], sql2[i][5]});
+                }
+                jTable1.setModel(tableModel); 
+            }
+
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria group by p.nombre1, p.apellido1, p.apellido2");
+            String nombreColumnas[] = {"Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
+            DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+            tableModel.setRowCount(0);
+            jTable4.setModel(tableModel);
+            for (int i = 0; i < sql.length; i++) {
+                String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria group by p.nombre1, p.apellido1, p.apellido2");
+                tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+            }
+            jTable4.setModel(tableModel);
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String parametro = jComboBox3.getSelectedItem().toString();
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            if ("Nombre".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and p.nombre1 = '" + jTextField3.getText() + "' group by p.nombre1, p.apellido1, p.apellido2");
+                String nombreColumnas[] = {"Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable4.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and p.nombre1 = '" + jTextField3.getText() + "' group by p.nombre1, p.apellido1, p.apellido2");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+                }
+                jTable4.setModel(tableModel);
+            } else{
+                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and m.nombremateria = '" + jTextField3.getText() + "' group by p.nombre1, p.apellido1, p.apellido2");
+                String nombreColumnas[] = {"Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable4.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and m.nombremateria = '" + jTextField3.getText() + "' group by p.nombre1, p.apellido1, p.apellido2");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+                }
+                jTable4.setModel(tableModel);
+            }
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+        String [][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+        String nombreColumnas[]={"ID", "Nombre","Primer Apellido","Segundo Apellido","ID Estudiantes"};
+        DefaultTableModel tableModel= new DefaultTableModel(nombreColumnas,0);
+        tableModel.setRowCount(0);
+        jTable3.setModel(tableModel);
+        for (int i = 0; i < sql.length; i++) {
+            String[][] sql2= base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona group by p.idpersona, p.nombre1, p.apellido1, p.apellido2"); 
+            tableModel.addRow(new Object[]{sql2[i][0],sql2[i][1],sql2[i][2],sql2[i][3],sql2[i][4]});
+        }
+        jTable3.setModel(tableModel);
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String parametro = jComboBox2.getSelectedItem().toString();
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            if ("Nombre".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona and p.nombre1 = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                String nombreColumnas[] = {"ID", "Nombre","Primer Apellido","Segundo Apellido","ID Estudiantes"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable3.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona and p.nombre1 = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4]});
+                }
+                jTable3.setModel(tableModel);
+            } else if ("ID".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona and p.idpersona = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                String nombreColumnas[] = {"ID", "Nombre","Primer Apellido","Segundo Apellido","ID Estudiantes"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable3.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona and p.idpersona = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4]});
+                }
+                jTable3.setModel(tableModel);
+            } else {
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona and pf.idhijo = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                String nombreColumnas[] = {"ID", "Nombre","Primer Apellido","Segundo Apellido","ID Estudiantes"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable3.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(pf.idhijo, ', ') as Hijos from persona p, padrefamilia pf, estudiante e where p.idpersona = pf.idpersona and pf.idhijo = e.idpersona and pf.idhijo = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4]});
+                }
+                jTable3.setModel(tableModel);
+            }
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;

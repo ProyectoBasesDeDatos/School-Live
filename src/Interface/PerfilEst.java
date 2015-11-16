@@ -8,6 +8,7 @@ package Interface;
 import BaseDatos.ConexionBase;
 import Interface.Login;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,14 +24,20 @@ public class PerfilEst extends javax.swing.JInternalFrame {
     public PerfilEst(String idPersona) {
         this.idPersona=idPersona;
         initComponents();
-        /*JOptionPane.showMessageDialog(null,
-                      this.idPersona, "Ejemplo Nombre del Usuario",JOptionPane.ERROR_MESSAGE);*/
+        
+        String [] tipodir = new String [3];
+        tipodir[0] = "Habitacion"; tipodir[1] = "Oficina"; tipodir[2] = "Otro";
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(tipodir));
+        
+        String [] tipotel = new String [4];
+        tipotel[0] = "Casa"; tipotel[1] = "Oficina"; tipotel[2] = "Movil"; tipotel[3] = "Otro";
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(tipotel));
     }
-    public String Identificacion(String idPersona, String Parametro){
+    public String Parametro(String idPersona, String Parametro){
         //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
+            String Consulta = base.obtieneParametro(idPersona, Parametro); 
             return Consulta;
         }else{
             return null;
@@ -38,168 +45,36 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         
     }
     
-    public String Nombre(String idPersona, String Parametro){
-        //Metodo que devuelve el nombre del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Apellido1(String idPersona, String Parametro){
-        //Metodo que devuelve el primer apellido del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Apellido2(String idPersona, String Parametro){
-        //Metodo que devuelve el segundo apellido del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Sexo(String idPersona, String Parametro){
-        //Metodo que devuelve el sexo del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String FechaNacimiento(String idPersona, String Parametro){
-        //Metodo que devuelve la fecha de nacimiento del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Email(String idPersona, String Parametro){
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Facebook(String idPersona, String Parametro){
-        //Metodo que devuelve el facebook del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String TipoPerfil(String idPersona, String Parametro){
-        //Metodo que devuelve tipo de usuario del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Direccion(String idPersona, String Parametro){
-        //Metodo que devuelve la direccion del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Telefono(String idPersona, String Parametro){
-        //Metodo que devuelve el telefono del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Nivel(String idPersona, String Parametro){
-        //Metodo que devuelve el Nivel del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String Seccion(String idPersona, String Parametro){
-        //Metodo que devuelve la seccion del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneIdentificacion(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
-        }
-    }
-    
-    public String ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
+    public int ActualizaDatosEstudiante(String IdPersona, String Email, String Facebook){
         //Metodo que actualiza los datos de Estudiante/Padre de Familia
-        Email = jLabel9.getText();
-        Facebook = jLabel10.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            return base.actualizaDatosEstudiantePadreFamilia(IdPersona, Email, Facebook);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            int Consulta = base.actualizaDatos(IdPersona, Email, Facebook); 
+            return Consulta;
         }else{
-            return null;
+            return -1;
         }
     }
     
-    public String ActualizaDireccionEstudiante(String IdPersona, String Direccion){
+    public int ActualizaDireccionEstudiante(String IdPersona, String Direccion){
         //Metodo que actualiza la direccion del Estudiante/Padre de Familia
-        Direccion = jLabel7.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            return base.actualizaDireccionEstudiantePadreFamilia(IdPersona, Direccion);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            int Consulta = base.actualizaDireccion(IdPersona, Direccion); 
+            return Consulta;
         }else{
-            return null;
+            return -1;
         }
     }
     
-    public String ActualizaTelefonoEstudiante(String IdPersona, String Telefono){
+    public int ActualizaTelefonoEstudiante(String Tipo, String IdPersona, String Telefono){
         //Metodo que actualiza el telefono del Estudiante/Padre de Familia
-        Telefono = jLabel8.getText();
         ConexionBase base= new ConexionBase();
         if(base.getConexionCorrecta()!= -1){
-            return base.actualizaTelefonoEstudiantePadreFamilia(IdPersona, Telefono);//La idea es llamar el texto de la parte de perfil que se guarda en la identificacion
+            int Consulta = base.actualizaTelefono(Tipo, IdPersona, Telefono); 
+            return Consulta;
         }else{
-            return null;
+            return -1;
         }
     }
     
@@ -249,14 +124,17 @@ public class PerfilEst extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextPane11 = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Perfil de estudiante");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(647, 484));
 
         jLabel1.setText("Nombre");
 
@@ -309,10 +187,6 @@ public class PerfilEst extends javax.swing.JInternalFrame {
 
         jScrollPane11.setViewportView(jTextPane11);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
-
         jButton2.setText("Guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,134 +194,170 @@ public class PerfilEst extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "Provincia", "Canton", "Direccion Exacta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(64, 64, 64))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jScrollPane4))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(7, 7, 7))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton2)
-                .addContainerGap())
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                                .addComponent(jScrollPane3)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(48, 48, 48)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                                .addComponent(jScrollPane2)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jScrollPane8)
+                                                .addComponent(jScrollPane9)
+                                                .addComponent(jScrollPane11)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))))))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9))
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13))
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
+                    .addComponent(jLabel13)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Perfil Personal", jPanel1);
@@ -471,66 +381,119 @@ public class PerfilEst extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         {String Parametro = jLabel5.getText();
-        String prueba2 = Identificacion(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane5.setText(prueba2);}
         
         {String Parametro = jLabel1.getText();
-        String prueba2 = Nombre(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane2.setText(prueba2);}
         
         {String Parametro = jLabel2.getText();
-        String prueba2 = Apellido1(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane4.setText(prueba2);}
         
         {String Parametro = jLabel3.getText();
-        String prueba2 = Apellido2(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane3.setText(prueba2);}
         
         {String Parametro = jLabel4.getText();
-        String prueba2 = Sexo(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextField4.setText(prueba2);}
         
         {String Parametro = jLabel6.getText();
-        String prueba2 = FechaNacimiento(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane10.setText(prueba2);}
         
         {String Parametro = jLabel9.getText();
-        String prueba2 = Email(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane8.setText(prueba2);}
         
         {String Parametro = jLabel10.getText();
-        String prueba2 = Facebook(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane9.setText(prueba2);}
         
         {String Parametro = jLabel12.getText();
-        String prueba2 = TipoPerfil(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane1.setText(prueba2);}
         
-        {String Parametro = jLabel7.getText();
-        String prueba2 = Direccion(this.idPersona, Parametro);
-        jTextArea1.setText(prueba2);}
+        {String parametro = jComboBox2.getSelectedItem().toString();
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            if ("Habitacion".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
+                String nombreColumnas[] = {"Provincia","Canton","Direccion Exacta"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2]});
+                }
+                jTable1.setModel(tableModel);
+            } else if ("Oficina".equals(parametro)) {
+                String[][] sql = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
+                String nombreColumnas[] = {"Provincia","Canton","Direccion Exacta"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2]});
+                }
+                jTable1.setModel(tableModel);
+            }
+            else {
+               String[][] sql = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
+                String nombreColumnas[] = {"Provincia","Canton","Direccion Exacta"};
+                DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+                tableModel.setRowCount(0);
+                jTable1.setModel(tableModel);
+                for (int i = 0; i < sql.length; i++) {
+                    String[][] sql2 = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2]});
+                }
+                jTable1.setModel(tableModel); 
+            }
+
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }}
         
-        {String Parametro = jLabel8.getText();
-        String prueba2 = Telefono(this.idPersona, Parametro);
-        jTextField2.setText(prueba2);}
+        {String parametro = jComboBox1.getSelectedItem().toString();
+        ConexionBase base = new ConexionBase();
+        String[][] sql = base.getDatosConsulta("select numerotelefono from telefono where idpersona = '"+this.idPersona+"' and tipotelefono = '"+parametro+"';");
+        jTextField2.setText(sql[0][0]);}
         
         {String Parametro = jLabel11.getText();
-        String prueba2 = Nivel(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextField5.setText(prueba2);}
         
         {String Parametro = jLabel13.getText();
-        String prueba2 = Seccion(this.idPersona, Parametro);
+        String prueba2 = Parametro(this.idPersona, Parametro);
         jTextPane11.setText(prueba2);}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String Email = jTextPane8.getText();
+         String Facebook = jTextPane9.getText();
+         ActualizaDatosEstudiante(this.idPersona, Email, Facebook);
+         /*String Direccion = jTextArea1.getText();
+         ActualizaDireccionEstudiante(this.idPersona, Direccion);
+         String Telefono = jTextField2.getText();
+         ActualizaTelefonoEstudiante(this.idPersona, Telefono);*/
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -556,7 +519,7 @@ public class PerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

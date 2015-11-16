@@ -28,15 +28,21 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
         
         ConexionBase base= new ConexionBase();
         listaProvincias.removeAllItems();
+        listaCantones.removeAllItems();
+        grupo.removeAllItems();
         if (base.getConexionCorrecta() != -1) {
             String[][] valoresProvincias = base.getDatosConsulta("select * from provincia");
             String[][] valoresCantones = base.getDatosConsulta("select idcanton, descripcion from canton");
+            String[][] gruposDisponibles= base.getDatosConsulta("select idgrupo,concat(anno,'.',seccion) from grupo");
 
             for (int i = 0; i < valoresProvincias.length; i++) {
                 listaProvincias.addItem(valoresProvincias[i][0]+"-"+valoresProvincias[i][1]);
             }
-            for (int i = 0; i < valoresCantones.length; i++) {
-                listaCantones.addItem(valoresCantones[i][0]+"-"+valoresCantones[i][1]);
+            for (int j = 0; j < valoresCantones.length; j++) {
+                listaCantones.addItem(valoresCantones[j][0]+"-"+valoresCantones[j][1]);
+            }
+            for (int k = 0; k < gruposDisponibles.length; k++) {
+                grupo.addItem(gruposDisponibles[k][0]+"-"+gruposDisponibles[k][1]);
             }
         }else{
             System.err.println("No se ha logrado establecer conexión con la base de datos");
@@ -82,7 +88,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaTelefonos = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         pwd = new javax.swing.JTextField();
 
@@ -160,7 +166,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Telefonos");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTelefonos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -178,9 +184,9 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tiposTelefono));
+        jScrollPane3.setViewportView(tablaTelefonos);
+        if (tablaTelefonos.getColumnModel().getColumnCount() > 0) {
+            tablaTelefonos.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tiposTelefono));
         }
 
         jLabel14.setText("Contraseña");
@@ -312,37 +318,47 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             formatter = new SimpleDateFormat("dd-MM-yyyy");
             fechaNacimiento= jXDatePicker1.getDate();
             fechaString= formatter.format(fechaNacimiento);
-            int res=0;
+            int res=0;// numero de inserts que se han hecho
+            
+            //insertar datos generales del estudiante
             res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "E");
            
+            //insertar estudiante en un grupo
+            String grupoMatriculado;
+            grupoMatriculado= String.valueOf(grupo.getSelectedItem());
+            grupoMatriculado= grupoMatriculado.substring(0, grupoMatriculado.indexOf("-"));
+            res+=base.insertarEstudianteEnGrupo(id.getText(), grupoMatriculado);
+            
             //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
             DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
             int nRow = dtm.getRowCount();
             String codCanton;
             String codProvincia;
-            for (int i = 0; i < nRow; i++) {
-                if (!String.valueOf(dtm.getValueAt(i, 0)).isEmpty()) {
+            String tDireccion= String.valueOf(dtm.getValueAt(0, 0));
+            for (int i = 0; i < nRow-1; i++) {
+                if (!tDireccion.equals("null")||tDireccion.equals("")) {
                     codProvincia = String.valueOf(dtm.getValueAt(i, 1));
                     codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
                     codCanton = String.valueOf(dtm.getValueAt(i, 2));
                     codCanton = codCanton.substring(0, codCanton.indexOf("-"));
                     res+=base.insertarDireccion(id.getText(), String.valueOf(dtm.getValueAt(i, 0)), codProvincia, codCanton, String.valueOf(dtm.getValueAt(i, 3)));
+                    tDireccion= String.valueOf(dtm.getValueAt(i+1, 0));
                 }
             }
             
             //Recorrer la tabla de telefonos para agregar uno a uno los telefonos
-            DefaultTableModel dtm2 = (DefaultTableModel) tablaDirecciones.getModel();
+            DefaultTableModel dtm2 = (DefaultTableModel) tablaTelefonos.getModel();
             int nRow2 = dtm2.getRowCount();
            
-            for (int i = 0; i < nRow2; i++) {
-                if (!String.valueOf(dtm2.getValueAt(i, 0)).isEmpty()) {
+            for (int j = 0; j < nRow2-1; j++) {
+                if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("")||String.valueOf(dtm2.getValueAt(j, 0)).equals("null"))) {
  
-                    res += base.insertarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(i, 0)), String.valueOf(dtm2.getValueAt(i, 1)));
+                    res += base.insertarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(j, 0)), String.valueOf(dtm2.getValueAt(j, 1)));
                 }
             }
             
             
-            if(res>=3){
+            if(res>=4){
                 JOptionPane.showMessageDialog(null,"Se agregó exitosamente el nuevo estudiante","Exito",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
@@ -378,7 +394,6 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JComboBox listaCantones;
     private javax.swing.JComboBox listaProvincias;
@@ -386,6 +401,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
     private javax.swing.JTextField pwd;
     private javax.swing.JComboBox sexo;
     private javax.swing.JTable tablaDirecciones;
+    private javax.swing.JTable tablaTelefonos;
     private javax.swing.JComboBox tipoDireccion;
     private javax.swing.JComboBox tiposTelefono;
     // End of variables declaration//GEN-END:variables
