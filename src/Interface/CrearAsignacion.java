@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -18,12 +21,65 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
     /**
      * Creates new form AsignacionesProf
      */
-    public CrearAsignacion() {
+    String idPersona;
+    ConexionBase base;
+    public CrearAsignacion(String idPersona) {
+        this.idPersona = idPersona;
         initComponents();
         
+        base = new ConexionBase();
         CBGrupo.removeAllItems();
         CBMateria.removeAllItems();
         //Agregar elementos a los combobox
+        if (base.getConexionCorrecta() != -1) {
+        String[][] valoresMaterias = base.getDatosConsulta("select m.nombremateria\n" +
+                                                            "from materias m, persona p, profesores pr, impartemateria i\n" +
+                                                            "where p.idpersona = pr.idpersona\n" +
+                                                                "and i.idprofesor = pr.idpersona\n" +
+                                                                "and m.idmateria = i.idmateria");
+          
+
+        for (int i = 0; i < valoresMaterias.length; i++) {
+            CBMateria.addItem(valoresMaterias[i][0]);
+        }
+        if (base.getConexionCorrecta() != -1) {
+            String[][] valoresGrupo = base.getDatosConsulta("select m.nombremateria\n" +
+                                                            "from materias m, persona p, profesores pr, impartemateria i\n" +
+                                                            "where p.idpersona = pr.idpersona\n" +
+                                                                "and i.idprofesor = pr.idpersona\n" +
+                                                                "and m.idmateria = i.idmateria");
+          
+
+            for (int i = 0; i < valoresGrupo.length; i++) {
+                CBMateria.addItem(valoresGrupo[i][0]);
+            }
+            
+
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }
+        
+    private int crearAsignacionBase (String id, String tipo, String descripcion,String hora, Date fecha, String grupo, String profesor, String materia){
+        String sqlAsignacion = "insert into asignacion(idasignacion, tipo, descripcion, hora, fecha, grupo, profesor, materia) values(?,?,?,?,?,?,?,?)";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sqlAsignacion);
+            sentencia.setString(1, id);
+            sentencia.setString(2, tipo);
+            sentencia.setString(3, descripcion);
+            sentencia.setString(4, hora);
+            sentencia.setDate(5, (java.sql.Date)fecha);
+            sentencia.setString(6, grupo);
+            sentencia.setString(7, profesor);
+            sentencia.setString(8, materia);
+            sentencia.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+        return 1;
+
     }
 
     /**
@@ -43,10 +99,10 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TADescripcion = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        DFecha = new datechooser.beans.DateChooserPanel();
         guardarAsignButton = new javax.swing.JButton();
         LHora = new javax.swing.JLabel();
         SHora = new JSpinner( new SpinnerDateModel() );
+        DPFecha = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
         LTipo = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
@@ -99,21 +155,21 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(DFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(guardarAsignButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(LHora)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(guardarAsignButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(DPFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LHora)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -122,18 +178,16 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LHora)
-                            .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(guardarAsignButton))
-                    .addComponent(DFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LHora)
+                    .addComponent(SHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DPFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(guardarAsignButton)
                 .addContainerGap())
         );
 
@@ -187,13 +241,13 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(CBGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(CBMateria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         pack();
@@ -207,9 +261,20 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         String tipo = LTipo.getSelectedValue().toString();
         String materia = CBMateria.getSelectedObjects()[0].toString();
         String grupo = CBGrupo.getSelectedObjects()[0].toString();
-        //String fecha = DFecha.
+        Date fecha = DPFecha.getDate();
         String hora = SHora.getValue().toString();
         String descripcion = TADescripcion.getText();
+        String[][] idasignacion = base.getDatosConsulta("select max(idasignacion) from asignacion;");
+        int idasig;
+        if(idasignacion[0][0] != null){
+            idasig = Integer.parseInt(idasignacion[0][0])+1;
+        }else{
+            idasig = 1;
+        }
+        
+        this.crearAsignacionBase(Integer.toString(idasig),tipo,descripcion,hora,fecha,grupo,this.idPersona,materia);
+        
+        
     }//GEN-LAST:event_guardarAsignButtonActionPerformed
 
     private void LTipoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LTipoValueChanged
@@ -224,7 +289,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CBGrupo;
     private javax.swing.JComboBox CBMateria;
-    private datechooser.beans.DateChooserPanel DFecha;
+    private org.jdesktop.swingx.JXDatePicker DPFecha;
     private javax.swing.JLabel LHora;
     private javax.swing.JList LTipo;
     private javax.swing.JSpinner SHora;

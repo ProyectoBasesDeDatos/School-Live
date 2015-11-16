@@ -194,7 +194,7 @@ private String idPersona;
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearAsignacionProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAsignacionProfActionPerformed
-        CrearAsignacion asigProf= new CrearAsignacion();
+        CrearAsignacion asigProf= new CrearAsignacion(this.idPersona);
         escritorioProf.add(asigProf);
         asigProf.show();
     }//GEN-LAST:event_crearAsignacionProfActionPerformed
@@ -213,13 +213,13 @@ private String idPersona;
     }//GEN-LAST:event_cmbUserProfActionPerformed
 
     private void editarAsigProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAsigProfActionPerformed
-        EditarAsignacion editAsig= new EditarAsignacion();
+        EditarAsignacion editAsig= new EditarAsignacion(this.idPersona);
         escritorioProf.add(editAsig);
         editAsig.show();
     }//GEN-LAST:event_editarAsigProfActionPerformed
 
     private void eliminarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAsigAdminActionPerformed
-        EliminarAsignacion elimAsig = new EliminarAsignacion();
+        EliminarAsignacion elimAsig = new EliminarAsignacion(this.idPersona);
         escritorioProf.add(elimAsig);
         elimAsig.show();
     }//GEN-LAST:event_eliminarAsigAdminActionPerformed

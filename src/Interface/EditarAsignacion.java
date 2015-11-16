@@ -18,7 +18,9 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
     /**
      * Creates new form EditarAsignacionProf
      */
-    public EditarAsignacion() {
+    String idPersona;
+    public EditarAsignacion(String idPersona) {
+        this.idPersona=idPersona;
         initComponents();
     }
 

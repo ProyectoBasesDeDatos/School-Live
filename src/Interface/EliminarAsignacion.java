@@ -16,7 +16,9 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
     /**
      * Creates new form EliminarAsignacionProf
      */
-    public EliminarAsignacion() {
+    String idPersona;
+    public EliminarAsignacion(String idPersona) {
+        this.idPersona = idPersona;
         initComponents();
         jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }

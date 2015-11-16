@@ -165,27 +165,6 @@ public class ConexionBase {
     }
     
     
-    public int crearAsignacion (String id, String tipo, String descripcion,String hora, String fecha, String grupo, String profesor, String materia){
-        String sqlAsignacion = "insert into asignacion(idasignacion, tipo, descripcion, hora, fecha, grupo, profesor, materia) values(?,?,?,?,?,?,?,?)";
-        PreparedStatement sentencia = null;
-        try {
-            sentencia = base.prepareStatement(sqlAsignacion);
-            sentencia.setString(1, id);
-            sentencia.setString(2, tipo);
-            sentencia.setString(3, descripcion);
-            sentencia.setString(4, hora);
-            sentencia.setString(5, fecha);
-            sentencia.setString(6, grupo);
-            sentencia.setString(7, profesor);
-            sentencia.setString(8, materia);
-            sentencia.execute();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return 0;
-        }
-        return 1;
-
-    }
 
     public String obtieneParametro(String idPersona, String Parametro) {
     

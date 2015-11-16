@@ -322,19 +322,19 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarAdminActionPerformed
 
     private void crearAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAsigAdminActionPerformed
-        CrearAsignacion asig= new CrearAsignacion();
+        CrearAsignacion asig= new CrearAsignacion(this.idPersona);
         escritorioAdmin.add(asig);
         asig.show();
     }//GEN-LAST:event_crearAsigAdminActionPerformed
 
     private void editarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAsigAdminActionPerformed
-        EditarAsignacion editAsig= new EditarAsignacion();
+        EditarAsignacion editAsig= new EditarAsignacion(this.idPersona);
         escritorioAdmin.add(editAsig);
         editAsig.show();        
     }//GEN-LAST:event_editarAsigAdminActionPerformed
 
     private void eliminarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAsigAdminActionPerformed
-        EliminarAsignacion elimAsig = new EliminarAsignacion();
+        EliminarAsignacion elimAsig = new EliminarAsignacion(this.idPersona);
         escritorioAdmin.add(elimAsig);
         elimAsig.show();    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
 
