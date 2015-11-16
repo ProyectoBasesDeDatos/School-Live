@@ -204,7 +204,7 @@ private String idPersona;
     }//GEN-LAST:event_ItemContDirActionPerformed
 
     private void calificacionesEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesEstActionPerformed
-        VistaCalificaciones visCal= new VistaCalificaciones();
+        VistaCalificaciones visCal= new VistaCalificaciones(idPersona);
         escritorioEst.add(visCal);
         visCal.show();
     }//GEN-LAST:event_calificacionesEstActionPerformed
