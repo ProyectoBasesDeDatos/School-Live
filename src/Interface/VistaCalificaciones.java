@@ -14,7 +14,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaCalificaciones
      */
-    public VistaCalificaciones() {
+    public VistaCalificaciones(String idPersona) {
         initComponents();
     }
 

@@ -390,7 +390,7 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
             fechaNacimiento= jXDatePicker1.getDate();
             fechaString= formatter.format(fechaNacimiento);
             int res=0;
-            res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "F");
+            res+=base.insertarEstudiante(id.getText(), nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()),fechaString , email.getText(), fb.getText(), pwd.getText(), "P");
         //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
             DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
             int nRow = dtm.getRowCount();
