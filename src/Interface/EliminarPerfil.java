@@ -6,7 +6,9 @@
 package Interface;
 
 import BaseDatos.ConexionBase;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -34,7 +36,7 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
         perfil = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaPersonas = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Eliminar = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
@@ -70,7 +72,12 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
             listaPersonas.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
-        jToggleButton1.setText("Eliminar");
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/find.png")));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +103,7 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)))
+                        .addComponent(Eliminar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,7 +118,7 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
+                .addComponent(Eliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -160,12 +167,32 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+       
+       //Obtener un array con los id de personas a eliminar 
+       TableModel model= listaPersonas.getModel();
+       int filas= model.getRowCount();
+       String[] idEliminar= new String[filas];
+       int j=0;
+        for (int i = 0; i < filas; i++) {
+            if(Boolean.valueOf(model.getValueAt(i, 0).toString())){
+                idEliminar[j]=model.getValueAt(i, 1).toString();
+                //JOptionPane.showMessageDialog(null,idEliminar[j] , "Se agrego ", JOptionPane.ERROR_MESSAGE);
+                j++;
+            }   
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_EliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Eliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable listaPersonas;
     private javax.swing.JComboBox perfil;
     // End of variables declaration//GEN-END:variables
