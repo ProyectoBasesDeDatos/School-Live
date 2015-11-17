@@ -46,6 +46,7 @@ public class Mensajes extends javax.swing.JInternalFrame {
         
         tableModel.setRowCount(0);
         TablaMsjs.setModel(tableModel);
+        try{
         for (int i = 0; i < mensajes.length; i++) {
         
             String[][] quienes = base.getDatosConsulta("select concat(nombre1,' ',apellido1,' ',apellido2) from persona where idpersona='"+mensajes[i][1]+"';");
@@ -59,6 +60,17 @@ public class Mensajes extends javax.swing.JInternalFrame {
             tableModel.addRow(new Object[]{mensajes[i][0],quienes[0][0], visto, mensajes[i][3]});
         }
         TablaMsjs.setModel(tableModel);
+        }catch (Exception e){
+            System.err.println("No hay mensajes asociados a este perfil");
+            JOptionPane.showMessageDialog(null, "No hay mensajes asociados a este perfil", "No existen mensajes en su registro ", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        String[][]destinatarios= base.getDatosConsulta("select concat(idpersona,'-',nombre1,' ',apellido1,' ',apellido2) from persona");
+        comboDestino.removeAllItems();
+        for (int i = 0; i < destinatarios.length; i++) {
+           comboDestino.addItem(destinatarios[i][0]);
+            }
+        
     }
 
     /**
@@ -80,6 +92,8 @@ public class Mensajes extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TextMsj = new javax.swing.JTextArea();
         Enviar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        asunto = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -156,20 +170,25 @@ public class Mensajes extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buzon", jPanel1);
 
         jLabel3.setText("Destino");
 
-        comboDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         TextMsj.setColumns(20);
         TextMsj.setRows(5);
         jScrollPane2.setViewportView(TextMsj);
 
         Enviar.setText("Enviar");
+        Enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnviarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Asunto");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,14 +198,20 @@ public class Mensajes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Enviar)))
+                        .addComponent(Enviar))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(asunto, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -196,11 +221,15 @@ public class Mensajes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(asunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Enviar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Enviar Mensaje", jPanel2);
@@ -237,12 +266,36 @@ public class Mensajes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_TablaMsjsMouseClicked
 
+    private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
+
+        ConexionBase base = new ConexionBase();
+        int res=0;
+        int err=0;
+        try {
+            String idDestino= String.valueOf(comboDestino.getSelectedItem());
+            idDestino= idDestino.substring(0,idDestino.indexOf("-"));
+            
+            res+= base.enviarMensaje(this.idPersona, idDestino, asunto.getText(), TextMsj.getText());
+            
+        } catch (Exception e) {
+            System.err.println("No se ha enviado el mensaje");
+            JOptionPane.showMessageDialog(null, "No se ha podido enviar el mensaje", "Error en envío ", JOptionPane.ERROR_MESSAGE);
+            err++;
+        }
+        if(err==0){
+            JOptionPane.showMessageDialog(null, "Se ha enviado el mensaje exitosamente ", "Estado de mensaje ", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+    }//GEN-LAST:event_EnviarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Enviar;
     private javax.swing.JTable TablaMsjs;
     private javax.swing.JTextArea TextMsj;
+    private javax.swing.JTextField asunto;
     private javax.swing.JComboBox comboDestino;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

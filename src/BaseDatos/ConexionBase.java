@@ -683,4 +683,24 @@ public class ConexionBase {
             return -1;
         }
     }
+    
+    public int enviarMensaje(String idAutor, String idDestino, String asunto, String descripcion) {
+        String sql = "insert into mensaje(idmensaje, destinatario, autor, asunto, descripcion, leido) values (nextval('idMensaje'),?,?,?,?,false)";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1,idDestino );
+            sentencia.setString(2, idAutor);
+            sentencia.setString(3, asunto);
+            sentencia.setString(4, descripcion);
+
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
 }
+
