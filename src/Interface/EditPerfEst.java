@@ -135,7 +135,7 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(listaEstudiantes);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 190, 431));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 180, 431));
 
         BBuscar.setText("Buscar");
         BBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -217,11 +217,6 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane3.setViewportView(tablaDirecciones);
-        if (tablaDirecciones.getColumnModel().getColumnCount() > 0) {
-            tablaDirecciones.getColumnModel().getColumn(0).setCellEditor(null);
-            tablaDirecciones.getColumnModel().getColumn(1).setCellEditor(null);
-            tablaDirecciones.getColumnModel().getColumn(2).setCellEditor(null);
-        }
 
         jLabel14.setText("Telefonos");
 
@@ -292,14 +287,13 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel13))
+                .addGap(210, 210, 210)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
                         .addComponent(jLabel6)
                         .addGap(12, 12, 12)
                         .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
                         .addComponent(jLabel10)
                         .addGap(72, 72, 72)
                         .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -351,13 +345,12 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(jLabel11))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel10))
-                            .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
