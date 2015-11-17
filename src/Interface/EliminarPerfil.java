@@ -158,33 +158,47 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
         };
         tableModel.setRowCount(0);
         listaPersonas.setModel(tableModel);
+        try {
+            for (int i = 0; i < personas.length; i++) {
 
-        for (int i = 0; i < personas.length; i++) {
-
-            tableModel.addRow(new Object[]{false, personas[i][0], personas[i][1], personas[0][2], personas[i][3]});
+                tableModel.addRow(new Object[]{false, personas[i][0], personas[i][1], personas[0][2], personas[i][3]});
+            }
+            listaPersonas.setModel(tableModel);
+        } catch (Exception e) {
+            System.err.println("No se hay perfiles creados para este tipo");
+            JOptionPane.showMessageDialog(null, "No se hay perfiles creados para este tipo", "Error ", JOptionPane.ERROR_MESSAGE);
         }
-        listaPersonas.setModel(tableModel);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-       
-       //Obtener un array con los id de personas a eliminar 
-       TableModel model= listaPersonas.getModel();
-       int filas= model.getRowCount();
-       String[] idEliminar= new String[filas];
-       int j=0;
-        for (int i = 0; i < filas; i++) {
-            if(Boolean.valueOf(model.getValueAt(i, 0).toString())){
-                idEliminar[j]=model.getValueAt(i, 1).toString();
-                //JOptionPane.showMessageDialog(null,idEliminar[j] , "Se agrego ", JOptionPane.ERROR_MESSAGE);
-                j++;
-            }   
+        ConexionBase base = new ConexionBase();
+
+        //Obtener un array con los id de personas a eliminar 
+        TableModel model = listaPersonas.getModel();
+        int filas = model.getRowCount();
+
+        try {
+            for (int i = 0; i < filas; i++) {
+                if (Boolean.valueOf(model.getValueAt(i, 0).toString())) {
+                    if (perfil.getSelectedItem() == "Profesor") {
+                        base.eliminarProfesor(model.getValueAt(i, 1).toString());
+                    } else if (perfil.getSelectedItem() == "Estudiante") {
+                        base.eliminarEstudiantes(model.getValueAt(i, 1).toString());
+                    } else {
+                        base.eliminarPadreFamilia(model.getValueAt(i, 1).toString());
+                    }
+
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Se han eliminado los perfiles seleccionados", "Se agrego ", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+
+        } catch (Exception e) {
+            System.err.println("No se ha logrado eliminar el perfil");
+            JOptionPane.showMessageDialog(null, "No se ha logrado eliminar el perfil", "Se agrego ", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
-        
-        
+
     }//GEN-LAST:event_EliminarActionPerformed
 
 
