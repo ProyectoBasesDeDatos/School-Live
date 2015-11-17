@@ -668,4 +668,19 @@ public class ConexionBase {
         }
     }
 
+    public int actualizarMsjVisto(String idMsj) {
+        String sql = "update mensaje set leido=true where idmensaje=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, idMsj);
+
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
 }

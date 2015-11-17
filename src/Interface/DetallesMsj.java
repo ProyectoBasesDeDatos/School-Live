@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+
 /**
  *
  * @author Tek
@@ -14,8 +16,18 @@ public class DetallesMsj extends javax.swing.JInternalFrame {
     /**
      * Creates new form DetallesMsj
      */
-    public DetallesMsj() {
+    String idMsj;
+    public DetallesMsj(String idMsj) {
         initComponents();
+        int res=0;
+        this.idMsj= idMsj;
+        ConexionBase base= new ConexionBase();
+        String[][] mensaje=base.getDatosConsulta("select asunto, descripcion from mensaje where idmensaje='"+idMsj+"';");
+        asunto.setText(mensaje[0][0]);
+        detalleMensaje.setText(mensaje[0][1]);
+        
+        //colocar como leído el mensaje
+        res+= base.actualizarMsjVisto(idMsj);
     }
 
     /**
@@ -29,8 +41,8 @@ public class DetallesMsj extends javax.swing.JInternalFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        detalleMensaje = new javax.swing.JTextArea();
+        asunto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -40,11 +52,11 @@ public class DetallesMsj extends javax.swing.JInternalFrame {
         setTitle("Detalle Mensaje");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
 
-        jLabel2.setText("Tipo");
+        jLabel2.setText("Asunto");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        detalleMensaje.setColumns(20);
+        detalleMensaje.setRows(5);
+        jScrollPane1.setViewportView(detalleMensaje);
 
         jLabel1.setText("Mensaje");
 
@@ -60,7 +72,7 @@ public class DetallesMsj extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(asunto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -70,7 +82,7 @@ public class DetallesMsj extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(asunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -83,10 +95,10 @@ public class DetallesMsj extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField asunto;
+    private javax.swing.JTextArea detalleMensaje;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

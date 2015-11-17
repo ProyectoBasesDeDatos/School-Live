@@ -9,6 +9,7 @@ import BaseDatos.ConexionBase;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 
 public class Mensajes extends javax.swing.JInternalFrame {
@@ -22,9 +23,9 @@ public class Mensajes extends javax.swing.JInternalFrame {
         initComponents();
         this.idPersona = idPersona;
         ConexionBase base = new ConexionBase();
-        String[][] mensajes = base.getDatosConsulta("select autor, leido, asunto from mensaje where destinatario='" + this.idPersona + "'");
+        String[][] mensajes = base.getDatosConsulta("select idmensaje,autor, leido, asunto from mensaje where destinatario='" + this.idPersona + "'");
 
-        String nombreColumnas[] = {"Quien", "Visto", "Asunto"};
+        String nombreColumnas[] = {"Id Msj","Quien", "Visto", "Asunto"};
         DefaultTableModel tableModel = new DefaultTableModel(null, nombreColumnas) {
             @Override
             public Class getColumnClass(int c) {
@@ -32,8 +33,10 @@ public class Mensajes extends javax.swing.JInternalFrame {
                     case 0:
                         return String.class;
                     case 1:
-                        return Boolean.class;
+                        return String.class;
                     case 2:
+                        return Boolean.class;
+                    case 3:
                         return String.class;
                     default:
                         return String.class;
@@ -45,15 +48,15 @@ public class Mensajes extends javax.swing.JInternalFrame {
         TablaMsjs.setModel(tableModel);
         for (int i = 0; i < mensajes.length; i++) {
         
-            String[][] quienes = base.getDatosConsulta("select concat(nombre1,' ',apellido1,' ',apellido2) from persona where idpersona='"+mensajes[i][0]+"';");
+            String[][] quienes = base.getDatosConsulta("select concat(nombre1,' ',apellido1,' ',apellido2) from persona where idpersona='"+mensajes[i][1]+"';");
             Boolean visto;
-            if(mensajes[i][1].equals("t")){
+            if(mensajes[i][2].equals("t")){
                 visto=true;
             }else{
                 visto=false;
             }
 
-            tableModel.addRow(new Object[]{quienes[0][0], visto, mensajes[i][2]});
+            tableModel.addRow(new Object[]{mensajes[i][0],quienes[0][0], visto, mensajes[i][3]});
         }
         TablaMsjs.setModel(tableModel);
     }
@@ -69,8 +72,6 @@ public class Mensajes extends javax.swing.JInternalFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        ComboFiltro = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaMsjs = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -86,37 +87,33 @@ public class Mensajes extends javax.swing.JInternalFrame {
         setTitle("Mensajes");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Message.png"))); // NOI18N
 
-        ComboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setText("Filtrar");
-
         TablaMsjs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Quien", "Visto", "Asunto"
+                "# Msj", "Quien", "Visto", "Asunto"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -138,10 +135,11 @@ public class Mensajes extends javax.swing.JInternalFrame {
         TablaMsjs.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (TablaMsjs.getColumnModel().getColumnCount() > 0) {
             TablaMsjs.getColumnModel().getColumn(0).setResizable(false);
-            TablaMsjs.getColumnModel().getColumn(0).setPreferredWidth(50);
             TablaMsjs.getColumnModel().getColumn(1).setResizable(false);
-            TablaMsjs.getColumnModel().getColumn(1).setPreferredWidth(35);
-            TablaMsjs.getColumnModel().getColumn(2).setPreferredWidth(500);
+            TablaMsjs.getColumnModel().getColumn(1).setPreferredWidth(50);
+            TablaMsjs.getColumnModel().getColumn(2).setResizable(false);
+            TablaMsjs.getColumnModel().getColumn(2).setPreferredWidth(35);
+            TablaMsjs.getColumnModel().getColumn(3).setPreferredWidth(500);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,25 +148,15 @@ public class Mensajes extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(ComboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buzon", jPanel1);
@@ -239,7 +227,11 @@ public class Mensajes extends javax.swing.JInternalFrame {
             //JTable target = (JTable)e.getSource();
             //int row = target.getSelectedRow();
             //int column = target.getSelectedColumn();
-           DetallesMsj msj= new DetallesMsj();
+            int row= TablaMsjs.convertRowIndexToModel(TablaMsjs.getSelectedRow());
+            TableModel model= TablaMsjs.getModel();
+            String idMsj= String.valueOf(model.getValueAt(row, 0));
+            
+           DetallesMsj msj= new DetallesMsj(idMsj);
            this.getParent().add(msj);
            msj.show();
         }
@@ -247,12 +239,10 @@ public class Mensajes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ComboFiltro;
     private javax.swing.JButton Enviar;
     private javax.swing.JTable TablaMsjs;
     private javax.swing.JTextArea TextMsj;
     private javax.swing.JComboBox comboDestino;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
