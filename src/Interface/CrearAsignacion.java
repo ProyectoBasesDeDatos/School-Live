@@ -22,49 +22,51 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
      * Creates new form AsignacionesProf
      */
     String idPersona;
-    ConexionBase base;
+    
     public CrearAsignacion(String idPersona) {
         this.idPersona = idPersona;
         initComponents();
         
-        base = new ConexionBase();
+        ConexionBase base = new ConexionBase();
         CBGrupo.removeAllItems();
         CBMateria.removeAllItems();
         //Agregar elementos a los combobox
         if (base.getConexionCorrecta() != -1) {
-        String[][] valoresMaterias = base.getDatosConsulta("select m.nombremateria\n" +
-                                                            "from materias m, persona p, profesores pr, impartemateria i\n" +
-                                                            "where p.idpersona = pr.idpersona\n" +
-                                                                "and i.idprofesor = pr.idpersona\n" +
-                                                                "and m.idmateria = i.idmateria");
-          
+            String[][] valoresMaterias = base.getDatosConsulta("select m.nombremateria\n" +
+                                                                "from materias m, persona p, profesores pr, impartemateria i\n" +
+                                                                "where p.idpersona = pr.idpersona\n" +
+                                                                    "and i.idprofesor = pr.idpersona\n" +
+                                                                    "and m.idmateria = i.idmateria");
 
-        for (int i = 0; i < valoresMaterias.length; i++) {
-            CBMateria.addItem(valoresMaterias[i][0]);
-        }
-        if (base.getConexionCorrecta() != -1) {
-            String[][] valoresGrupo = base.getDatosConsulta("select m.nombremateria\n" +
-                                                            "from materias m, persona p, profesores pr, impartemateria i\n" +
-                                                            "where p.idpersona = pr.idpersona\n" +
-                                                                "and i.idprofesor = pr.idpersona\n" +
-                                                                "and m.idmateria = i.idmateria");
-          
 
-            for (int i = 0; i < valoresGrupo.length; i++) {
-                CBMateria.addItem(valoresGrupo[i][0]);
+            for (int i = 0; i < valoresMaterias.length; i++) {
+                CBMateria.addItem(valoresMaterias[i][0]);
             }
-            
+            if (base.getConexionCorrecta() != -1) {
+                String[][] valoresGrupo = base.getDatosConsulta("select m.nombremateria\n" +
+                                                                "from materias m, persona p, profesores pr, impartemateria i\n" +
+                                                                "where p.idpersona = pr.idpersona\n" +
+                                                                    "and i.idprofesor = pr.idpersona\n" +
+                                                                    "and m.idmateria = i.idmateria");
 
-        } else {
-            System.err.println("No se ha logrado establecer conexión con la base de datos");
+
+                for (int i = 0; i < valoresGrupo.length; i++) {
+                    CBMateria.addItem(valoresGrupo[i][0]);
+                }
+
+
+            } else {
+                System.err.println("No se ha logrado establecer conexión con la base de datos");
+            }
         }
     }
         
     private int crearAsignacionBase (String id, String tipo, String descripcion,String hora, Date fecha, String grupo, String profesor, String materia){
         String sqlAsignacion = "insert into asignacion(idasignacion, tipo, descripcion, hora, fecha, grupo, profesor, materia) values(?,?,?,?,?,?,?,?)";
         PreparedStatement sentencia = null;
+        ConexionBase base = new ConexionBase();
         try {
-            sentencia = base.prepareStatement(sqlAsignacion);
+            //sentencia = base.prepareStatement(sqlAsignacion);
             sentencia.setString(1, id);
             sentencia.setString(2, tipo);
             sentencia.setString(3, descripcion);
