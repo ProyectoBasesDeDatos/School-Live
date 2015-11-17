@@ -260,6 +260,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CBGrupoActionPerformed
 
     private void guardarAsignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAsignButtonActionPerformed
+        ConexionBase base= new ConexionBase();
         String tipo = LTipo.getSelectedValue().toString();
         String materia = CBMateria.getSelectedObjects()[0].toString();
         String grupo = CBGrupo.getSelectedObjects()[0].toString();
