@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author fugalde
@@ -28,9 +31,9 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        perfil = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        listaPersonas = new javax.swing.JTable();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
 
@@ -41,9 +44,9 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Tipo Perfil");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Profesor", "Estudiante", "Padre de Familia" }));
+        perfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Profesor", "Estudiante", "Padre de Familia" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        listaPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -62,14 +65,19 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jScrollPane1.setViewportView(listaPersonas);
+        if (listaPersonas.getColumnModel().getColumnCount() > 0) {
+            listaPersonas.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
         jToggleButton1.setText("Eliminar");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/find.png")));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,7 +90,7 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -99,7 +107,7 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -110,13 +118,55 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ConexionBase base = new ConexionBase();
+        String tipoPerfil = "";
+        if (perfil.getSelectedItem() == "Profesor") {
+            tipoPerfil = "P";
+        } else if (perfil.getSelectedItem() == "Estudiante") {
+            tipoPerfil = "E";
+        } else {
+            tipoPerfil = "F";
+        }
+
+        String[][] personas = base.getDatosConsulta("select idpersona, nombre1, apellido1, apellido2 from persona where tipoperfil='" + tipoPerfil + "';");
+        String nombreColumnas[] = {"", "Identificación", "Nombre", "Apellido1", "Apellido2"};
+
+        DefaultTableModel tableModel = new DefaultTableModel(null, nombreColumnas) {
+            @Override
+            public Class getColumnClass(int c) {
+                switch (c) {
+                    case 0:
+                        return Boolean.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        tableModel.setRowCount(0);
+        listaPersonas.setModel(tableModel);
+
+        for (int i = 0; i < personas.length; i++) {
+
+            tableModel.addRow(new Object[]{false, personas[i][0], personas[i][1], personas[0][2], personas[i][3]});
+        }
+        listaPersonas.setModel(tableModel);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTable listaPersonas;
+    private javax.swing.JComboBox perfil;
     // End of variables declaration//GEN-END:variables
 }
