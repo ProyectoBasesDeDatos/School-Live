@@ -5,7 +5,10 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Mensajes extends javax.swing.JInternalFrame {
@@ -13,8 +16,46 @@ public class Mensajes extends javax.swing.JInternalFrame {
     /**
      * Creates new form Mensajes
      */
-    public Mensajes() {
+    String idPersona;
+    
+    public Mensajes(String idPersona) {
         initComponents();
+        this.idPersona = idPersona;
+        ConexionBase base = new ConexionBase();
+        String[][] mensajes = base.getDatosConsulta("select autor, leido, asunto from mensaje where destinatario='" + this.idPersona + "'");
+
+        String nombreColumnas[] = {"Quien", "Visto", "Asunto"};
+        DefaultTableModel tableModel = new DefaultTableModel(null, nombreColumnas) {
+            @Override
+            public Class getColumnClass(int c) {
+                switch (c) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return Boolean.class;
+                    case 2:
+                        return String.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        
+        tableModel.setRowCount(0);
+        TablaMsjs.setModel(tableModel);
+        for (int i = 0; i < mensajes.length; i++) {
+        
+            String[][] quienes = base.getDatosConsulta("select concat(nombre1,' ',apellido1,' ',apellido2) from persona where idpersona='"+mensajes[i][0]+"';");
+            Boolean visto;
+            if(mensajes[i][1].equals("t")){
+                visto=true;
+            }else{
+                visto=false;
+            }
+
+            tableModel.addRow(new Object[]{quienes[0][0], visto, mensajes[i][2]});
+        }
+        TablaMsjs.setModel(tableModel);
     }
 
     /**
@@ -68,12 +109,19 @@ public class Mensajes extends javax.swing.JInternalFrame {
                 {null, null, null}
             },
             new String [] {
-                "Tipo", "Visto", "Msj"
+                "Quien", "Visto", "Asunto"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -191,7 +239,6 @@ public class Mensajes extends javax.swing.JInternalFrame {
             //JTable target = (JTable)e.getSource();
             //int row = target.getSelectedRow();
             //int column = target.getSelectedColumn();
-            
            DetallesMsj msj= new DetallesMsj();
            this.getParent().add(msj);
            msj.show();

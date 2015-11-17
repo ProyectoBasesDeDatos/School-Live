@@ -117,9 +117,9 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="3" rowCount="15">
-                        <Column editable="false" title="Tipo" type="java.lang.Object"/>
-                        <Column editable="false" title="Visto" type="java.lang.Object"/>
-                        <Column editable="false" title="Msj" type="java.lang.Object"/>
+                        <Column editable="false" title="Quien" type="java.lang.String"/>
+                        <Column editable="false" title="Visto" type="java.lang.Boolean"/>
+                        <Column editable="false" title="Asunto" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="autoResizeMode" type="int" value="3"/>

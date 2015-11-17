@@ -417,7 +417,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_calificacionesAdminActionPerformed
 
     private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
-        Mensajes msj= new Mensajes();
+        Mensajes msj= new Mensajes(this.idPersona);
         escritorioAdmin.add(msj);
         msj.show();        // TODO add your handling code here:
     }//GEN-LAST:event_MsjsMenuActionPerformed

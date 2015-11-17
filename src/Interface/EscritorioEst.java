@@ -210,7 +210,7 @@ private String idPersona;
     }//GEN-LAST:event_calificacionesEstActionPerformed
 
     private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
-        Mensajes msj= new Mensajes();
+        Mensajes msj= new Mensajes(this.idPersona);
         escritorioEst.add(msj);
         msj.show();
     }//GEN-LAST:event_MsjsMenuActionPerformed

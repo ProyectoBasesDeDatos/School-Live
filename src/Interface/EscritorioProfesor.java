@@ -249,7 +249,7 @@ private String idPersona;
     }//GEN-LAST:event_calificacionesProfActionPerformed
 
     private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
-        Mensajes msj= new Mensajes();
+        Mensajes msj= new Mensajes(this.idPersona);
         escritorioProf.add(msj);
         msj.show();        // TODO add your handling code here:
     }//GEN-LAST:event_MsjsMenuActionPerformed
