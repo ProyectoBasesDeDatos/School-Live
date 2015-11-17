@@ -8,9 +8,12 @@ package Interface;
 import BaseDatos.ConexionBase;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,6 +37,23 @@ public class EditPerfProf extends javax.swing.JInternalFrame {
                 model.addElement(profesores[i][0] + "-" + profesores[i][1]);
             }
             listaProfesores.setModel(model);
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+
+        listaProvincias.removeAllItems();
+        listaCantones.removeAllItems();
+        if (base.getConexionCorrecta() != -1) {
+            String[][] valoresProvincias = base.getDatosConsulta("select * from provincia");
+            String[][] valoresCantones = base.getDatosConsulta("select idcanton, descripcion from canton");
+
+            for (int i = 0; i < valoresProvincias.length; i++) {
+                listaProvincias.addItem(valoresProvincias[i][0] + "-" + valoresProvincias[i][1]);
+            }
+            for (int j = 0; j < valoresCantones.length; j++) {
+                listaCantones.addItem(valoresCantones[j][0] + "-" + valoresCantones[j][1]);
+            }
+
         } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
         }
@@ -148,6 +168,11 @@ public class EditPerfProf extends javax.swing.JInternalFrame {
         jLabel7.setText("Dirección");
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         id.setToolTipText("");
 
@@ -566,6 +591,102 @@ public class EditPerfProf extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         tablaTelefonos.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(tiposTelefono));
     }//GEN-LAST:event_tablaTelefonosMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int error = 0;
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            Date fechaNacimiento;
+            String fechaString;
+            SimpleDateFormat formatter;
+            formatter = new SimpleDateFormat("dd-MM-yyyy");
+            fechaNacimiento = jXDatePicker1.getDate();
+            fechaString = formatter.format(fechaNacimiento);
+            int res = 0;// numero de inserts que se han hecho
+
+            //insertar datos generales del estudiante
+            try {
+                res += base.actualizarEstudiante(nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()), fechaString, email.getText(), fb.getText(), pwd.getText(), id.getText());
+            } catch (Exception e) {
+                System.err.println("Error al actualizar información general");
+                error++;
+            }
+
+            //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
+            try {
+                DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
+                int nRow = dtm.getRowCount();
+                String codCanton;
+                String codProvincia;
+
+                String tDireccion = String.valueOf(dtm.getValueAt(0, 0));
+                for (int i = 0; i < nRow; i++) {
+                    if (!tDireccion.equals("null") || !tDireccion.equals("")) {
+                        codProvincia = String.valueOf(dtm.getValueAt(i, 1));
+                        codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
+                        codCanton = String.valueOf(dtm.getValueAt(i, 2));
+                        codCanton = codCanton.substring(0, codCanton.indexOf("-"));
+
+                        res += base.actualizarDireccion(id.getText(), String.valueOf(dtm.getValueAt(i, 0)), codProvincia, codCanton, String.valueOf(dtm.getValueAt(i, 3)));
+                        try {
+                            tDireccion = String.valueOf(dtm.getValueAt(i + 1, 0)); //Modificacion del ciclo
+                        } catch (Exception e) {
+                            System.err.println("Llego al final del ciclo");
+
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("No se han encontrado direcciones asociadas para actualizar");
+                error++;
+            }
+
+            //Recorrer la tabla de telefonos para agregar uno a uno los telefonos
+            try {
+                DefaultTableModel dtm2 = (DefaultTableModel) tablaTelefonos.getModel();
+                int nRow2 = dtm2.getRowCount();
+
+                for (int j = 0; j < nRow2; j++) {
+                    if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("") || String.valueOf(dtm2.getValueAt(j, 0)).equals("null"))) {
+
+                        res += base.actualizarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(j, 0)), String.valueOf(dtm2.getValueAt(j, 1)));
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("No se han encontrado telefonos asociados para actualizar");
+                error++;
+            }
+            
+            //Actualizar las materias asignadas
+            try {
+                res += base.eliminarMateriasAsignadas(id.getText());
+                ListModel model = listaMateriasAsignadas.getModel();
+                String[] idMateriasAsig = new String[model.getSize()];
+                String idMateria;
+                for (int i = 0; i < model.getSize(); i++) {
+                    idMateria = model.getElementAt(i).toString();
+                    idMateria = idMateria.substring(0, idMateria.indexOf("-"));
+                    idMateriasAsig[i] = idMateria;
+                }
+                res += base.insertarProfesor(id.getText(), idMateriasAsig);
+            } catch (Exception e) {
+                System.err.println("Error al actualizar las materias asignadas");
+                error++;
+            }
+            
+
+            if (error == 0) {
+                JOptionPane.showMessageDialog(null, "Se actualizo el perfil del profesor", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se logró actualizar correctamente el perfil", "No se agregó ", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

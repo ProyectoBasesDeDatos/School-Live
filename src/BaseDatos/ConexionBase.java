@@ -356,7 +356,7 @@ public class ConexionBase {
             return -1;
         }
     }
-    /*public int insertarEstudianteEnGrupo(String id, String grupo) {
+   /* public int insertarEstudianteEnGrupo(String id, String grupo) {
         String sql = "Insert into estudiante(idpersona,idgrupo) values (?,?);";
         PreparedStatement sentencia = null;
         try {
@@ -465,5 +465,21 @@ public class ConexionBase {
             return -1;
         }
     }
+    public int eliminarMateriasAsignadas(String idPersona){
+             String sql = "delete from profesores where idpersona=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, idPersona);
+
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
     
 }
