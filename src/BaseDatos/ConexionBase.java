@@ -480,6 +480,20 @@ public class ConexionBase {
             return -1;
         }
     }
-    
+      public int eliminarHijosAsignados(String idPersona){
+             String sql = "delete from padrefamilia where idpersona=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, idPersona);
+
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
     
 }

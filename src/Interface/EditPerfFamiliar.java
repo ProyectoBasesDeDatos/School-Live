@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -498,22 +500,23 @@ public class EditPerfFamiliar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BBuscarActionPerformed
 
     private void listaPadresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPadresMouseClicked
-    id.enableInputMethods(false);
+        id.enableInputMethods(false);
+        listaHijosAsignados.removeAll();
         ConexionBase base = new ConexionBase();
         String[][] infoGeneral = null;
         String[][] direcciones = null;
         String[][] telefonos = null;
-        String[][] hijosDisp=null;
-        String[][] hijosAsig=null;
-       
+        String[][] hijosDisp = null;
+        String[][] hijosAsig = null;
+
         if (base.getConexionCorrecta() != -1) {
             String idPadre = String.valueOf(listaPadres.getSelectedValue());
             idPadre = idPadre.substring(0, idPadre.indexOf("-"));
             infoGeneral = base.getDatosConsulta("select * from persona where idpersona='" + idPadre + "';");
             direcciones = base.getDatosConsulta("select tipo,idprovincia,idcanton,descripcion from dirpersona where idpersona='" + idPadre + "';");
             telefonos = base.getDatosConsulta("select tipotelefono,numerotelefono from telefono where idpersona='" + idPadre + "';");
-            hijosDisp=base.getDatosConsulta("select concat(idpersona,'-',nombre1,' ',apellido1,' ',apellido2) from persona where tipoPerfil='E';");
-            hijosAsig=base.getDatosConsulta("select concat(p.idpersona,'-',p.nombre1,' ',p.apellido1,' ',p.apellido2) from persona p, padrefamilia f where f.idpersona='" + idPadre + "' and f.idhijo=p.idpersona;");
+            hijosDisp = base.getDatosConsulta("select concat(idpersona,'-',nombre1,' ',apellido1,' ',apellido2) from persona where tipoPerfil='E';");
+            hijosAsig = base.getDatosConsulta("select concat(p.idpersona,'-',p.nombre1,' ',p.apellido1,' ',p.apellido2) from persona p, padrefamilia f where f.idpersona='" + idPadre + "' and f.idhijo=p.idpersona;");
         } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
         }
@@ -523,46 +526,44 @@ public class EditPerfFamiliar extends javax.swing.JInternalFrame {
         apellido1.setText(infoGeneral[0][2]);
         apellido2.setText(infoGeneral[0][3]);
         sexo.setSelectedItem(infoGeneral[0][4]);
-        
-        String fec=infoGeneral[0][5];
-        DateFormat format=new SimpleDateFormat("yyyy-mm-dd");
-        try{
-        Date fecNac= format.parse(fec);
-        jXDatePicker1.setDate(fecNac);
-        }catch (Exception e){
+
+        String fec = infoGeneral[0][5];
+        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Date fecNac = format.parse(fec);
+            jXDatePicker1.setDate(fecNac);
+        } catch (Exception e) {
             System.err.println("No se pudo obtener la fecha de nacimiento de este estudiante");
         }
-      
+
         email.setText(infoGeneral[0][6]);
         fb.setText(infoGeneral[0][7]);
         pwd.setText(infoGeneral[0][8]);
-        
- 
+
         //Desplegar las direcciones 
-        
-        String nombreColumnas[]={"Tipo","Provincia","Canton","Direccion Exacta"};
-        DefaultTableModel tableModel= new DefaultTableModel(nombreColumnas,0);
+        String nombreColumnas[] = {"Tipo", "Provincia", "Canton", "Direccion Exacta"};
+        DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
         tableModel.setRowCount(0);
         tablaDirecciones.setModel(tableModel);
         for (int i = 0; i < direcciones.length; i++) {
-            String[][] provincia= base.getDatosConsulta("select concat(idprovincia,'-',descripcion) from provincia where idprovincia='"+direcciones[i][1]+"';"); 
-            String [][] canton=base.getDatosConsulta("select concat(idcanton,'-',descripcion) from canton where idcanton='"+direcciones[i][2]+"' and idprovincia='"+direcciones[i][1]+"';"); 
-            
-            tableModel.addRow(new Object[]{direcciones[i][0],provincia[0][0],canton[0][0],direcciones[i][3]});
+            String[][] provincia = base.getDatosConsulta("select concat(idprovincia,'-',descripcion) from provincia where idprovincia='" + direcciones[i][1] + "';");
+            String[][] canton = base.getDatosConsulta("select concat(idcanton,'-',descripcion) from canton where idcanton='" + direcciones[i][2] + "' and idprovincia='" + direcciones[i][1] + "';");
+
+            tableModel.addRow(new Object[]{direcciones[i][0], provincia[0][0], canton[0][0], direcciones[i][3]});
         }
         tablaDirecciones.setModel(tableModel);
-        
+
         //Desplegar los telefonos
-        String nombreColumnasTel[]={"Tipo","Numero",};
-        DefaultTableModel tableModelTel= new DefaultTableModel(nombreColumnasTel,0);
+        String nombreColumnasTel[] = {"Tipo", "Numero",};
+        DefaultTableModel tableModelTel = new DefaultTableModel(nombreColumnasTel, 0);
         tableModelTel.setRowCount(0);
         tablaTelefonos.setModel(tableModelTel);
         for (int i = 0; i < direcciones.length; i++) {
-           
-            tableModelTel.addRow(new Object[]{telefonos[i][0],telefonos[i][1]});
+
+            tableModelTel.addRow(new Object[]{telefonos[i][0], telefonos[i][1]});
         }
         tablaTelefonos.setModel(tableModelTel);
-        
+
         //Desplegar listado estudiantes e hijos asignados
         DefaultListModel<String> model = new DefaultListModel<String>();
         for (int i = 0; i < hijosDisp.length; i++) {
@@ -575,12 +576,102 @@ public class EditPerfFamiliar extends javax.swing.JInternalFrame {
             model1.addElement(hijosAsig[i][0]);
         }
         listaHijosAsignados.setModel(model1);
-        
-        
+
+
     }//GEN-LAST:event_listaPadresMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int error = 0;
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+            Date fechaNacimiento;
+            String fechaString;
+            SimpleDateFormat formatter;
+            formatter = new SimpleDateFormat("dd-MM-yyyy");
+            fechaNacimiento = jXDatePicker1.getDate();
+            fechaString = formatter.format(fechaNacimiento);
+            int res = 0;// numero de inserts que se han hecho
+
+            //insertar datos generales del estudiante
+            try {
+                res += base.actualizarEstudiante(nombre1.getText(), apellido1.getText(), apellido2.getText(), String.valueOf(sexo.getSelectedItem()), fechaString, email.getText(), fb.getText(), pwd.getText(), id.getText());
+            } catch (Exception e) {
+                System.err.println("Error al actualizar información general");
+                error++;
+            }
+
+            //Recorrer la tabla de direcciones para agregar uno a una las direcciones la BD
+            try {
+                DefaultTableModel dtm = (DefaultTableModel) tablaDirecciones.getModel();
+                int nRow = dtm.getRowCount();
+                String codCanton;
+                String codProvincia;
+
+                String tDireccion = String.valueOf(dtm.getValueAt(0, 0));
+                for (int i = 0; i < nRow; i++) {
+                    if (!tDireccion.equals("null") || !tDireccion.equals("")) {
+                        codProvincia = String.valueOf(dtm.getValueAt(i, 1));
+                        codProvincia = codProvincia.substring(0, codProvincia.indexOf("-"));
+                        codCanton = String.valueOf(dtm.getValueAt(i, 2));
+                        codCanton = codCanton.substring(0, codCanton.indexOf("-"));
+
+                        res += base.actualizarDireccion(id.getText(), String.valueOf(dtm.getValueAt(i, 0)), codProvincia, codCanton, String.valueOf(dtm.getValueAt(i, 3)));
+                        try {
+                            tDireccion = String.valueOf(dtm.getValueAt(i + 1, 0)); //Modificacion del ciclo
+                        } catch (Exception e) {
+                            System.err.println("Llego al final del ciclo");
+
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("No se han encontrado direcciones asociadas para actualizar");
+                error++;
+            }
+
+            //Recorrer la tabla de telefonos para agregar uno a uno los telefonos
+            try {
+                DefaultTableModel dtm2 = (DefaultTableModel) tablaTelefonos.getModel();
+                int nRow2 = dtm2.getRowCount();
+
+                for (int j = 0; j < nRow2; j++) {
+                    if (!(String.valueOf(dtm2.getValueAt(j, 0)).equals("") || String.valueOf(dtm2.getValueAt(j, 0)).equals("null"))) {
+
+                        res += base.actualizarTelefonos(id.getText(), String.valueOf(dtm2.getValueAt(j, 0)), String.valueOf(dtm2.getValueAt(j, 1)));
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("No se han encontrado telefonos asociados para actualizar");
+                error++;
+            }
+
+            //Actualizar los hijos asignados
+            try {
+                res += base.eliminarHijosAsignados(id.getText());
+                ListModel model = listaHijosAsignados.getModel();
+                String[] idHijosAsig = new String[model.getSize()];
+                String idHijo;
+                for (int i = 0; i < model.getSize(); i++) {
+                    idHijo = model.getElementAt(i).toString();
+                    idHijo = idHijo.substring(0, idHijo.indexOf("-"));
+                    idHijosAsig[i] = idHijo;
+                }
+                res += base.insertarHijos(id.getText(), idHijosAsig);
+            } catch (Exception e) {
+                System.err.println("Error al actualizar las materias asignadas");
+                error++;
+            }
+
+            if (error == 0) {
+                JOptionPane.showMessageDialog(null, "Se actualizo el perfil del padre de familia o encargado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se logró actualizar correctamente el perfil", "No se agregó ", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
