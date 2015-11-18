@@ -5,6 +5,10 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bryan Adams
@@ -16,6 +20,22 @@ public class VerEventos extends javax.swing.JInternalFrame {
      */
     public VerEventos() {
         initComponents();
+        ConexionBase base = new ConexionBase();
+        try {
+            String[][] eventos = base.getDatosConsulta("select * from evento");
+            String nombreColumnas[] = {"Fecha", "Tipo", "Descripcion"};
+            DefaultTableModel dtm= new DefaultTableModel(null,nombreColumnas);
+            dtm.setNumRows(0);
+            tablaEventos.setModel(dtm);
+            for (int i = 0; i < eventos.length; i++) {
+                dtm.addRow(new Object[]{eventos[i][3],eventos[i][4],eventos[i][5]});
+            }
+            tablaEventos.setModel(dtm);
+            
+        } catch (Exception e) {
+            System.err.println("No se ha logrado recuperar los eventos");
+            JOptionPane.showMessageDialog(null, "No se ha logrado consultar los eventos", "Error ", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -30,10 +50,11 @@ public class VerEventos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         CBLimit = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TVerEventos = new javax.swing.JTable();
+        tablaEventos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TADetalle = new javax.swing.JTextArea();
+        consultar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -42,9 +63,9 @@ public class VerEventos extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Limitar por tipo");
 
-        CBLimit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No limitar", "Cultural", "Deportivo"}));
+        CBLimit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Deportivo", "Cultural" }));
 
-        TVerEventos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -70,7 +91,12 @@ public class VerEventos extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TVerEventos);
+        tablaEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEventosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaEventos);
 
         jLabel3.setText("Detalle");
 
@@ -78,52 +104,113 @@ public class VerEventos extends javax.swing.JInternalFrame {
         TADetalle.setRows(5);
         jScrollPane2.setViewportView(TADetalle);
 
+        consultar.setText("Consultar");
+        consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CBLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(297, 297, 297))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CBLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(consultar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(CBLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(CBLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tablaEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEventosMouseClicked
+        DefaultTableModel model = (DefaultTableModel) tablaEventos.getModel();
+        int i = tablaEventos.getSelectedRow();
+        ConexionBase base = new ConexionBase();
+        String[][] eventos = null;
+        if (CBLimit.getSelectedItem() == "Deportivo") {
+            eventos = base.getDatosConsulta("select * from evento where tipo='Deportivo'");
+        } else if (CBLimit.getSelectedItem() == "Cultural") {
+            eventos = base.getDatosConsulta("select * from evento where tipo='Cultural'");
+        } else {
+            eventos = base.getDatosConsulta("select * from evento");
+        }
+        String[][] autor = base.getDatosConsulta("select concat(nombre1,' ',apellido1,' ',apellido2) from persona where idpersona='" + eventos[i][6] + "';");
+        TADetalle.setText("El evento de tipo: " + eventos[i][4] + "\n"
+                + "por motivo del: " + eventos[i][5] + "\n"
+                + "Es el día: " + eventos[i][3] + " a celebrarse de: " + eventos[i][1] + " a " + eventos[i][2] + "\n"
+                + "en caso de tener alguna duda consulte a: " + autor[0][0]);
+
+
+    }//GEN-LAST:event_tablaEventosMouseClicked
+
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+
+        ConexionBase base = new ConexionBase();
+        try {
+            String[][] eventos = null;
+            if (CBLimit.getSelectedItem() == "Deportivo") {
+                eventos = base.getDatosConsulta("select * from evento where tipo='Deportivo'");
+            } else if (CBLimit.getSelectedItem() == "Cultural") {
+                eventos = base.getDatosConsulta("select * from evento where tipo='Cultural'");
+            } else {
+                eventos = base.getDatosConsulta("select * from evento");
+            }
+
+            String nombreColumnas[] = {"Fecha", "Tipo", "Descripcion"};
+            DefaultTableModel dtm = new DefaultTableModel(null, nombreColumnas);
+            dtm.setNumRows(0);
+            tablaEventos.setModel(dtm);
+            for (int i = 0; i < eventos.length; i++) {
+                dtm.addRow(new Object[]{eventos[i][3], eventos[i][4], eventos[i][5]});
+            }
+            tablaEventos.setModel(dtm);
+
+        } catch (Exception e) {
+            System.err.println("No se ha logrado recuperar los eventos");
+            JOptionPane.showMessageDialog(null, "No se ha logrado consultar los eventos", "Error ", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_consultarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CBLimit;
     private javax.swing.JTextArea TADetalle;
-    private javax.swing.JTable TVerEventos;
+    private javax.swing.JButton consultar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaEventos;
     // End of variables declaration//GEN-END:variables
 }
