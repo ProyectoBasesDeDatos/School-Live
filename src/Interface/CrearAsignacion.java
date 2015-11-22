@@ -35,7 +35,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         if (base.getConexionCorrecta() != -1) {
             //Arreglar para valores nulos
            //String[][] valoresMaterias = base.getDatosConsulta("select nombremateria from materias");
-            valoresMaterias = base.getDatosConsulta("select m.nombremateria, m.idmateria from materias m, persona p, profesores pr, impartemateria i where p.idpersona = pr.idpersona and i.idprofesor = pr.idpersona and m.idmateria = i.idmateria group by m.nombremateria, m.idmateria");
+            valoresMaterias = base.getDatosConsulta("select m.nombremateria, m.idmateria from materias m, (select idpersona from persona where idpersona = '"+idPersona+"') p, profesores pr where p.idpersona = pr.idpersona and m.idmateria = pr.idmateriaasignada group by m.nombremateria, m.idmateria;");
             if(valoresMaterias!=null){
                 for (int i = 0; i < valoresMaterias.length; i++) {
                     CBMateria.addItem(valoresMaterias[i][0]);

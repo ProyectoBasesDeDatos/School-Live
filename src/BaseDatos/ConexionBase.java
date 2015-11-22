@@ -781,5 +781,44 @@ public class ConexionBase {
         return 1;
 
     }
+    
+    public int crearEvento(String id, String tipo, Date fecha, Date horaInicio, Date horaFinal,String descripcion, String autor){
+        String sql = "insert into evento(idevento, tipo, fecha, horainicio, horafinal, descripcion, autor) values(?,?,?,?,?,?,?)";
+        PreparedStatement sentencia = null;
+        try {
+            
+            int horasi = horaInicio.getHours();
+            int minutosi = horaInicio.getMinutes();
+            String sHorasi = Integer.toString(horasi)+":"+Integer.toString(minutosi)+":00";
+            java.sql.Time tiempoi = java.sql.Time.valueOf(sHorasi);
+            
+            int horasf = horaFinal.getHours();
+            int minutosf = horaFinal.getMinutes();
+            String sHorasf = Integer.toString(horasf)+":"+Integer.toString(minutosf)+":00";
+            java.sql.Time tiempof = java.sql.Time.valueOf(sHorasf);
+                        
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fecha);
+            int anno = cal.get(Calendar.YEAR);
+            int mes = cal.get(Calendar.MONTH);
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            String sFecha = Integer.toString(anno)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+            java.sql.Date fechaSQL = java.sql.Date.valueOf( sFecha );
+            
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, id);
+            sentencia.setString(2, tipo);
+            sentencia.setDate(3, fechaSQL);
+            sentencia.setTime(4, tiempoi);
+            sentencia.setTime(5, tiempof);
+            sentencia.setString(6, descripcion);
+            sentencia.setString(7, autor);
+            sentencia.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+        return 1;
+    }
 }
 

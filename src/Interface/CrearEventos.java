@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
 import java.util.Date;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -14,12 +15,13 @@ import javax.swing.SpinnerDateModel;
  * @author Bryan Adams
  */
 public class CrearEventos extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form CrearEventos
-     */
-    public CrearEventos() {
+    
+    String idPersona;
+    
+    public CrearEventos(String idPersona) {
+        this.idPersona = idPersona;
         initComponents();
+       
     }
 
     /**
@@ -33,7 +35,7 @@ public class CrearEventos extends javax.swing.JInternalFrame {
 
         CBTipo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        DatePickerCEven = new org.jdesktop.swingx.JXDatePicker();
+        DPFecha = new org.jdesktop.swingx.JXDatePicker();
         SHoraInicio = new JSpinner( new SpinnerDateModel() );
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(SHoraInicio, "HH:mm");
         SHoraInicio.setEditor(timeEditor);
@@ -49,7 +51,6 @@ public class CrearEventos extends javax.swing.JInternalFrame {
         TADescripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         BGuardar = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -57,7 +58,7 @@ public class CrearEventos extends javax.swing.JInternalFrame {
         setFocusable(false);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
 
-        CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nuevo Tipo", "Cultural", "Deportivo"}));
+        CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cultural", "Deportivo", "Otro"}));
         CBTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBTipoActionPerformed(evt);
@@ -85,9 +86,6 @@ public class CrearEventos extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField2.setText(" ");
-        jTextField2.setToolTipText("Escriba nuevo tipo de evento");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +93,7 @@ public class CrearEventos extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BGuardar)
-                .addGap(25, 25, 25))
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +104,6 @@ public class CrearEventos extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,12 +113,13 @@ public class CrearEventos extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
                                         .addComponent(SHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(DatePickerCEven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 124, Short.MAX_VALUE)))
+                                        .addComponent(DPFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 99, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,26 +127,23 @@ public class CrearEventos extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DPFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DatePickerCEven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel1))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(SHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BGuardar)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -159,14 +154,33 @@ public class CrearEventos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CBTipoActionPerformed
 
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConexionBase base= new ConexionBase();
+            String tipo = CBTipo.getSelectedItem().toString();
+            Date fecha = DPFecha.getDate();
+            Date horaIn = (java.util.Date)SHoraInicio.getValue();
+            Date horaFi = (java.util.Date)SHoraFinal.getValue();
+            String descripcion = TADescripcion.getText();
+            String[][] idevento = base.getDatosConsulta("select max(idevento) from evento;");
+            int idevnt;
+            if(idevento[0][0] != null){
+                idevnt = Integer.parseInt(idevento[0][0])+1;
+            }else{
+                idevnt = 1;
+            }
+            
+            base.crearEvento(Integer.toString(idevnt), tipo, fecha, horaIn, horaFi, descripcion, idPersona);
+            
+        }catch(IllegalArgumentException	e){
+            System.err.printf("Error al crear Asignacion");
+        }
     }//GEN-LAST:event_BGuardarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;
     private javax.swing.JComboBox CBTipo;
-    private org.jdesktop.swingx.JXDatePicker DatePickerCEven;
+    private org.jdesktop.swingx.JXDatePicker DPFecha;
     private javax.swing.JSpinner SHoraFinal;
     private javax.swing.JSpinner SHoraInicio;
     private javax.swing.JTextArea TADescripcion;
@@ -176,6 +190,5 @@ public class CrearEventos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

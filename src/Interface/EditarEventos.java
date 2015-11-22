@@ -18,7 +18,9 @@ public class EditarEventos extends javax.swing.JInternalFrame {
     /**
      * Creates new form CrearEventos
      */
-    public EditarEventos() {
+    String idPersona;
+    public EditarEventos(String idPersona) {
+        this.idPersona = idPersona;
         initComponents();
     }
 
