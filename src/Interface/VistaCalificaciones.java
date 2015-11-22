@@ -18,20 +18,27 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
      */
     public VistaCalificaciones(String idPersona) {
         initComponents();
-                String[] periodo={"'I'","'II'","'III'"};
-        String sql= "select m.nombremateria,c.parcial1,c.parcial2,c.trabajoextraclase,c.trabajocotidiano,c.asistencia,c.concepto,(c.parcial1+c.parcial2+c.trabajoextraclase+c.trabajocotidiano+c.asistencia+c.concepto) total\n" +
+        
+        ConexionBase conexion = new ConexionBase();
+        Object[][] resultado;    
+        
+        //Combobox
+        String sql="select nombre1||' '||apellido1||' '||apellido2||' '||'-'||' '||idpersona from persona where idpersona='"+idPersona+"';";
+        resultado = conexion.getDatosConsulta(sql);
+        EstudianteSeleccion.removeAllItems();
+        EstudianteSeleccion.addItem(resultado[0][0]);
+        
+        //1er Periodo, 2do Periodo, 3er Periodo
+        String[] periodo={"'I'","'II'","'III'"};
+        String[] titulos = new String [] {"Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"};
+        sql= "select m.nombremateria,c.parcial1,c.parcial2,c.trabajoextraclase,c.trabajocotidiano,c.asistencia,c.concepto,(c.parcial1+c.parcial2+c.trabajoextraclase+c.trabajocotidiano+c.asistencia+c.concepto) total\n" +
         "from materias m, calificacionesasignadas ca,calificaciones c\n" +
         "where m.idmateria=ca.idmateria\n" +
         "and ca.idcalificacion=c.idcalificacion\n" +
         "and ca.idestudiante='"+idPersona+"'"+
         "and ca.periodo=";
-        
-        
-        //"Materia","1er Periodo","2do Periodo","3er Periodo","Promedio Anual","Aprobado"
-        String[] titulos = new String [] {"Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"};
-        ConexionBase conexion = new ConexionBase();
-        
-        Object[][] resultado = conexion.getDatosConsulta(sql+periodo[0]);
+
+        resultado = conexion.getDatosConsulta(sql+periodo[0]);
         javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
         TPeriodo1.setModel(modelo);
         
@@ -44,8 +51,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         TPeriodo3.setModel(modelo);
         
         //Anual
-        titulos = new String [] {"Materia", "1er Periodo", "2do Periodo", "3er Periodo", "Promedio Anual"};
-        
+        titulos = new String [] {"Materia", "1er Periodo", "2do Periodo", "3er Periodo", "Promedio Anual"};        
         sql= "select x.nombremateria,x.I_Periodo,y.II_Periodo,z.III_Periodo,(x.I_Periodo+y.II_Periodo+z.III_Periodo)/3 Promedio from (\n" +
         "	select m.nombremateria,(c.parcial1+c.parcial2+c.trabajoextraclase+c.trabajocotidiano+c.asistencia+c.concepto) I_Periodo \n" +
         "	from materias m, calificacionesasignadas ca,calificaciones c \n" +
@@ -75,7 +81,6 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         
         resultado = conexion.getDatosConsulta(sql);
         modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
-        
         TAnual.setModel(modelo);
         
         this.repaint();
