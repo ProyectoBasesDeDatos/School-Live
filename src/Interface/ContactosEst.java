@@ -95,14 +95,14 @@ public class ContactosEst extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Primer Apellido", "Segundo Apellido", "Año", "Sección"
+                "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Año", "Sección"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,6 +113,11 @@ public class ContactosEst extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -120,6 +125,7 @@ public class ContactosEst extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jButton3.setText("Consultar");
@@ -196,14 +202,14 @@ public class ContactosEst extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Primer Apellido", "Segundo Apellido", "Materias"
+                "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Materias"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -214,12 +220,18 @@ public class ContactosEst extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable3);
         if (jTable3.getColumnModel().getColumnCount() > 0) {
             jTable3.getColumnModel().getColumn(0).setResizable(false);
             jTable3.getColumnModel().getColumn(1).setResizable(false);
             jTable3.getColumnModel().getColumn(2).setResizable(false);
             jTable3.getColumnModel().getColumn(3).setResizable(false);
+            jTable3.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jButton4.setText("Consultar");
@@ -315,14 +327,14 @@ public class ContactosEst extends javax.swing.JInternalFrame {
         
         ConexionBase base = new ConexionBase();
         if (base.getConexionCorrecta() != -1) {
-        String [][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo");
-        String nombreColumnas[]={"Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+        String [][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo");
+        String nombreColumnas[]={"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
         DefaultTableModel tableModel= new DefaultTableModel(nombreColumnas,0);
         tableModel.setRowCount(0);
         jTable1.setModel(tableModel);
         for (int i = 0; i < sql.length; i++) {
-            String[][] sql2= base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo"); 
-            tableModel.addRow(new Object[]{sql2[i][0],sql2[i][1],sql2[i][2],sql2[i][3],sql2[i][4]});
+            String[][] sql2= base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo"); 
+            tableModel.addRow(new Object[]{sql2[i][0],sql2[i][1],sql2[i][2],sql2[i][3],sql2[i][4],sql2[i][5]});
         }
         jTable1.setModel(tableModel);
         } else {
@@ -334,14 +346,14 @@ public class ContactosEst extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         ConexionBase base = new ConexionBase();
         if (base.getConexionCorrecta() != -1) {
-            String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria group by p.nombre1, p.apellido1, p.apellido2");
-            String nombreColumnas[] = {"Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
+            String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+            String nombreColumnas[] = {"ID","Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
             DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
             tableModel.setRowCount(0);
             jTable3.setModel(tableModel);
             for (int i = 0; i < sql.length; i++) {
-                String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria group by p.nombre1, p.apellido1, p.apellido2");
-                tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+                String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria group by p.idpersona, p.nombre1, p.apellido1, p.apellido2");
+                tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3],sql2[i][4]});
             }
             jTable3.setModel(tableModel);
         } else {
@@ -355,36 +367,36 @@ public class ContactosEst extends javax.swing.JInternalFrame {
         ConexionBase base = new ConexionBase();
         if (base.getConexionCorrecta() != -1) {
             if ("Nombre".equals(parametro)) {
-                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.nombre1 = '" + jTextField1.getText() + "';");
-                String nombreColumnas[] = {"Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.nombre1 = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
                 DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
                 tableModel.setRowCount(0);
                 jTable1.setModel(tableModel);
                 for (int i = 0; i < sql.length; i++) {
-                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.nombre1 = '" + jTextField1.getText() + "';");
-                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4]});
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and p.nombre1 = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4],sql2[i][5]});
                 }
                 jTable1.setModel(tableModel);
             } else if ("Año".equals(parametro)) {
-                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.anno = '" + jTextField1.getText() + "';");
-                String nombreColumnas[] = {"Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.anno = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
                 DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
                 tableModel.setRowCount(0);
                 jTable1.setModel(tableModel);
                 for (int i = 0; i < sql.length; i++) {
-                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.anno = '" + jTextField1.getText() + "';");
-                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4]});
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.anno = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4],sql2[i][5]});
                 }
                 jTable1.setModel(tableModel);
             } else if ("Sección".equals(parametro)){
-                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.seccion = '" + jTextField1.getText() + "';");
-                String nombreColumnas[] = {"Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.seccion = '" + jTextField1.getText() + "';");
+                String nombreColumnas[] = {"ID","Nombre","Primer Apellido","Segundo Apellido","Año","Sección"};
                 DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
                 tableModel.setRowCount(0);
                 jTable1.setModel(tableModel);
                 for (int i = 0; i < sql.length; i++) {
-                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.seccion = '" + jTextField1.getText() + "';");
-                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4]});
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, g.anno, g.seccion from persona p, grupo g, estudiante e where p.idpersona = e.idpersona and e.idgrupo = g.idgrupo and g.seccion = '" + jTextField1.getText() + "';");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3], sql2[i][4],sql2[i][5]});
                 }
                 jTable1.setModel(tableModel);
             }
@@ -403,25 +415,25 @@ public class ContactosEst extends javax.swing.JInternalFrame {
         ConexionBase base = new ConexionBase();
         if (base.getConexionCorrecta() != -1) {
             if ("Nombre".equals(parametro)) {
-                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and p.nombre1 = '" + jTextField2.getText() + "' group by p.nombre1, p.apellido1, p.apellido2;");
-                String nombreColumnas[] = {"Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and p.nombre1 = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2;");
+                String nombreColumnas[] = {"ID","Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
                 DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
                 tableModel.setRowCount(0);
                 jTable3.setModel(tableModel);
                 for (int i = 0; i < sql.length; i++) {
-                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and p.nombre1 = '" + jTextField2.getText() + "' group by p.nombre1, p.apellido1, p.apellido2;");
-                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and p.nombre1 = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2;");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3],sql2[i][4]});
                 }
                 jTable3.setModel(tableModel);
             } else{
-                String[][] sql = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and m.nombremateria = '" + jTextField2.getText() + "' group by p.nombre1, p.apellido1, p.apellido2;");
-                String nombreColumnas[] = {"Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
+                String[][] sql = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and m.nombremateria = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2;");
+                String nombreColumnas[] = {"ID","Nombre", "Primer Apellido", "Segundo Apellido", "Materias"};
                 DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
                 tableModel.setRowCount(0);
                 jTable3.setModel(tableModel);
                 for (int i = 0; i < sql.length; i++) {
-                    String[][] sql2 = base.getDatosConsulta("select p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and m.nombremateria = '" + jTextField2.getText() + "' group by p.nombre1, p.apellido1, p.apellido2;");
-                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+                    String[][] sql2 = base.getDatosConsulta("select p.idpersona, p.nombre1, p.apellido1, p.apellido2, string_agg(m.nombremateria, ', ') as materias from persona p, materias m, profesores pr where p.idpersona = pr.idpersona and pr.idmateriaasignada = m.idmateria and m.nombremateria = '" + jTextField2.getText() + "' group by p.idpersona, p.nombre1, p.apellido1, p.apellido2;");
+                    tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3],sql2[i][4]});
                 }
                 jTable3.setModel(tableModel);
             }
@@ -433,6 +445,32 @@ public class ContactosEst extends javax.swing.JInternalFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+        int selectedRowIndex = jTable1.getSelectedRow();
+        String selectedObject = jTable1.getModel().getValueAt(selectedRowIndex, 0).toString();
+        String[][] sql = base.getDatosConsulta("select concat('Dirección de ',r2.direcciones), concat('Teléfono de ',r3.telefonos), concat('Email: ',r4.email) from	(select d.idpersona, string_agg(concat(d.tipo, ': ',p.descripcion,', ' ,c.descripcion, ', ',d.descripcion),'; Dirección de  ') as Direcciones from dirpersona d, provincia p, canton c where d.idprovincia = p.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+selectedObject+"' group by d.idpersona)r2, (select idpersona, string_agg(concat(tipotelefono, ': ',numerotelefono),'; Teléfono de ') as Telefonos from telefono where idpersona = '"+selectedObject+"' group by idpersona)r3, (select idpersona, email from persona where idpersona = '"+selectedObject+"')r4 where r2.idpersona = r3.idpersona and r2.idpersona = r4.idpersona");
+        jTextArea1.setText(sql[0][0]+"\n"+sql[0][1]+"\n"+sql[0][2]);
+        }else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+        ConexionBase base = new ConexionBase();
+        if (base.getConexionCorrecta() != -1) {
+        int selectedRowIndex = jTable3.getSelectedRow();
+        String selectedObject = jTable3.getModel().getValueAt(selectedRowIndex, 0).toString();
+        String[][] sql = base.getDatosConsulta("select concat('Dirección de ',r2.direcciones), concat('Teléfono de ',r3.telefonos), concat('Email: ',r4.email) from	(select d.idpersona, string_agg(concat(d.tipo, ': ',p.descripcion,', ' ,c.descripcion, ', ',d.descripcion),'; Dirección de  ') as Direcciones from dirpersona d, provincia p, canton c where d.idprovincia = p.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+selectedObject+"' group by d.idpersona)r2, (select idpersona, string_agg(concat(tipotelefono, ': ',numerotelefono),'; Teléfono de ') as Telefonos from telefono where idpersona = '"+selectedObject+"' group by idpersona)r3, (select idpersona, email from persona where idpersona = '"+selectedObject+"')r4 where r2.idpersona = r3.idpersona and r2.idpersona = r4.idpersona");
+        jTextArea1.setText(sql[0][0]+"\n"+sql[0][1]+"\n"+sql[0][2]);
+        }else {
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

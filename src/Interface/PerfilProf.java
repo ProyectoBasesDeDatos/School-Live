@@ -7,7 +7,10 @@ package Interface;
 
 import BaseDatos.ConexionBase;
 import java.util.Arrays;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -24,296 +27,49 @@ public class PerfilProf extends javax.swing.JInternalFrame {
         this.idPersona=idPersona;
         initComponents();
         
-        String [] tipodir = new String [3];
-        tipodir[0] = "Habitacion"; tipodir[1] = "Oficina"; tipodir[2] = "Otro";
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(tipodir));
+        ConexionBase base= new ConexionBase();
         
-        String [] tipotel = new String [4];
-        tipotel[0] = "Casa"; tipotel[1] = "Oficina"; tipotel[2] = "Movil"; tipotel[3] = "Otro";
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(tipotel));
-    }
-    
-    public String Parametro(String idPersona, String Parametro){
-        //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            String Consulta = base.obtieneParametro(idPersona, Parametro); 
-            return Consulta;
-        }else{
-            return null;
+        if (base.getConexionCorrecta() != -1) {
+            
+            String[][] valoresProvincias = base.getDatosConsulta("select concat(idprovincia,'-',descripcion) as CodProvincia from provincia");
+            String[][] valoresCantones = base.getDatosConsulta("select concat(idcanton,'-',descripcion) as CodCanton from canton");
+             
+            {String[][] sql = base.getDatosConsulta("select d.tipo, concat(p.idprovincia,'-',p.descripcion), concat(c.idcanton,'-',c.descripcion), d.descripcion from dirpersona d, provincia p, canton c where d.idpersona = '"+this.idPersona+"' and d.idprovincia = p.idprovincia and d.idcanton = c.idcanton");
+            String nombreColumnas[] = {"Tipo", "Provincia", "Canton", "Direccion Exacta"};
+            DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+            tableModel.setRowCount(0);
+            tablaDirecciones.setModel(tableModel);
+            for (int i = 0; i < sql.length; i++) {
+                String[][] sql2 = base.getDatosConsulta("select d.tipo, concat(p.idprovincia,'-',p.descripcion), concat(c.idcanton,'-',c.descripcion), d.descripcion from dirpersona d, provincia p, canton c where d.idpersona = '"+this.idPersona+"' and d.idprovincia = p.idprovincia and d.idcanton = c.idcanton");
+                tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
+            }
+            tablaDirecciones.setModel(tableModel);
+            TableColumn provinciaColumn = tablaDirecciones.getColumnModel().getColumn(1);
+            TableColumn cantonColumn = tablaDirecciones.getColumnModel().getColumn(2);
+            JComboBox listaProvincias = new JComboBox();
+            JComboBox listaCantones = new JComboBox();
+            for (int i = 0; i < valoresProvincias.length; i++) {
+                listaProvincias.addItem(valoresProvincias[i][0]);
+            }provinciaColumn.setCellEditor(new DefaultCellEditor(listaProvincias));
+            for (int j = 0; j < valoresCantones.length; j++) {
+                listaCantones.addItem(valoresCantones[j][0]);
+            }cantonColumn.setCellEditor(new DefaultCellEditor(listaCantones));}
+            
+            {String[][] sql = base.getDatosConsulta("select tipotelefono, numerotelefono from telefono where idpersona = '"+this.idPersona+"'");
+            String nombreColumnas[] = {"Tipo", "Numero"};
+            DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
+            tableModel.setRowCount(0);
+            tablaTelefonos.setModel(tableModel);
+            for (int i = 0; i < sql.length; i++) {
+                String[][] sql2 = base.getDatosConsulta("select tipotelefono, numerotelefono from telefono where idpersona = '"+this.idPersona+"'");
+                tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1]});
+            }
+            tablaTelefonos.setModel(tableModel);}
+  
         }
-        
-    }
-    
-    public int ActualizaDatosProfesor(String IdPersona, String Email, String Facebook){
-        //Metodo que actualiza los datos de Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            int Consulta = base.actualizaDatos(IdPersona, Email, Facebook); 
-            return Consulta;
-        }else{
-            return -1;
+        else{
+            System.err.println("No se ha logrado establecer conexión con la base de datos");
         }
-    }
-    
-    public int ActualizaDireccionProfesor(String IdPersona, String Direccion){
-        //Metodo que actualiza la direccion del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            int Consulta = base.actualizaDireccion(IdPersona, Direccion); 
-            return Consulta;
-        }else{
-            return -1;
-        }
-    }
-    
-    public int ActualizaTelefonoProfesor(String Tipo, String IdPersona, String Telefono){
-        //Metodo que actualiza el telefono del Estudiante/Padre de Familia
-        ConexionBase base= new ConexionBase();
-        if(base.getConexionCorrecta()!= -1){
-            int Consulta = base.actualizaTelefono(Tipo, IdPersona, Telefono); 
-            return Consulta;
-        }else{
-            return -1;
-        }
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jTextField9 = new javax.swing.JTextField();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox();
-
-        setClosable(true);
-        setIconifiable(true);
-        setTitle("Perfil Profesor");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
-
-        jLabel1.setText("Identificación");
-
-        jLabel2.setText("Primer Apellido");
-
-        jLabel3.setText("Nombre");
-
-        jLabel4.setText("Segundo Apellido");
-
-        jLabel5.setText("Teléfono");
-
-        jLabel6.setText("Correo Electrónico");
-
-        jLabel7.setText("Sexo");
-
-        jLabel8.setText("Facebook");
-
-        jLabel9.setText("Fecha de Nacimiento");
-
-        jLabel10.setText("Dirección");
-
-        jLabel11.setText("Grupos");
-
-        jToggleButton1.setText("Ver");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton2.setText("Guardar");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(50);
-        jScrollPane3.setViewportView(jTextArea2);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null}
-            },
-            new String [] {
-                "Provincia", "Canton", "Direccion Exacta"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null}
-            },
-            new String [] {
-                "Nivel", "Seccion", "Materias"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(jTable2);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(31, 31, 31)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, 0, 83, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField7))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField9))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jToggleButton2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField6)))))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        ConexionBase base= new ConexionBase();
         
         {String Parametro = jLabel1.getText();
         String prueba2 = Parametro(this.idPersona, Parametro);
@@ -362,7 +118,7 @@ public class PerfilProf extends javax.swing.JInternalFrame {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
         }}
         
-        {String parametro = jComboBox2.getSelectedItem().toString();
+        /*{String parametro = jComboBox2.getSelectedItem().toString();
         if (base.getConexionCorrecta() != -1) {
             if ("Habitacion".equals(parametro)) {
                 String[][] sql = base.getDatosConsulta("select p.descripcion, c.descripcion, d.descripcion from provincia p, canton c, dirpersona d where p.idprovincia = c.idprovincia and d.idcanton = c.idcanton and d.idpersona = '"+this.idPersona+"' and d.tipo = '"+parametro+"';");
@@ -402,40 +158,389 @@ public class PerfilProf extends javax.swing.JInternalFrame {
 
         } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
-        }}
+        }}*/
         
-        {String parametro = jComboBox1.getSelectedItem().toString();
-        String[][] sql = base.getDatosConsulta("select numerotelefono from telefono where idpersona = '"+this.idPersona+"' and tipotelefono = '"+parametro+"';");
-        jTextField5.setText(sql[0][0]);}
+    }
+    
+    public String Parametro(String idPersona, String Parametro){
+        //Metodo que devuelve la identificacion del Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            String Consulta = base.obtieneParametro(idPersona, Parametro); 
+            return Consulta;
+        }else{
+            return null;
+        }
         
-        /*{String Parametro = jLabel10.getText();
-        String prueba2 = Parametro(this.idPersona, Parametro);
-        jTextArea1.setText(prueba2);}
-        
-        {String Parametro = jLabel5.getText();
-        String prueba2 = Parametro(this.idPersona, Parametro);
-        jTextField5.setText(prueba2);}*/
-        
-        /*{String Parametro = jLabel11.getText();
-        String prueba2 = Parametro(this.idPersona, Parametro);
-        jTextArea3.setText(prueba2);}*/
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }
+    
+    public int ActualizaDatosProfesor(String IdPersona, String Email, String Facebook){
+        //Metodo que actualiza los datos de Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            int Consulta = base.actualizaDatos(IdPersona, Email, Facebook); 
+            return Consulta;
+        }else{
+            return -1;
+        }
+    }
+    
+    public int ActualizaProvinciaCanton(String IdPersona, String Tipo, String Provincia, String Canton){
+        //Metodo que actualiza la direccion del Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            int Consulta = base.actualizaProvinciaCanton(IdPersona,Tipo,Provincia,Canton); 
+            return Consulta;
+        }else{
+            return -1;
+        }
+    }
+    
+    /*public int ActualizaCanton(String IdPersona, String Tipo, String Canton){
+        //Metodo que actualiza la direccion del Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            int Consulta = base.actualizaProvincia(IdPersona,Tipo,Canton); 
+            return Consulta;
+        }else{
+            return -1;
+        }
+    }*/
+    
+    public int ActualizaDireccion(String IdPersona, String Tipo, String Direccion){
+        //Metodo que actualiza la direccion del Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            int Consulta = base.actualizaDireccion(IdPersona,Tipo,Direccion); 
+            return Consulta;
+        }else{
+            return -1;
+        }
+    }
+    
+    public int ActualizaTelefonoProfesor(String Tipo, String IdPersona, String Telefono){
+        //Metodo que actualiza el telefono del Estudiante/Padre de Familia
+        ConexionBase base= new ConexionBase();
+        if(base.getConexionCorrecta()!= -1){
+            int Consulta = base.actualizaTelefono(Tipo, IdPersona, Telefono); 
+            return Consulta;
+        }else{
+            return -1;
+        }
+    }
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaDirecciones = new javax.swing.JTable();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tablaTelefonos = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Perfil Profesor");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
+
+        jLabel1.setText("Identificación");
+
+        jLabel2.setText("Primer Apellido");
+
+        jLabel3.setText("Nombre");
+
+        jLabel4.setText("Segundo Apellido");
+
+        jLabel5.setText("Teléfono");
+
+        jLabel6.setText("Correo Electrónico");
+
+        jLabel7.setText("Sexo");
+
+        jLabel8.setText("Facebook");
+
+        jLabel9.setText("Fecha de Nacimiento");
+
+        jLabel10.setText("Dirección");
+
+        jLabel11.setText("Grupos");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(50);
+        jScrollPane3.setViewportView(jTextArea2);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "Nivel", "Seccion", "Materias"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jTable2);
+
+        tablaDirecciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Tipo", "Provincia", "Canton", "Direccion Exacta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tablaDirecciones);
+
+        tablaTelefonos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Tipo", "Numero"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane12.setViewportView(tablaTelefonos);
+
+        jButton3.setText("Guardar Telefonos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Guardar Direccion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addComponent(jTextField1)
+                                .addComponent(jTextField7))))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(7, 7, 7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel5)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String Email = jTextField6.getText();
-         String Facebook = jTextField8.getText();
-         ActualizaDatosProfesor(this.idPersona, Email, Facebook);
-         /*String Direccion = jTextArea1.getText();
-         ActualizaDireccionProfesor(this.idPersona, Direccion);
-         String Telefono = jTextField5.getText();
-         ActualizaTelefonoProfesor(this.idPersona, Telefono);*/
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        String tipo4 = tablaTelefonos.getModel().getValueAt(0, 0).toString();
+        String telefono1 = tablaTelefonos.getModel().getValueAt(0, 1).toString();
+        ActualizaTelefonoProfesor(tipo4,this.idPersona,telefono1);
+
+        String tipo5 = tablaTelefonos.getModel().getValueAt(1, 0).toString();
+        String telefono2 = tablaTelefonos.getModel().getValueAt(1, 1).toString();
+        ActualizaTelefonoProfesor(tipo5,this.idPersona,telefono2);
+
+        String tipo6 = tablaTelefonos.getModel().getValueAt(2, 0).toString();
+        String telefono3 = tablaTelefonos.getModel().getValueAt(2, 1).toString();
+        ActualizaTelefonoProfesor(tipo6,this.idPersona,telefono3);
+
+        String tipo7 = tablaTelefonos.getModel().getValueAt(2, 0).toString();
+        String telefono4 = tablaTelefonos.getModel().getValueAt(2, 1).toString();
+        ActualizaTelefonoProfesor(tipo7,this.idPersona,telefono4);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String tipo1 = tablaDirecciones.getModel().getValueAt(0, 0).toString();
+        String provincia1 = tablaDirecciones.getModel().getValueAt(0, 1).toString();
+        String canton1 = tablaDirecciones.getModel().getValueAt(0, 2).toString();
+        String direccion1 = tablaDirecciones.getModel().getValueAt(0, 3).toString();
+        ActualizaProvinciaCanton(this.idPersona,tipo1,provincia1,canton1);ActualizaDireccion(this.idPersona,tipo1,direccion1);
+
+        String tipo2 = tablaDirecciones.getModel().getValueAt(1, 0).toString();
+        String provincia2 = tablaDirecciones.getModel().getValueAt(1, 1).toString();
+        String canton2 = tablaDirecciones.getModel().getValueAt(1, 2).toString();
+        String direccion2 = tablaDirecciones.getModel().getValueAt(1, 3).toString();
+        ActualizaProvinciaCanton(this.idPersona,tipo2,provincia2,canton2);ActualizaDireccion(this.idPersona,tipo2,direccion2);
+
+        String tipo3 = tablaDirecciones.getModel().getValueAt(2, 0).toString();
+        String provincia3 = tablaDirecciones.getModel().getValueAt(2, 1).toString();
+        String canton3 = tablaDirecciones.getModel().getValueAt(2, 2).toString();
+        String direccion3 = tablaDirecciones.getModel().getValueAt(2, 3).toString();
+        ActualizaProvinciaCanton(this.idPersona,tipo3,provincia3,canton3);ActualizaDireccion(this.idPersona,tipo3,direccion3);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+      String email = jTextField6.getText();
+      String facebook = jTextField8.getText();  
+      ActualizaDatosProfesor(this.idPersona,email,facebook);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -447,22 +552,21 @@ public class PerfilProf extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JTable tablaDirecciones;
+    private javax.swing.JTable tablaTelefonos;
     // End of variables declaration//GEN-END:variables
 }

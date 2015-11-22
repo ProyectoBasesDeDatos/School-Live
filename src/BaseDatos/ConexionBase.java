@@ -206,14 +206,35 @@ public class ConexionBase {
         }
     }
 
-    public int actualizaDireccion(String IdPersona, String Direccion) {
+    public int actualizaProvinciaCanton(String IdPersona, String Tipo, String Provincia, String Canton) {
 
-        String sqlactualizadir = "update DirPersona set descripcion = ? where idpersona = ?;";
+        String sqlactualizadir = "update DirPersona set idprovincia = substring(? from 1 for 2),idcanton = substring(? from 1 for 2) where idpersona = ? and tipo = ?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sqlactualizadir);
+            sentencia.setString(1, Provincia);
+            sentencia.setString(2, Canton);
+            sentencia.setString(3, IdPersona);
+            sentencia.setString(4, Tipo);
+            sentencia.execute();
+            return 1;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+
+    }
+    
+    public int actualizaDireccion(String IdPersona, String Tipo, String Direccion) {
+
+        String sqlactualizadir = "update DirPersona set descripcion = ? where idpersona = ? and tipo = ?;";
         PreparedStatement sentencia = null;
         try {
             sentencia = base.prepareStatement(sqlactualizadir);
             sentencia.setString(1, Direccion);
             sentencia.setString(2, IdPersona);
+            sentencia.setString(3, Tipo);
             sentencia.execute();
             return 1;
 
@@ -226,13 +247,13 @@ public class ConexionBase {
 
     public int actualizaTelefono(String Tipo, String IdPersona, String Telefono) {
 
-        String sqlactualizaetel = "update Telefono set tipotelefono = ?, numerotelefono = ? where idpersona = ?;";
+        String sqlactualizaetel = "update Telefono set numerotelefono = ? where idpersona = ? and tipotelefono = ?;";
         PreparedStatement sentencia = null;
         try {
             sentencia = base.prepareStatement(sqlactualizaetel);
-            sentencia.setString(1, Tipo);
-            sentencia.setString(2, Telefono);
-            sentencia.setString(3, IdPersona);
+            sentencia.setString(1, Telefono);
+            sentencia.setString(2, IdPersona);
+            sentencia.setString(3, Tipo);
             sentencia.execute();
             return 1;
 
