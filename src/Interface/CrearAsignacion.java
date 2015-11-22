@@ -22,6 +22,8 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
      * Creates new form AsignacionesProf
      */
     String idPersona;
+    String[][] valoresGrupo;
+    String[][] valoresMaterias;
     
     public CrearAsignacion(String idPersona) {
         this.idPersona = idPersona;
@@ -30,58 +32,26 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         ConexionBase base = new ConexionBase();
         CBGrupo.removeAllItems();
         CBMateria.removeAllItems();
-        //Agregar elementos a los combobox
         if (base.getConexionCorrecta() != -1) {
-            String[][] valoresMaterias = base.getDatosConsulta("select m.nombremateria\n" +
-                                                                "from materias m, persona p, profesores pr, impartemateria i\n" +
-                                                                "where p.idpersona = pr.idpersona\n" +
-                                                                    "and i.idprofesor = pr.idpersona\n" +
-                                                                    "and m.idmateria = i.idmateria");
-
-
-            for (int i = 0; i < valoresMaterias.length; i++) {
-                CBMateria.addItem(valoresMaterias[i][0]);
+            //Arreglar para valores nulos
+           //String[][] valoresMaterias = base.getDatosConsulta("select nombremateria from materias");
+            valoresMaterias = base.getDatosConsulta("select m.nombremateria, m.idmateria from materias m, persona p, profesores pr, impartemateria i where p.idpersona = pr.idpersona and i.idprofesor = pr.idpersona and m.idmateria = i.idmateria group by m.nombremateria, m.idmateria");
+            if(valoresMaterias!=null){
+                for (int i = 0; i < valoresMaterias.length; i++) {
+                    CBMateria.addItem(valoresMaterias[i][0]);
+                } 
             }
-            if (base.getConexionCorrecta() != -1) {
-                String[][] valoresGrupo = base.getDatosConsulta("select m.nombremateria\n" +
-                                                                "from materias m, persona p, profesores pr, impartemateria i\n" +
-                                                                "where p.idpersona = pr.idpersona\n" +
-                                                                    "and i.idprofesor = pr.idpersona\n" +
-                                                                    "and m.idmateria = i.idmateria");
-
-
+            
+            valoresGrupo = base.getDatosConsulta("select * from grupo;");
+            if(valoresGrupo!=null){
                 for (int i = 0; i < valoresGrupo.length; i++) {
-                    CBMateria.addItem(valoresGrupo[i][0]);
+                    CBGrupo.addItem(valoresGrupo[i][1]+"-"+valoresGrupo[i][2]);
                 }
-
-
-            } else {
-                System.err.println("No se ha logrado establecer conexión con la base de datos");
             }
-        }
-    }
-        
-    private int crearAsignacionBase (String id, String tipo, String descripcion,String hora, Date fecha, String grupo, String profesor, String materia){
-        String sqlAsignacion = "insert into asignacion(idasignacion, tipo, descripcion, hora, fecha, grupo, profesor, materia) values(?,?,?,?,?,?,?,?)";
-        PreparedStatement sentencia = null;
-        ConexionBase base = new ConexionBase();
-        try {
-            //sentencia = base.prepareStatement(sqlAsignacion);
-            sentencia.setString(1, id);
-            sentencia.setString(2, tipo);
-            sentencia.setString(3, descripcion);
-            sentencia.setString(4, hora);
-            sentencia.setDate(5, (java.sql.Date)fecha);
-            sentencia.setString(6, grupo);
-            sentencia.setString(7, profesor);
-            sentencia.setString(8, materia);
-            sentencia.execute();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return 0;
-        }
-        return 1;
-
+            
+        }else {
+                System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }        
     }
 
     /**
@@ -157,7 +127,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -196,7 +166,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         jSplitPane1.setRightComponent(jInternalFrame1);
 
         LTipo.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Tarea", "Quiz", "Examen", "Proyecto", "Trabajo ExtraClase" };
+            String[] strings = { "Tarea", "Quiz", "Examen", "Proyecto", "Trabajo Extraclase" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -260,22 +230,42 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CBGrupoActionPerformed
 
     private void guardarAsignButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarAsignButtonActionPerformed
-        ConexionBase base= new ConexionBase();
-        String tipo = LTipo.getSelectedValue().toString();
-        String materia = CBMateria.getSelectedObjects()[0].toString();
-        String grupo = CBGrupo.getSelectedObjects()[0].toString();
-        Date fecha = DPFecha.getDate();
-        String hora = SHora.getValue().toString();
-        String descripcion = TADescripcion.getText();
-        String[][] idasignacion = base.getDatosConsulta("select max(idasignacion) from asignacion;");
-        int idasig;
-        if(idasignacion[0][0] != null){
-            idasig = Integer.parseInt(idasignacion[0][0])+1;
-        }else{
-            idasig = 1;
+        try{
+            ConexionBase base= new ConexionBase();
+            String tipo = LTipo.getSelectedValue().toString();
+            String materia = CBMateria.getSelectedItem().toString();
+            String idMateria = "";
+            int j = 0;
+            while(j<valoresMaterias.length&&idMateria.compareTo("")==0){
+                if(valoresMaterias[j][0].compareTo(materia)==0){
+                    idMateria = valoresMaterias[j][1];
+                }
+                j++;
+            }
+            String grupo = CBGrupo.getSelectedItem().toString();
+            String idGrupo = "";
+            int i = 0;
+            while(i<valoresGrupo.length&&idGrupo.compareTo("")==0){
+                if(valoresGrupo[i][1].compareTo(grupo.substring(0,2))==0&&valoresGrupo[i][2].compareTo(grupo.substring(3,5))==0){
+                    idGrupo = valoresGrupo[i][0];
+                }
+                i++;
+            }
+            Date fecha = DPFecha.getDate();
+            Date hora = (java.util.Date)SHora.getValue();
+            String descripcion = TADescripcion.getText();
+            String[][] idasignacion = base.getDatosConsulta("select max(idasignacion) from asignacion;");
+            int idasig;
+            if(idasignacion[0][0] != null){
+                idasig = Integer.parseInt(idasignacion[0][0])+1;
+            }else{
+                idasig = 1;
+            }
+            base.crearAsignacionBase(Integer.toString(idasig),tipo,descripcion,hora,fecha,idGrupo,this.idPersona,idMateria);
+        }catch(IllegalArgumentException	e){
+            System.err.printf("Error al crear Asignacion");
         }
         
-        this.crearAsignacionBase(Integer.toString(idasig),tipo,descripcion,hora,fecha,grupo,this.idPersona,materia);
         
         
     }//GEN-LAST:event_guardarAsignButtonActionPerformed

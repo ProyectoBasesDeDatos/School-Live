@@ -14,6 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -701,6 +702,63 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
+    }
+    
+    public int crearAsignacionBase (String id, String tipo, String descripcion,Date hora, Date fecha, String grupo, String profesor, String materia){
+        String sql = "insert into asignacion(idasignacion, tipo, descripcion, hora, fecha, grupo, profesor, materia) values(?,?,?,?,?,?,?,?)";
+        PreparedStatement sentencia = null;
+        try {
+            
+            int horas = hora.getHours();
+            int minutos = hora.getMinutes();
+            String sHoras = Integer.toString(horas)+":"+Integer.toString(minutos)+":00";
+            java.sql.Time tiempo = java.sql.Time.valueOf(sHoras);
+                        
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fecha);
+            int anno = cal.get(Calendar.YEAR);
+            int mes = cal.get(Calendar.MONTH);
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            String sFecha = Integer.toString(anno)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+            java.sql.Date fechaSQL = java.sql.Date.valueOf( sFecha );
+            
+            String abTipo;
+            switch(tipo){
+                case "Tarea":
+                    abTipo = "TA";
+                    break;
+                case "Quiz":
+                    abTipo = "QZ";
+                    break;
+                case "Examen":
+                    abTipo = "EX";
+                    break;
+                case "Proyecto":
+                    abTipo = "PR";
+                    break;
+                case "Trabajo Extraclase":
+                    abTipo = "TE";
+                    break;
+                default:
+                    abTipo = "NoDef";                    
+            }
+            
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, id);
+            sentencia.setString(2, abTipo);
+            sentencia.setString(3, descripcion);
+            sentencia.setTime(4, tiempo);
+            sentencia.setDate(5, fechaSQL);
+            sentencia.setString(6, grupo);
+            sentencia.setString(7, profesor);
+            sentencia.setString(8, materia);
+            sentencia.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+        return 1;
+
     }
 }
 
