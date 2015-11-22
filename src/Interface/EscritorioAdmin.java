@@ -411,7 +411,7 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void calificacionesAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesAdminActionPerformed
-        CalificacionesGrupo caGru= new CalificacionesGrupo();
+        CalificacionesGrupo caGru= new CalificacionesGrupo(idPersona);
         escritorioAdmin.add(caGru);
         caGru.show();
     }//GEN-LAST:event_calificacionesAdminActionPerformed

@@ -14,7 +14,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
     /**
      * Creates new form CalificacionesGrupo
      */
-    public CalificacionesGrupo() {
+    public CalificacionesGrupo(String idPersona) {
         initComponents();
     }
 

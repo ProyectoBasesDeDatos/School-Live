@@ -243,7 +243,7 @@ private String idPersona;
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void calificacionesProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesProfActionPerformed
-        CalificacionesGrupo caGru= new CalificacionesGrupo();
+        CalificacionesGrupo caGru= new CalificacionesGrupo(idPersona);
         escritorioProf.add(caGru);
         caGru.show();
     }//GEN-LAST:event_calificacionesProfActionPerformed
