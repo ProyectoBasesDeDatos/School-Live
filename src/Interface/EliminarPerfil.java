@@ -21,6 +21,39 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
      */
     public EliminarPerfil() {
         initComponents();
+        ConexionBase base= new ConexionBase();
+        String[][] personas = base.getDatosConsulta("select idpersona, nombre1, apellido1, apellido2 from persona;");
+        String nombreColumnas[] = {"", "Identificación", "Nombre", "Apellido1", "Apellido2"};
+
+        DefaultTableModel tableModel = new DefaultTableModel(null, nombreColumnas) {
+            @Override
+            public Class getColumnClass(int c) {
+                switch (c) {
+                    case 0:
+                        return Boolean.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        tableModel.setRowCount(0);
+        listaPersonas.setModel(tableModel);
+        try {
+            for (int i = 0; i < personas.length; i++) {
+
+                tableModel.addRow(new Object[]{false, personas[i][0], personas[i][1], personas[i][2], personas[i][3]});
+            }
+            listaPersonas.setModel(tableModel);
+        } catch (Exception e) {
+            System.err.println("No se hay perfiles creados para este tipo");
+            JOptionPane.showMessageDialog(null, "No se hay perfiles creados para este tipo", "Error ", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -161,7 +194,7 @@ public class EliminarPerfil extends javax.swing.JInternalFrame {
         try {
             for (int i = 0; i < personas.length; i++) {
 
-                tableModel.addRow(new Object[]{false, personas[i][0], personas[i][1], personas[0][2], personas[i][3]});
+                tableModel.addRow(new Object[]{false, personas[i][0], personas[i][1], personas[i][2], personas[i][3]});
             }
             listaPersonas.setModel(tableModel);
         } catch (Exception e) {
