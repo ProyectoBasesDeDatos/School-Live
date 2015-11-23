@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+
 /**
  *
  * @author Tek
@@ -16,6 +18,43 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
      */
     public CalificacionesGrupo(String idPersona) {
         initComponents();
+        
+        //String sql;
+        //Object[][] resultado;
+        ConexionBase conexion=new ConexionBase();
+        
+        //ComboBoxMaterias
+        String sqlM="select idmateria,nombremateria\n" +
+        "from profesores p, materias m \n" +
+        "where p.idpersona='"+idPersona+"'\n" +
+        "and p.idmateriaasignada= m.idmateria;";
+        
+        ComboMateria.removeAllItems();
+        Object[][] resultadoM = conexion.getDatosConsulta(sqlM);
+        for (int i=0; i<resultadoM.length;i++){
+            ComboMateria.addItem(resultadoM[i][0]+" - "+resultadoM[i][1]);
+        }
+        
+        //ComboBoxGrupos
+        
+        String sqlG="select * \n" +
+        "from grupo\n" +
+        "where idgrupo IN (select g.idgrupo\n" +
+                            "from (\n" +
+                            "    select *\n" +
+                            "    from profesores p, materias m \n" +
+                            "    where p.idpersona='987654' --pone el id del profesor\n" +
+                            "    and p.idmateriaasignada= m.idmateria) R1, gruposasignados g, estudiante e\n" +
+                            "where R1.idmateria=g.idmateria\n" +
+                            "and e.idgrupo=g.idgrupo)";
+        ComboGrupo.removeAllItems();
+        Object[][] resultadoG = conexion.getDatosConsulta(sqlG);
+        for (int i=0; i<resultadoG.length;i++){
+            ComboGrupo.addItem(resultadoG[i][1]+" - "+resultadoG[i][2]);
+        }
+        
+        this.repaint();
+        
     }
 
     /**
@@ -110,7 +149,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Periodo");
 
-        ComboPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I", "II", "III" }));
 
         jLabel5.setText("Materia");
 
