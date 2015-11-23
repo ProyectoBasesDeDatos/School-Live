@@ -26,7 +26,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
      * Creates new form EditarAsignacionProf
      */
     String idPersona;
-    String [][] asignaciones;
+    String[][] asignaciones;
     String[][] valoresGrupo;
     String[][] valoresMaterias;
             

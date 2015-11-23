@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -17,10 +18,84 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
      * Creates new form EliminarAsignacionProf
      */
     String idPersona;
+    String[][] cursos;
+    String[][] valoresMaterias;
+    String[][] asignaciones;
+    Boolean inic = false;
+    
     public EliminarAsignacion(String idPersona) {
         this.idPersona = idPersona;
         initComponents();
-        jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TDescripcion.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        
+        ConexionBase base = new ConexionBase();
+        CBCurso.removeAllItems();
+        CBMateria.removeAllItems();
+        
+        cursos = base.getDatosConsulta("select anno from grupo group by anno order by anno;");
+        if(cursos!=null){
+            for (int i = 0; i < cursos.length; i++) {
+                CBCurso.addItem(cursos[i][0]);
+            }
+        }  
+        
+        
+        valoresMaterias = base.getDatosConsulta("select m.nombremateria, m.idmateria from materias m, (select idpersona from persona where idpersona = '"+idPersona+"') p, profesores pr where p.idpersona = pr.idpersona and m.idmateria = pr.idmateriaasignada group by m.nombremateria, m.idmateria;");
+        if(valoresMaterias!=null){
+            for (int i = 0; i < valoresMaterias.length; i++) {
+                CBMateria.addItem(valoresMaterias[i][0]);
+            } 
+        }
+        
+        setDatos();
+        inic = true;
+                    
+        
+        
+    }
+    
+    private void setDatos (){
+        String cursoSelec = CBCurso.getSelectedItem().toString();
+        String materiaSelec = CBMateria.getSelectedItem().toString();
+        String tipoSelec = CBTipo.getSelectedItem().toString();
+        
+        String abTipo;
+            switch(tipoSelec){
+                case "Tarea":
+                    abTipo = "TA";
+                    break;
+                case "Quiz":
+                    abTipo = "QZ";
+                    break;
+                case "Examen":
+                    abTipo = "EX";
+                    break;
+                case "Proyecto":
+                    abTipo = "PR";
+                    break;
+                case "Trabajo Extraclase":
+                    abTipo = "TE";
+                    break;
+                default:
+                    abTipo = "NoDef";                    
+            }
+        /*
+        String idMateria = "";
+        int j = 0;
+        while(j<valoresMaterias.length&&idMateria.compareTo("")==0){
+            if(valoresMaterias[j][0].compareTo(materiaSelec)==0){
+                idMateria = valoresMaterias[j][1];
+            }
+            j++;
+        }
+        */
+        String[] titulos = {"id","Grupo","Fecha","Hora","Descripción"};
+        
+        ConexionBase base = new ConexionBase();
+        asignaciones = base.getDatosConsulta("select a.idasignacion, a.grupo, a.fecha, a.hora, a.descripcion from asignacion a, grupo g, materias m where a.profesor = '"+idPersona+"' and a.grupo = g.idgrupo and g.anno = '"+cursoSelec+"' and a.materia = m.idmateria and m.nombremateria = '"+materiaSelec+"' and tipo = '"+abTipo+"';");
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(asignaciones,titulos);
+        TDescripcion.setModel(modelo);
+        this.repaint();
     }
 
     /**
@@ -33,15 +108,15 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        CBCurso = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        CBTipo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TDescripcion = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        BEliminar = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        CBMateria = new javax.swing.JComboBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -50,13 +125,23 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Curso");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Setimo", "Octavo", "Noveno", "Decimo", "Quinto" }));
+        CBCurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Septimo", "Octavo", "Noveno", "Decimo", "Undecimo" }));
+        CBCurso.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBCursoItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Tipo Asignación");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quiz", "Tarea", "Examen", "Proyecto" }));
+        CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tarea", "Quiz", "Examen", "Proyecto", "Trabajo Extraclase" }));
+        CBTipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBTipoItemStateChanged(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TDescripcion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -75,20 +160,30 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(700);
+        TDescripcion.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jScrollPane1.setViewportView(TDescripcion);
+        if (TDescripcion.getColumnModel().getColumnCount() > 0) {
+            TDescripcion.getColumnModel().getColumn(0).setPreferredWidth(20);
+            TDescripcion.getColumnModel().getColumn(1).setPreferredWidth(700);
         }
 
         jLabel3.setText("Seleccione las asignaciones que desea eliminar");
 
-        jToggleButton1.setText("Eliminar");
+        BEliminar.setText("Eliminar");
+        BEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Materia");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBMateria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBMateriaItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,21 +194,23 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1))
+                        .addComponent(BEliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(59, 59, 59)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, 104, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, 0, 104, Short.MAX_VALUE)
-                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(CBCurso, 0, 104, Short.MAX_VALUE)
+                                    .addComponent(CBMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -123,38 +220,62 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CBMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
+                .addComponent(BEliminar)
                 .addGap(7, 7, 7))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CBCursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBCursoItemStateChanged
+        if(inic){
+            setDatos();
+        }
+    }//GEN-LAST:event_CBCursoItemStateChanged
+
+    private void CBTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBTipoItemStateChanged
+        if(inic){
+            setDatos();
+        }
+    }//GEN-LAST:event_CBTipoItemStateChanged
+
+    private void CBMateriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBMateriaItemStateChanged
+        if(inic){
+            setDatos();
+        }
+    }//GEN-LAST:event_CBMateriaItemStateChanged
+
+    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarActionPerformed
+        ConexionBase base= new ConexionBase();
+        int ind = TDescripcion.getSelectedRow();
+        base.getDatosConsulta("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
+    }//GEN-LAST:event_BEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JToggleButton BEliminar;
+    private javax.swing.JComboBox CBCurso;
+    private javax.swing.JComboBox CBMateria;
+    private javax.swing.JComboBox CBTipo;
+    private javax.swing.JTable TDescripcion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
