@@ -42,7 +42,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                 } 
             }
             
-            valoresGrupo = base.getDatosConsulta("select * from grupo;");
+            valoresGrupo = base.getDatosConsulta("select * from grupo;");//Corregir
             if(valoresGrupo!=null){
                 for (int i = 0; i < valoresGrupo.length; i++) {
                     CBGrupo.addItem(valoresGrupo[i][1]+"-"+valoresGrupo[i][2]);
