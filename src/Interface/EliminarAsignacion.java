@@ -26,7 +26,7 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
     public EliminarAsignacion(String idPersona) {
         this.idPersona = idPersona;
         initComponents();
-        TDescripcion.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        //TDescripcion.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         
         ConexionBase base = new ConexionBase();
         CBCurso.removeAllItems();
@@ -263,6 +263,7 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
         ConexionBase base= new ConexionBase();
         int ind = TDescripcion.getSelectedRow();
         base.getDatosConsulta("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
+        setDatos();
     }//GEN-LAST:event_BEliminarActionPerformed
 
 
