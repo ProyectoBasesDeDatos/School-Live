@@ -16,12 +16,16 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
     /**
      * Creates new form CalificacionesGrupo
      */
+    private Object[][] resultadoG;
+    private Object[][] resultadoM;
+    ConexionBase conexion;
+    
     public CalificacionesGrupo(String idPersona) {
         initComponents();
         
-        //String sql;
+    //String sql;
         //Object[][] resultado;
-        ConexionBase conexion=new ConexionBase();
+        conexion=new ConexionBase();
         
         //ComboBoxMaterias
         String sqlM="select idmateria,nombremateria\n" +
@@ -30,7 +34,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         "and p.idmateriaasignada= m.idmateria;";
         
         ComboMateria.removeAllItems();
-        Object[][] resultadoM = conexion.getDatosConsulta(sqlM);
+        resultadoM = conexion.getDatosConsulta(sqlM);
         for (int i=0; i<resultadoM.length;i++){
             ComboMateria.addItem(resultadoM[i][0]+" - "+resultadoM[i][1]);
         }
@@ -48,13 +52,48 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                             "where R1.idmateria=g.idmateria\n" +
                             "and e.idgrupo=g.idgrupo)";
         ComboGrupo.removeAllItems();
-        Object[][] resultadoG = conexion.getDatosConsulta(sqlG);
+        resultadoG = conexion.getDatosConsulta(sqlG);
         for (int i=0; i<resultadoG.length;i++){
             ComboGrupo.addItem(resultadoG[i][1]+" - "+resultadoG[i][2]);
         }
         
-        this.repaint();
+        conexion.cerrarConexion();
         
+        Cargar();
+        
+    }
+    
+    public void Cargar(){
+        //TGrupo
+        conexion=new ConexionBase();
+        String sql="select p2.nombre1||' '||p2.apellido1||' '||p2.apellido2 nombre,parcial1,parcial2,trabajoextraclase,trabajocotidiano,asistencia,concepto,(parcial1+parcial2+trabajoextraclase+trabajocotidiano+asistencia+concepto) Total\n" +
+        "from calificaciones c, calificacionesasignadas ca2, persona p2\n" +
+        "where ca2.idcalificacion=c.idcalificacion\n" +
+        "and p2.idpersona=ca2.idestudiante\n" +
+        "and c.idcalificacion IN (\n" +
+        "select ca.idcalificacion from calificacionesasignadas ca\n" +
+        "where ca.idmateria='"+resultadoM[ComboMateria.getSelectedIndex()][0]+"'\n" +
+        "and ca.periodo='"+ComboPeriodo.getSelectedItem().toString()+"'\n" +
+        "and ca.idestudiante IN (\n" +
+        "select distinct e.idpersona\n" +
+        "from (\n" +
+        "    select *\n" +
+        "    from profesores p, materias m \n" +
+        "    where p.idpersona='987654'\n" +
+        "    and p.idmateriaasignada= m.idmateria) R1, gruposasignados g, estudiante e\n" +
+        "where R1.idmateria=g.idmateria\n" +
+        "and e.idgrupo=g.idgrupo\n" +
+        "and e.idgrupo='"+resultadoG[ComboGrupo.getSelectedIndex()][0]+"'\n"+
+        ")\n" +
+        "order by idestudiante,periodo\n" +
+        ")";
+        String[] titulos = {"Estudiante", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"};
+        Object[][] resultado = conexion.getDatosConsulta(sql);
+        javax.swing.table.DefaultTableModel modelo;
+        modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
+        TGrupo.setModel(modelo);
+        conexion.cerrarConexion();
+        this.repaint();
     }
 
     /**
@@ -144,16 +183,41 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         jScrollPane5.setViewportView(TGrupo);
 
         ComboGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ComboGrupoMouseClicked(evt);
+            }
+        });
 
         jLabel4.setText("Grupo");
 
         jLabel1.setText("Periodo");
 
         ComboPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I", "II", "III" }));
+        ComboPeriodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ComboPeriodoMouseClicked(evt);
+            }
+        });
+        ComboPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboPeriodoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Materia");
 
         ComboMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboMateria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ComboMateriaMouseClicked(evt);
+            }
+        });
+        ComboMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboMateriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -364,6 +428,26 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ComboMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboMateriaActionPerformed
+       
+    }//GEN-LAST:event_ComboMateriaActionPerformed
+
+    private void ComboPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPeriodoActionPerformed
+        
+    }//GEN-LAST:event_ComboPeriodoActionPerformed
+
+    private void ComboGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboGrupoMouseClicked
+
+    }//GEN-LAST:event_ComboGrupoMouseClicked
+
+    private void ComboMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboMateriaMouseClicked
+
+    }//GEN-LAST:event_ComboMateriaMouseClicked
+
+    private void ComboPeriodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboPeriodoMouseClicked
+
+    }//GEN-LAST:event_ComboPeriodoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
