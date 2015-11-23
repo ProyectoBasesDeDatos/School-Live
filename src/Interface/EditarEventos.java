@@ -5,7 +5,14 @@
  */
 package Interface;
 
+import BaseDatos.ConexionBase;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -19,9 +26,78 @@ public class EditarEventos extends javax.swing.JInternalFrame {
      * Creates new form CrearEventos
      */
     String idPersona;
+    String[][] eventos;
+    
     public EditarEventos(String idPersona) {
         this.idPersona = idPersona;
         initComponents();
+        
+        ConexionBase base = new ConexionBase();
+        
+        if (base.getConexionCorrecta() != -1) {
+            DefaultListModel model = new DefaultListModel();        
+            
+            eventos = base.getDatosConsulta("select idevento, fecha, tipo, descripcion from evento e, persona p where e.autor = p.idpersona and p.idpersona = '"+idPersona+"';");
+            if(eventos!= null){
+                for (int i = 0; i < eventos.length; i++) {
+                    model.addElement(eventos[i][0]+") "+eventos[i][1]+" / "+eventos[i][2]+" / "+eventos[i][3]);
+                } 
+                LEventos.setModel(model);
+            } 
+            
+            if(eventos != null){
+                //LEventos.setSelectedIndex(0);
+                setDatos(0);
+            }
+            
+            }else {
+                System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }
+    
+    private void setDatos(int iEvento){
+        String[] valoresTipo = {"Cultural", "Deportivo", "Otro"};
+        
+        int iTipo = 0;
+        while(iTipo<valoresTipo.length&&eventos[iEvento][2].compareTo(valoresTipo[iTipo])!=0){
+            iTipo++;
+        }
+        CBTipo.setSelectedIndex(iTipo);
+        
+        ConexionBase base = new ConexionBase();
+        
+        String[][] descrip = base.getDatosConsulta("select descripcion from evento where idevento = '"+eventos[iEvento][0]+"';");
+        TADescripcion.setText(descrip[0][0]);
+        
+        String[][] fecha = base.getDatosConsulta("select fecha from evento where idevento = '"+eventos[iEvento][0]+"';");        
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+          date = formatter.parse(fecha[0][0]);
+        } catch (ParseException ex) {
+            Logger.getLogger(EditarAsignacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DPFecha.setDate(date);
+        
+        String[][] horai = base.getDatosConsulta("select horainicio from evento where idevento = '"+eventos[iEvento][0]+"';");        
+        DateFormat formatter2 = new SimpleDateFormat("hh:mm:ss");
+        Date timei = null;
+        try {
+          timei = formatter2.parse(horai[0][0]);
+        } catch (ParseException ex) {
+            Logger.getLogger(EditarEventos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SHoraInicio.setValue(timei);
+        
+        String[][] horaf = base.getDatosConsulta("select horafinal from evento where idevento = '"+eventos[iEvento][0]+"';");        
+        DateFormat formatter3 = new SimpleDateFormat("hh:mm:ss");
+        Date timef = null;
+        try {
+          timef = formatter3.parse(horaf[0][0]);
+        } catch (ParseException ex) {
+            Logger.getLogger(EditarEventos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SHoraInicio.setValue(timef);
     }
 
     /**
@@ -35,7 +111,7 @@ public class EditarEventos extends javax.swing.JInternalFrame {
 
         CBTipo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        DatePickerCEven = new org.jdesktop.swingx.JXDatePicker();
+        DPFecha = new org.jdesktop.swingx.JXDatePicker();
         SHoraInicio = new JSpinner( new SpinnerDateModel() );
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(SHoraInicio, "HH:mm");
         SHoraInicio.setEditor(timeEditor);
@@ -51,18 +127,15 @@ public class EditarEventos extends javax.swing.JInternalFrame {
         TADescripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         BGuardar = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        ListEventos = new javax.swing.JList();
-        jLabel6 = new javax.swing.JLabel();
-        CBLimitTipo = new javax.swing.JComboBox();
+        LEventos = new javax.swing.JList();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Editar Evento");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png"))); // NOI18N
 
-        CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nuevo Tipo", "Cultural", "Deportivo"}));
+        CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cultural", "Deportivo", "Otro"}));
         CBTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBTipoActionPerformed(evt);
@@ -90,18 +163,17 @@ public class EditarEventos extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField2.setText(" ");
-
-        ListEventos.setModel(new javax.swing.AbstractListModel() {
+        LEventos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(ListEventos);
-
-        jLabel6.setText("Limitar por tipo:");
-
-        CBLimitTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cultural", "Deportivo"}));
+        LEventos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                LEventosValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(LEventos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,27 +186,20 @@ public class EditarEventos extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BGuardar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CBLimitTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(CBTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(158, 158, 158))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(DatePickerCEven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(DPFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jLabel5)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
@@ -150,17 +215,14 @@ public class EditarEventos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(CBLimitTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DatePickerCEven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DPFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +237,7 @@ public class EditarEventos extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BGuardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,16 +248,39 @@ public class EditarEventos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CBTipoActionPerformed
 
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
-        // TODO add your handling code here:
+        try{
+            ConexionBase base= new ConexionBase();
+            String tipo = CBTipo.getSelectedItem().toString();
+            Date fecha = DPFecha.getDate();
+            Date horaIn = (java.util.Date)SHoraInicio.getValue();
+            Date horaFi = (java.util.Date)SHoraFinal.getValue();
+            String descripcion = TADescripcion.getText();
+            String[][] idevento = base.getDatosConsulta("select max(idevento) from evento;");
+            int idevnt;
+            if(idevento[0][0] != null){
+                idevnt = Integer.parseInt(idevento[0][0])+1;
+            }else{
+                idevnt = 1;
+            }
+            
+            base.crearEvento(Integer.toString(idevnt), tipo, fecha, horaIn, horaFi, descripcion, idPersona);
+            
+        }catch(IllegalArgumentException	e){
+            System.err.printf("Error al crear Asignacion");
+        }
     }//GEN-LAST:event_BGuardarActionPerformed
+
+    private void LEventosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LEventosValueChanged
+        int ind = LEventos.getSelectedIndex();
+        setDatos(ind);
+    }//GEN-LAST:event_LEventosValueChanged
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;
-    private javax.swing.JComboBox CBLimitTipo;
     private javax.swing.JComboBox CBTipo;
-    private org.jdesktop.swingx.JXDatePicker DatePickerCEven;
-    private javax.swing.JList ListEventos;
+    private org.jdesktop.swingx.JXDatePicker DPFecha;
+    private javax.swing.JList LEventos;
     private javax.swing.JSpinner SHoraFinal;
     private javax.swing.JSpinner SHoraInicio;
     private javax.swing.JTextArea TADescripcion;
@@ -204,9 +289,7 @@ public class EditarEventos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

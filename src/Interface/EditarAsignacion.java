@@ -55,11 +55,9 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
                 }
             }            
             
-            asignaciones = base.getDatosConsulta("select a.idasignacion, a.tipo, a.materia, a.grupo from asignacion a, persona p where a.profesor = p.idpersona");
+            asignaciones = base.getDatosConsulta("select a.idasignacion, a.tipo, a.materia, a.grupo from asignacion a, persona p where a.profesor = p.idpersona and p.idpersona = '"+idPersona+"';");
             if(asignaciones!= null){
                 for (int i = 0; i < asignaciones.length; i++) {
-                    getGrupo(asignaciones[i][3]);
-                    getMateria(asignaciones[i][2]);
                     model.addElement(asignaciones[i][0]+") "+getGrupo(asignaciones[i][3])+" / "+getMateria(asignaciones[i][2])+" / "+asignaciones[i][1]);
                 } 
                 LAsignaciones.setModel(model);
