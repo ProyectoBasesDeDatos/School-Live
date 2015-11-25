@@ -838,5 +838,20 @@ public class ConexionBase {
             return -1;
         }
    }
+       public int eliminarGruposAsignados(String idPersona) {
+        String sql = "delete from impartegrupo where idprofesor=?;";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, idPersona);
+
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
 }
 
