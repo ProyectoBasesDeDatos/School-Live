@@ -559,6 +559,17 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
+        sql = "delete from impartegrupo where idprofesor=?;";
+        sentencia = null;
+        try {
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, idPersona);
+            sentencia.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
         sql = "delete from persona where idpersona=?;";
         sentencia = null;
         try {
@@ -566,12 +577,13 @@ public class ConexionBase {
             sentencia.setString(1, idPersona);
 
             sentencia.execute();
-
             return 1;
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return -1;
         }
+
     }
 
     public int eliminarEstudiantes(String idPersona) {
