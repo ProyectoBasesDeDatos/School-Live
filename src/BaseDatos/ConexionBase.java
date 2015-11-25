@@ -209,14 +209,16 @@ public class ConexionBase {
 
     public int actualizaProvinciaCanton(String IdPersona, String Tipo, String Provincia, String Canton) {
 
-        String sqlactualizadir = "update DirPersona set idprovincia = substring(? from 1 for 2),idcanton = substring(? from 1 for 2) where idpersona = ? and tipo = ?;";
+        String sqlactualizadir = "update DirPersona set idprovincia = left(?,strpos(?, '-') - 1),idcanton = left(?,strpos(?, '-') - 1) where idpersona = ? and tipo = ?;";
         PreparedStatement sentencia = null;
         try {
             sentencia = base.prepareStatement(sqlactualizadir);
             sentencia.setString(1, Provincia);
-            sentencia.setString(2, Canton);
-            sentencia.setString(3, IdPersona);
-            sentencia.setString(4, Tipo);
+            sentencia.setString(2, Provincia);
+            sentencia.setString(3, Canton);
+            sentencia.setString(4, Canton);
+            sentencia.setString(5, IdPersona);
+            sentencia.setString(6, Tipo);
             sentencia.execute();
             return 1;
 
