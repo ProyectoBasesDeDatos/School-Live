@@ -38,13 +38,21 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
             for (int j = 0; j < valoresCantones.length; j++) {
                 listaCantones.addItem(valoresCantones[j][0] + "-" + valoresCantones[j][1]);
             }
-             String[][] materias= base.getDatosConsulta("select idmateria,nombremateria from materias");
-            
-             DefaultListModel model= new DefaultListModel();
-             for (int i = 0; i < materias.length; i++) {
-             model.addElement(materias[i][0]+"-"+materias[i][1]);
-             }
-             listaMateriasDisponibles.setModel(model);
+            String[][] materias = base.getDatosConsulta("select idmateria,nombremateria from materias");
+
+            DefaultListModel model = new DefaultListModel();
+            for (int i = 0; i < materias.length; i++) {
+                model.addElement(materias[i][0] + "-" + materias[i][1]);
+            }
+            listaMateriasDisponibles.setModel(model);
+
+            String[][] grupos = base.getDatosConsulta("select * from grupo");
+
+            DefaultListModel model1 = new DefaultListModel();
+            for (int i = 0; i < grupos.length; i++) {
+                model1.addElement(grupos[i][0] + "- Año:" + grupos[i][1]+" Sección:"+grupos[i][2]);
+            }
+            listaGruposDisponibles.setModel(model1);
 
         } else {
             System.err.println("No se ha logrado establecer conexión con la base de datos");
@@ -86,8 +94,8 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
         email = new javax.swing.JTextField();
         fb = new javax.swing.JTextField();
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        butonAgregarMateria = new javax.swing.JToggleButton();
+        botonQuitarMateria = new javax.swing.JToggleButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listaMateriasAsignadas = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -96,6 +104,13 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
         tablaTelefonos = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         pwd = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        listaGruposDisponibles = new javax.swing.JList();
+        butonAgregarGrupo = new javax.swing.JToggleButton();
+        botonQuitarGrupo = new javax.swing.JToggleButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        listaGruposAsignados = new javax.swing.JList();
 
         tipoDireccion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Habitacion", "Oficina", "Otro" }));
 
@@ -146,17 +161,17 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
 
         sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
 
-        jToggleButton1.setText(">");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        butonAgregarMateria.setText(">");
+        butonAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                butonAgregarMateriaActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setText("<");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonQuitarMateria.setText("<");
+        botonQuitarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                botonQuitarMateriaActionPerformed(evt);
             }
         });
 
@@ -214,81 +229,115 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
 
         jLabel12.setText("Contraseña");
 
+        jLabel13.setText("Grupos");
+
+        jScrollPane5.setViewportView(listaGruposDisponibles);
+
+        butonAgregarGrupo.setText(">");
+        butonAgregarGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butonAgregarGrupoActionPerformed(evt);
+            }
+        });
+
+        botonQuitarGrupo.setText("<");
+        botonQuitarGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonQuitarGrupoActionPerformed(evt);
+            }
+        });
+
+        jScrollPane6.setViewportView(listaGruposAsignados);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addGap(79, 79, 79)
-                .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addComponent(apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel3)
-                .addGap(25, 25, 25)
-                .addComponent(apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4)
-                .addGap(64, 64, 64)
-                .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel9)
-                .addGap(89, 89, 89)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel7))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel8))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel11))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2))
-                .addGap(9, 9, 9)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jLabel10)))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)
+                        .addGap(79, 79, 79)
+                        .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel6)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2)
                         .addGap(5, 5, 5)
-                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
+                        .addComponent(apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel3)
+                        .addGap(25, 25, 25)
+                        .addComponent(apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4)
+                        .addGap(64, 64, 64)
+                        .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel9)
+                        .addGap(89, 89, 89)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(butonAgregarMateria)
+                            .addComponent(botonQuitarMateria))
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel10)))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(fb, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel6)
+                                .addGap(5, 5, 5)
+                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pwd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel13))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(butonAgregarGrupo)
+                            .addComponent(botonQuitarGrupo))
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -349,14 +398,25 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jToggleButton1)
+                        .addComponent(butonAgregarMateria)
                         .addGap(15, 15, 15)
-                        .addComponent(jToggleButton2))
+                        .addComponent(botonQuitarMateria))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(butonAgregarGrupo)
+                        .addGap(15, 15, 15)
+                        .addComponent(botonQuitarGrupo))
+                    .addComponent(jScrollPane6)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -364,20 +424,20 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
         
     DefaultListModel dlm = new DefaultListModel();
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void butonAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonAgregarMateriaActionPerformed
         
         dlm.addElement(listaMateriasDisponibles.getSelectedValue());
         listaMateriasAsignadas.setModel(dlm);
         
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_butonAgregarMateriaActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void botonQuitarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarMateriaActionPerformed
         DefaultListModel model = (DefaultListModel) listaMateriasAsignadas.getModel();
         int selectedIndex = listaMateriasAsignadas.getSelectedIndex();
         if (selectedIndex != -1) {
             model.remove(selectedIndex);
         }
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    }//GEN-LAST:event_botonQuitarMateriaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -421,17 +481,28 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
             
             //Recorrer la lista de materias para asignarselas al profesor
             
-            ListModel model= listaMateriasAsignadas.getModel();
+            ListModel model = listaMateriasAsignadas.getModel();
             String[] idMateriasAsig = new String[model.getSize()];
             String idMateria;
             for (int i = 0; i < model.getSize(); i++) {
-                idMateria=model.getElementAt(i).toString();
-                idMateria= idMateria.substring(0, idMateria.indexOf("-"));
-                idMateriasAsig[i]=idMateria;
+                idMateria = model.getElementAt(i).toString();
+                idMateria = idMateria.substring(0, idMateria.indexOf("-"));
+                idMateriasAsig[i] = idMateria;
             }
-            res+=base.insertarProfesor(id.getText(), idMateriasAsig);
+            res += base.insertarProfesor(id.getText(), idMateriasAsig);
+
+            //Recorrer la lista de grupos asignados para asignarles el profesor
+            ListModel model1 = listaGruposAsignados.getModel();
+            String[] idGrupoAsig = new String[model1.getSize()];
+            String idGrupo;
+            for (int i = 0; i < model1.getSize(); i++) {
+                idGrupo = model1.getElementAt(i).toString();
+                idGrupo = idGrupo.substring(0, idGrupo.indexOf("-"));
+                idGrupoAsig[i] = idGrupo;
+            }
+            res += base.asignarGruposProfesor(id.getText(), idGrupoAsig);
             
-                if(res>=4){
+                if(res>=5){
                 JOptionPane.showMessageDialog(null,"Se agregó exitosamente el nuevo profesor","Exito",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
@@ -442,11 +513,28 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
         } 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+DefaultListModel dlm1 = new DefaultListModel();
+    private void butonAgregarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonAgregarGrupoActionPerformed
+        dlm1.addElement(listaGruposDisponibles.getSelectedValue());
+        listaGruposAsignados.setModel(dlm1);
+    }//GEN-LAST:event_butonAgregarGrupoActionPerformed
+
+    private void botonQuitarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarGrupoActionPerformed
+        DefaultListModel model1 = (DefaultListModel) listaGruposAsignados.getModel();
+        int selectedIndex = listaGruposAsignados.getSelectedIndex();
+        if (selectedIndex != -1) {
+            model1.remove(selectedIndex);
+        }
+    }//GEN-LAST:event_botonQuitarGrupoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido1;
     private javax.swing.JTextField apellido2;
+    private javax.swing.JToggleButton botonQuitarGrupo;
+    private javax.swing.JToggleButton botonQuitarMateria;
+    private javax.swing.JToggleButton butonAgregarGrupo;
+    private javax.swing.JToggleButton butonAgregarMateria;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fb;
     private javax.swing.JTextField id;
@@ -455,6 +543,7 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -467,10 +556,12 @@ public class CrearPerfilProf extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JComboBox listaCantones;
+    private javax.swing.JList listaGruposAsignados;
+    private javax.swing.JList listaGruposDisponibles;
     private javax.swing.JList listaMateriasAsignadas;
     private javax.swing.JList listaMateriasDisponibles;
     private javax.swing.JComboBox listaProvincias;

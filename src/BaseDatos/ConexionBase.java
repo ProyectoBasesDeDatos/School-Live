@@ -820,5 +820,23 @@ public class ConexionBase {
         }
         return 1;
     }
+    
+   public int asignarGruposProfesor(String id,String []listaGrupos){
+        String sql = "insert into impartegrupo values(?,?);";
+        PreparedStatement sentencia = null;
+        try {
+            for (int i = 0; i < listaGrupos.length; i++) {
+                sentencia = base.prepareStatement(sql);
+                sentencia.setString(1, id);
+                sentencia.setString(2, listaGrupos[i]);
+                sentencia.execute();
+            }
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+   }
 }
 

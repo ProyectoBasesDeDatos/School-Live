@@ -249,7 +249,7 @@ private String idPersona;
     }//GEN-LAST:event_calificacionesProfActionPerformed
 
     private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
-        JOptionPane.showMessageDialog(null, this.idPersona, "Error en envío ", JOptionPane.ERROR_MESSAGE);
+        
         Mensajes msj= new Mensajes(this.idPersona);
         escritorioProf.add(msj);
         msj.show();        // TODO add your handling code here:
