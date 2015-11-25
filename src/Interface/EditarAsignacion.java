@@ -338,7 +338,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         try{
             ConexionBase base= new ConexionBase();
             int ind = LAsignaciones.getSelectedIndex();
-            base.getDatosConsulta("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
+            base.queryNoResults("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
             
             String tipo = CBTipo.getSelectedItem().toString();
             String materia = CBMateria.getSelectedItem().toString();

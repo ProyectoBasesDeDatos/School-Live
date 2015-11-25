@@ -151,7 +151,7 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConexionBase base= new ConexionBase();
         int ind = TDescripcion.getSelectedRow();
-        base.getDatosConsulta("delete from evento where idevento = '"+eventos[ind][0]+"';");
+        base.queryNoResults("delete from evento where idevento = '"+eventos[ind][0]+"';");
         setDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 

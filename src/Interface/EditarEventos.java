@@ -34,25 +34,29 @@ public class EditarEventos extends javax.swing.JInternalFrame {
         
         ConexionBase base = new ConexionBase();
         
-        if (base.getConexionCorrecta() != -1) {
-            DefaultListModel model = new DefaultListModel();        
+        if (base.getConexionCorrecta() != -1) {              
+            actualizarListaEventos();           
             
-            eventos = base.getDatosConsulta("select idevento, fecha, tipo, descripcion from evento e, persona p where e.autor = p.idpersona and p.idpersona = '"+idPersona+"';");
+            if(eventos != null){
+                LEventos.setSelectedIndex(0);
+                //setDatos(0);
+            }
+            
+            }else {
+                System.err.println("No se ha logrado establecer conexión con la base de datos");
+        }
+    }
+    
+    private void actualizarListaEventos(){
+        ConexionBase base = new ConexionBase();
+        DefaultListModel model = new DefaultListModel();    
+        eventos = base.getDatosConsulta("select idevento, fecha, tipo, descripcion from evento e, persona p where e.autor = p.idpersona and p.idpersona = '"+idPersona+"';");
             if(eventos!= null){
                 for (int i = 0; i < eventos.length; i++) {
                     model.addElement(eventos[i][0]+") "+eventos[i][1]+" / "+eventos[i][2]+" / "+eventos[i][3]);
                 } 
                 LEventos.setModel(model);
             } 
-            
-            if(eventos != null){
-                //LEventos.setSelectedIndex(0);
-                setDatos(0);
-            }
-            
-            }else {
-                System.err.println("No se ha logrado establecer conexión con la base de datos");
-        }
     }
     
     private void setDatos(int iEvento){
@@ -250,6 +254,9 @@ public class EditarEventos extends javax.swing.JInternalFrame {
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
         try{
             ConexionBase base= new ConexionBase();
+            int ind = LEventos.getSelectedIndex();
+            base.queryNoResults("delete from evento where idevento = '"+eventos[ind][0]+"';");
+            
             String tipo = CBTipo.getSelectedItem().toString();
             Date fecha = DPFecha.getDate();
             Date horaIn = (java.util.Date)SHoraInicio.getValue();
@@ -264,6 +271,8 @@ public class EditarEventos extends javax.swing.JInternalFrame {
             }
             
             base.crearEvento(Integer.toString(idevnt), tipo, fecha, horaIn, horaFi, descripcion, idPersona);
+            actualizarListaEventos();     
+            LEventos.setSelectedIndex(0);
             
         }catch(IllegalArgumentException	e){
             System.err.printf("Error al crear Asignacion");

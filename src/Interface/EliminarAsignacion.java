@@ -262,7 +262,7 @@ public class EliminarAsignacion extends javax.swing.JInternalFrame {
     private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarActionPerformed
         ConexionBase base= new ConexionBase();
         int ind = TDescripcion.getSelectedRow();
-        base.getDatosConsulta("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
+        base.queryNoResults("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
         setDatos();
     }//GEN-LAST:event_BEliminarActionPerformed
 
