@@ -33,13 +33,13 @@ public class PerfilAdm extends javax.swing.JInternalFrame {
             String[][] valoresProvincias = base.getDatosConsulta("select concat(idprovincia,'-',descripcion) as CodProvincia from provincia");
             String[][] valoresCantones = base.getDatosConsulta("select concat(idcanton,'-',descripcion) as CodCanton from canton");
              
-            {String[][] sql = base.getDatosConsulta("select d.tipo, concat(p.idprovincia,'-',p.descripcion), concat(c.idcanton,'-',c.descripcion), d.descripcion from dirpersona d, provincia p, canton c where d.idpersona = '"+this.idPersona+"' and p.idprovincia = c.idprovincia and d.idprovincia = p.idprovincia and d.idcanton = c.idcanton");
+            {String[][] sql = base.getDatosConsulta("select d.tipo, concat(p.idprovincia,'-',p.descripcion), concat(c.idcanton,'-',c.descripcion), d.descripcion from dirpersona d, provincia p, canton c where d.idpersona = '"+this.idPersona+"' and d.idprovincia = p.idprovincia and d.idcanton = c.idcanton");
             String nombreColumnas[] = {"Tipo", "Provincia", "Canton", "Direccion Exacta"};
             DefaultTableModel tableModel = new DefaultTableModel(nombreColumnas, 0);
             tableModel.setRowCount(0);
             tablaDirecciones.setModel(tableModel);
             for (int i = 0; i < sql.length; i++) {
-                String[][] sql2 = base.getDatosConsulta("select d.tipo, concat(p.idprovincia,'-',p.descripcion), concat(c.idcanton,'-',c.descripcion), d.descripcion from dirpersona d, provincia p, canton c where d.idpersona = '"+this.idPersona+"' and p.idprovincia = c.idprovincia and d.idprovincia = p.idprovincia and d.idcanton = c.idcanton");
+                String[][] sql2 = base.getDatosConsulta("select d.tipo, concat(p.idprovincia,'-',p.descripcion), concat(c.idcanton,'-',c.descripcion), d.descripcion from dirpersona d, provincia p, canton c where d.idpersona = '"+this.idPersona+"' and d.idprovincia = p.idprovincia and d.idcanton = c.idcanton");
                 tableModel.addRow(new Object[]{sql2[i][0], sql2[i][1], sql2[i][2], sql2[i][3]});
             }
             tablaDirecciones.setModel(tableModel);
