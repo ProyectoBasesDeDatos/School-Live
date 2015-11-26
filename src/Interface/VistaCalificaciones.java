@@ -29,7 +29,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
 
         if(resultadoE[0][2].toString().equals("E")){
             EstudianteSeleccion.removeAllItems();
-            EstudianteSeleccion.addItem(resultadoE[0][0]);
+            EstudianteSeleccion.addItem(resultadoE[0][0]+" - "+resultadoE[0][1]);
         }
         if(resultadoE[0][2].toString().equals("F")){
             sql="select nombre1||' '||apellido1||' '||apellido2,idpersona,tipoperfil \n" +
