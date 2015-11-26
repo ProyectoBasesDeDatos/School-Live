@@ -589,7 +589,8 @@ public class ConexionBase {
     }
 
     public int eliminarEstudiantes(String idPersona) {
-        String sql = "delete from padrefamilia where idpersona=?;";
+
+        String sql = "delete from padrefamilia where idhijo=?;";
         PreparedStatement sentencia = null;
         try {
             sentencia = base.prepareStatement(sql);
@@ -601,6 +602,7 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
+
         sql = "delete from estudiante where idpersona=?;";
         sentencia = null;
         try {
@@ -613,6 +615,7 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
+
         sql = "delete from dirpersona where idpersona=?;";
         sentencia = null;
         try {
@@ -637,6 +640,7 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
+
         sql = "delete from persona where idpersona=?;";
         sentencia = null;
         try {
@@ -650,6 +654,7 @@ public class ConexionBase {
             ex.printStackTrace();
             return -1;
         }
+
     }
 
     public int eliminarPadreFamilia(String idPersona) {
