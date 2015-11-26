@@ -61,13 +61,14 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
                     model.addElement(asignaciones[i][0]+") "+getGrupo(asignaciones[i][3])+" / "+getMateria(asignaciones[i][2])+" / "+asignaciones[i][1]);
                 } 
                 LAsignaciones.setModel(model);
-            }    
-            if(asignaciones != null){
-                LAsignaciones.setSelectedIndex(0);
-                //setDatos(0);
             }else{
                 DefaultListModel model2 = new DefaultListModel(); 
                 LAsignaciones.setModel(model2);
+            }    
+            
+            if(asignaciones != null){
+                LAsignaciones.setSelectedIndex(0);
+                //setDatos(0);
             }
             
         }else {
@@ -85,6 +86,21 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             i++;
         }
         return grupo;
+    }
+    
+    private void actualizarLista(){
+        ConexionBase base = new ConexionBase();
+        DefaultListModel model = new DefaultListModel();          
+        asignaciones = base.getDatosConsulta("select a.idasignacion, a.tipo, a.materia, a.grupo from asignacion a, persona p where a.profesor = p.idpersona and p.idpersona = '"+idPersona+"';");
+            if(asignaciones!= null){
+                for (int i = 0; i < asignaciones.length; i++) {
+                    model.addElement(asignaciones[i][0]+") "+getGrupo(asignaciones[i][3])+" / "+getMateria(asignaciones[i][2])+" / "+asignaciones[i][1]);
+                } 
+                LAsignaciones.setModel(model);
+            }else{
+                DefaultListModel model2 = new DefaultListModel(); 
+                LAsignaciones.setModel(model2);
+            }    
     }
     
     private String getMateria(String id){        
@@ -340,8 +356,6 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
         try{
             ConexionBase base= new ConexionBase();
-            int ind = LAsignaciones.getSelectedIndex();
-            base.queryNoResults("delete from asignacion where idasignacion = '"+asignaciones[ind][0]+"';");
             
             String tipo = CBTipo.getSelectedItem().toString();
             String materia = CBMateria.getSelectedItem().toString();
@@ -365,14 +379,11 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             Date fecha = DPFecha.getDate();
             Date hora = (java.util.Date)SHora.getValue();
             String descripcion = TADescripcion.getText();
-            String[][] idasignacion = base.getDatosConsulta("select max(idasignacion) from asignacion;");
-            int idasig;
-            if(idasignacion[0][0] != null){
-                idasig = Integer.parseInt(idasignacion[0][0])+1;
-            }else{
-                idasig = 1;
-            }
-            base.crearAsignacionBase(Integer.toString(idasig),tipo,descripcion,hora,fecha,idGrupo,this.idPersona,idMateria);
+            
+            int ind = LAsignaciones.getSelectedIndex();
+            
+            base.editarAsignacion(tipo,descripcion,hora,fecha,idGrupo,this.idPersona,idMateria,asignaciones[ind][0]);
+            actualizarLista();
         }catch(IllegalArgumentException	e){
             System.err.printf("Error al crear Asignacion");
         }

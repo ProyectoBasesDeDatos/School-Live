@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -40,6 +41,9 @@ public class EditarEventos extends javax.swing.JInternalFrame {
             if(eventos != null){
                 LEventos.setSelectedIndex(0);
                 //setDatos(0);
+            }else{
+                DefaultListModel model2 = new DefaultListModel(); 
+                LEventos.setModel(model2);
             }
             
             }else {
@@ -252,30 +256,32 @@ public class EditarEventos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CBTipoActionPerformed
 
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+        int error=0;
         try{
-            ConexionBase base= new ConexionBase();
-            int ind = LEventos.getSelectedIndex();
-            base.queryNoResults("delete from evento where idevento = '"+eventos[ind][0]+"';");
+            ConexionBase base= new ConexionBase();           
             
             String tipo = CBTipo.getSelectedItem().toString();
             Date fecha = DPFecha.getDate();
             Date horaIn = (java.util.Date)SHoraInicio.getValue();
             Date horaFi = (java.util.Date)SHoraFinal.getValue();
             String descripcion = TADescripcion.getText();
-            String[][] idevento = base.getDatosConsulta("select max(idevento) from evento;");
-            int idevnt;
-            if(idevento[0][0] != null){
-                idevnt = Integer.parseInt(idevento[0][0])+1;
-            }else{
-                idevnt = 1;
-            }
             
-            base.crearEvento(Integer.toString(idevnt), tipo, fecha, horaIn, horaFi, descripcion, idPersona);
+            int ind = LEventos.getSelectedIndex();
+            
+            base.editarEventos(tipo, fecha, horaIn, horaFi, descripcion, idPersona,eventos[ind][0]);
             actualizarListaEventos();     
             LEventos.setSelectedIndex(0);
             
         }catch(IllegalArgumentException	e){
-            System.err.printf("Error al crear Asignacion");
+            System.err.printf("Error al Editar Evento");
+            error++;
+        }
+        
+        if (error==0) {
+                JOptionPane.showMessageDialog(null, "Se actualizo el evento seleccionado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se logró actualizar correctamente el evento", "Error ", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BGuardarActionPerformed
 

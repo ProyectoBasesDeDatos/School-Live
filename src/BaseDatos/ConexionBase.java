@@ -801,6 +801,62 @@ public class ConexionBase {
 
     }
     
+    public int editarAsignacion(String tipo, String descripcion,Date hora, Date fecha, String grupo, String profesor, String materia, String id) {
+        String sql = "Update asignacion set tipo=?, descripcion=?, hora=?, fecha=?, grupo=?, profesor=?, materia=? where idasignacion=?;";
+        PreparedStatement sentencia = null;
+        try {
+            int horas = hora.getHours();
+            int minutos = hora.getMinutes();
+            String sHoras = Integer.toString(horas)+":"+Integer.toString(minutos)+":00";
+            java.sql.Time tiempo = java.sql.Time.valueOf(sHoras);
+                        
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fecha);
+            int anno = cal.get(Calendar.YEAR);
+            int mes = cal.get(Calendar.MONTH);
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            String sFecha = Integer.toString(anno)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+            java.sql.Date fechaSQL = java.sql.Date.valueOf( sFecha );
+            
+            String abTipo;
+            switch(tipo){
+                case "Tarea":
+                    abTipo = "TA";
+                    break;
+                case "Quiz":
+                    abTipo = "QZ";
+                    break;
+                case "Examen":
+                    abTipo = "EX";
+                    break;
+                case "Proyecto":
+                    abTipo = "PR";
+                    break;
+                case "Trabajo Extraclase":
+                    abTipo = "TE";
+                    break;
+                default:
+                    abTipo = "NoDef";                    
+            }           
+            
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, abTipo);
+            sentencia.setString(2, descripcion);
+            sentencia.setTime(3, tiempo);
+            sentencia.setDate(4, fechaSQL);
+            sentencia.setString(5, grupo);
+            sentencia.setString(6, profesor);
+            sentencia.setString(7, materia);
+            sentencia.setString(8, id);
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
     public int crearEvento(String id, String tipo, Date fecha, Date horaInicio, Date horaFinal,String descripcion, String autor){
         String sql = "insert into evento(idevento, tipo, fecha, horainicio, horafinal, descripcion, autor) values(?,?,?,?,?,?,?)";
         PreparedStatement sentencia = null;
@@ -840,6 +896,45 @@ public class ConexionBase {
         return 1;
     }
     
+    public int editarEventos(String tipo, Date fecha, Date horaInicio, Date horaFinal,String descripcion, String autor, String id) {
+        String sql = "Update evento set tipo=?, fecha=?, horainicio=?, horafinal=?, descripcion=?, autor=? where idevento=?;";
+        PreparedStatement sentencia = null;
+        try {
+            int horasi = horaInicio.getHours();
+            int minutosi = horaInicio.getMinutes();
+            String sHorasi = Integer.toString(horasi)+":"+Integer.toString(minutosi)+":00";
+            java.sql.Time tiempoi = java.sql.Time.valueOf(sHorasi);
+            
+            int horasf = horaFinal.getHours();
+            int minutosf = horaFinal.getMinutes();
+            String sHorasf = Integer.toString(horasf)+":"+Integer.toString(minutosf)+":00";
+            java.sql.Time tiempof = java.sql.Time.valueOf(sHorasf);
+                        
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fecha);
+            int anno = cal.get(Calendar.YEAR);
+            int mes = cal.get(Calendar.MONTH);
+            int dia = cal.get(Calendar.DAY_OF_MONTH);
+            String sFecha = Integer.toString(anno)+"-"+Integer.toString(mes)+"-"+Integer.toString(dia);
+            java.sql.Date fechaSQL = java.sql.Date.valueOf( sFecha );
+            
+            sentencia = base.prepareStatement(sql);
+            sentencia.setString(1, tipo);
+            sentencia.setDate(2, fechaSQL);
+            sentencia.setTime(3, tiempoi);
+            sentencia.setTime(4, tiempof);
+            sentencia.setString(5, descripcion);
+            sentencia.setString(6, autor);
+            sentencia.setString(7, id);
+            sentencia.execute();
+
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    
    public int asignarGruposProfesor(String id,String []listaGrupos){
         String sql = "insert into impartegrupo values(?,?);";
         PreparedStatement sentencia = null;
@@ -873,4 +968,6 @@ public class ConexionBase {
         }
     }
 }
+
+
 
