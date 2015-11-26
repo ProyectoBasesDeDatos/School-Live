@@ -52,7 +52,7 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TDescripcion = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BEliminar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -101,10 +101,10 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccione los eventos a eliminar");
 
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BEliminar.setText("Eliminar");
+        BEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BEliminarActionPerformed(evt);
             }
         });
 
@@ -120,7 +120,7 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 439, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(BEliminar)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -142,18 +142,18 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(BEliminar))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarActionPerformed
         ConexionBase base= new ConexionBase();
         int ind = TDescripcion.getSelectedRow();
         base.queryNoResults("delete from evento where idevento = '"+eventos[ind][0]+"';");
         setDatos();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BEliminarActionPerformed
 
     private void CBTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBTipoItemStateChanged
         if(inic){
@@ -163,9 +163,9 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BEliminar;
     private javax.swing.JComboBox CBTipo;
     private javax.swing.JTable TDescripcion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

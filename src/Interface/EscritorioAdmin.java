@@ -56,10 +56,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         cerrarSesionAdmin = new javax.swing.JMenuItem();
         cerrarAdmin = new javax.swing.JMenuItem();
         verAdmin = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        crearAsigAdmin = new javax.swing.JMenuItem();
-        editarAsigAdmin = new javax.swing.JMenuItem();
-        eliminarAsigAdmin = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         CrearEvento = new javax.swing.JMenuItem();
         EditarEvento = new javax.swing.JMenuItem();
@@ -107,38 +103,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
 
         verAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Table.png"))); // NOI18N
         verAdmin.setText("Ver");
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Clipboard.png"))); // NOI18N
-        jMenu1.setText("Asignaciones");
-
-        crearAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
-        crearAsigAdmin.setText("Crear");
-        crearAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearAsigAdminActionPerformed(evt);
-            }
-        });
-        jMenu1.add(crearAsigAdmin);
-
-        editarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Modify.png"))); // NOI18N
-        editarAsigAdmin.setText("Editar");
-        editarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarAsigAdminActionPerformed(evt);
-            }
-        });
-        jMenu1.add(editarAsigAdmin);
-
-        eliminarAsigAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
-        eliminarAsigAdmin.setText("Eliminar");
-        eliminarAsigAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarAsigAdminActionPerformed(evt);
-            }
-        });
-        jMenu1.add(eliminarAsigAdmin);
-
-        verAdmin.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.png"))); // NOI18N
         jMenu2.setText("Eventos");
@@ -321,41 +285,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cerrarAdminActionPerformed
 
-    private void crearAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAsigAdminActionPerformed
-        CrearAsignacion asig= new CrearAsignacion(this.idPersona);
-        escritorioAdmin.add(asig);
-        asig.show();
-    }//GEN-LAST:event_crearAsigAdminActionPerformed
-
-    private void editarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAsigAdminActionPerformed
-        EditarAsignacion editAsig= new EditarAsignacion(this.idPersona);
-        escritorioAdmin.add(editAsig);
-        editAsig.show();        
-    }//GEN-LAST:event_editarAsigAdminActionPerformed
-
-    private void eliminarAsigAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarAsigAdminActionPerformed
-        EliminarAsignacion elimAsig = new EliminarAsignacion(this.idPersona);
-        escritorioAdmin.add(elimAsig);
-        elimAsig.show();    }//GEN-LAST:event_eliminarAsigAdminActionPerformed
-
-    private void CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearEventoActionPerformed
-        CrearEventos cEvento = new CrearEventos(this.idPersona);
-        escritorioAdmin.add(cEvento);
-        cEvento.show(); 
-    }//GEN-LAST:event_CrearEventoActionPerformed
-
-    private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
-        EditarEventos eEvento = new EditarEventos(this.idPersona);
-        escritorioAdmin.add(eEvento);
-        eEvento.show(); 
-    }//GEN-LAST:event_EditarEventoActionPerformed
-
-    private void EliminarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEventoActionPerformed
-        EliminarEventos eEvento = new EliminarEventos();
-        escritorioAdmin.add(eEvento);
-        eEvento.show(); 
-    }//GEN-LAST:event_EliminarEventoActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         CrearPerfilProf perfProf = new CrearPerfilProf();
         escritorioAdmin.add(perfProf);
@@ -404,6 +333,12 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         perfilFam.show();
     }//GEN-LAST:event_ItemEditEncActionPerformed
 
+    private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
+        Mensajes msj= new Mensajes(this.idPersona);
+        escritorioAdmin.add(msj);
+        msj.show();        // TODO add your handling code here:
+    }//GEN-LAST:event_MsjsMenuActionPerformed
+
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         PerfilAdm miPerfil= new PerfilAdm(this.idPersona);
         escritorioAdmin.add(miPerfil);
@@ -416,11 +351,23 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         caGru.show();
     }//GEN-LAST:event_calificacionesAdminActionPerformed
 
-    private void MsjsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjsMenuActionPerformed
-        Mensajes msj= new Mensajes(this.idPersona);
-        escritorioAdmin.add(msj);
-        msj.show();        // TODO add your handling code here:
-    }//GEN-LAST:event_MsjsMenuActionPerformed
+    private void EliminarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEventoActionPerformed
+        EliminarEventos eEvento = new EliminarEventos();
+        escritorioAdmin.add(eEvento);
+        eEvento.show();
+    }//GEN-LAST:event_EliminarEventoActionPerformed
+
+    private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
+        EditarEventos eEvento = new EditarEventos(this.idPersona);
+        escritorioAdmin.add(eEvento);
+        eEvento.show();
+    }//GEN-LAST:event_EditarEventoActionPerformed
+
+    private void CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearEventoActionPerformed
+        CrearEventos cEvento = new CrearEventos(this.idPersona);
+        escritorioAdmin.add(cEvento);
+        cEvento.show();
+    }//GEN-LAST:event_CrearEventoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -471,10 +418,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem calificacionesAdmin;
     private javax.swing.JMenuItem cerrarAdmin;
     private javax.swing.JMenuItem cerrarSesionAdmin;
-    private javax.swing.JMenuItem crearAsigAdmin;
-    private javax.swing.JMenuItem editarAsigAdmin;
-    private javax.swing.JMenuItem eliminarAsigAdmin;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

@@ -33,8 +33,6 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         CBGrupo.removeAllItems();
         CBMateria.removeAllItems();
         if (base.getConexionCorrecta() != -1) {
-            //Arreglar para valores nulos
-           //String[][] valoresMaterias = base.getDatosConsulta("select nombremateria from materias");
             valoresMaterias = base.getDatosConsulta("select m.nombremateria, m.idmateria from materias m, (select idpersona from persona where idpersona = '"+idPersona+"') p, profesores pr where p.idpersona = pr.idpersona and m.idmateria = pr.idmateriaasignada group by m.nombremateria, m.idmateria;");
             if(valoresMaterias!=null){
                 for (int i = 0; i < valoresMaterias.length; i++) {
@@ -42,7 +40,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                 } 
             }
             
-            valoresGrupo = base.getDatosConsulta("select * from grupo;");//Corregir
+            valoresGrupo = base.getDatosConsulta("select g.idgrupo, g.anno, g.seccion from grupo g, impartegrupo ig where g.idgrupo = ig.idgrupo and ig.idprofesor = '"+idPersona+"' group by g.idgrupo, g.anno, g.seccion;");//Corregir
             if(valoresGrupo!=null){
                 for (int i = 0; i < valoresGrupo.length; i++) {
                     CBGrupo.addItem(valoresGrupo[i][1]+"-"+valoresGrupo[i][2]);

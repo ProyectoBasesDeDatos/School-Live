@@ -48,7 +48,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
                 } 
             }
             
-            valoresGrupo = base.getDatosConsulta("select * from grupo;");//Corregir
+            valoresGrupo = base.getDatosConsulta("select g.idgrupo, g.anno, g.seccion from grupo g, impartegrupo ig where g.idgrupo = ig.idgrupo and ig.idprofesor = '"+idPersona+"' group by g.idgrupo, g.anno, g.seccion;");//Corregir
             if(valoresGrupo!=null){
                 for (int i = 0; i < valoresGrupo.length; i++) {
                     CBGrupo.addItem(valoresGrupo[i][1]+"-"+valoresGrupo[i][2]);
@@ -65,6 +65,9 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             if(asignaciones != null){
                 LAsignaciones.setSelectedIndex(0);
                 //setDatos(0);
+            }else{
+                DefaultListModel model2 = new DefaultListModel(); 
+                LAsignaciones.setModel(model2);
             }
             
         }else {
