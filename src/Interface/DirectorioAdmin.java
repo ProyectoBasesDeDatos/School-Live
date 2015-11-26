@@ -81,7 +81,7 @@ public class DirectorioAdmin extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Directorio");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone Number.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Phone number.png"))); // NOI18N
 
         jLabel1.setText("Buscar por");
 

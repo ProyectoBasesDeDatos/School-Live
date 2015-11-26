@@ -122,7 +122,7 @@ public class EditPerfEst extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Editar Perfil Estudiante");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/male.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Male.png"))); // NOI18N
 
         jSplitPane1.setDividerLocation(200);
 

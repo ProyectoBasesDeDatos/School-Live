@@ -57,7 +57,7 @@ public class EliminarEventos extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Eliminar Evento");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/delete.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Delete.png"))); // NOI18N
 
         jLabel1.setText("Limitar por tipo");
 

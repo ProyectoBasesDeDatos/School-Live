@@ -60,7 +60,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         CrearEvento = new javax.swing.JMenuItem();
         EditarEvento = new javax.swing.JMenuItem();
         EliminarEvento = new javax.swing.JMenuItem();
-        calificacionesAdmin = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         MsjsMenu = new javax.swing.JMenuItem();
         busquedaAdmin = new javax.swing.JMenu();
@@ -135,15 +134,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         jMenu2.add(EliminarEvento);
 
         verAdmin.add(jMenu2);
-
-        calificacionesAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/3d bar chart.png"))); // NOI18N
-        calificacionesAdmin.setText("Calificaciones");
-        calificacionesAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calificacionesAdminActionPerformed(evt);
-            }
-        });
-        verAdmin.add(calificacionesAdmin);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Female.png"))); // NOI18N
         jMenuItem5.setText("Mi perfil");
@@ -345,12 +335,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
         miPerfil.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void calificacionesAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificacionesAdminActionPerformed
-        CalificacionesGrupo caGru= new CalificacionesGrupo(idPersona);
-        escritorioAdmin.add(caGru);
-        caGru.show();
-    }//GEN-LAST:event_calificacionesAdminActionPerformed
-
     private void EliminarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEventoActionPerformed
         EliminarEventos eEvento = new EliminarEventos();
         escritorioAdmin.add(eEvento);
@@ -415,7 +399,6 @@ public class EscritorioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem MsjsMenu;
     private javax.swing.JMenu archivoAdmin;
     private javax.swing.JMenu busquedaAdmin;
-    private javax.swing.JMenuItem calificacionesAdmin;
     private javax.swing.JMenuItem cerrarAdmin;
     private javax.swing.JMenuItem cerrarSesionAdmin;
     private javax.swing.JMenu jMenu2;

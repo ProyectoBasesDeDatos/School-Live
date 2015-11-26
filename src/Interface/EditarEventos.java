@@ -137,7 +137,7 @@ public class EditarEventos extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Editar Evento");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modify.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Modify.png"))); // NOI18N
 
         CBTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cultural", "Deportivo", "Otro"}));
         CBTipo.addActionListener(new java.awt.event.ActionListener() {

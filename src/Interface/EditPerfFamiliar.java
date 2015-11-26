@@ -125,7 +125,7 @@ public class EditPerfFamiliar extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Editar Perfil Encargado");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/people.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
 
         jSplitPane1.setDividerLocation(220);
 
