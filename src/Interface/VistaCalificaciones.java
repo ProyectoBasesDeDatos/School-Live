@@ -6,6 +6,8 @@
 package Interface;
 
 import BaseDatos.ConexionBase;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  *
@@ -13,29 +15,58 @@ import BaseDatos.ConexionBase;
  */
 public class VistaCalificaciones extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VistaCalificaciones
-     */
+    private Object [][] resultadoE;
+    private ConexionBase conexion;
+    
     public VistaCalificaciones(String idPersona) {
         initComponents();
         
-        ConexionBase conexion = new ConexionBase();
-        Object[][] resultado;    
+        conexion = new ConexionBase();
         
         //Combobox
-        String sql="select nombre1||' '||apellido1||' '||apellido2||' '||'-'||' '||idpersona from persona where idpersona='"+idPersona+"';";
-        resultado = conexion.getDatosConsulta(sql);
-        EstudianteSeleccion.removeAllItems();
-        EstudianteSeleccion.addItem(resultado[0][0]);
+        String sql="select nombre1||' '||apellido1||' '||apellido2||,idpersona,tipoperfil from persona where idpersona='"+idPersona+"';";
+        resultadoE = conexion.getDatosConsulta(sql);
+
+        if(resultadoE[0][2].toString().equals("E")){
+            EstudianteSeleccion.removeAllItems();
+            EstudianteSeleccion.addItem(resultadoE[0][0]);
+        }
+        if(resultadoE[0][2].toString().equals("F")){
+            sql="select nombre1||' '||apellido1||' '||apellido2,idpersona,tipoperfil \n" +
+            "from persona \n" +
+            "where idpersona IN (select idhijo from padrefamilia where idpersona='"+idPersona+"')";
+            resultadoE = conexion.getDatosConsulta(sql);
+            EstudianteSeleccion.removeAllItems();
+            for(int i=0; i<resultadoE.length;i++){
+                EstudianteSeleccion.addItem(resultadoE[i][0]+" - "+resultadoE[i][1]);
+            }
+        }
         
-        //1er Periodo, 2do Periodo, 3er Periodo
+        EstudianteSeleccion.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent e){
+                CargarEstudiante();
+            }
+        });
+        
+        CargarEstudiante();
+        
+        this.repaint();
+
+    }
+
+        public void CargarEstudiante(){
+        Object[][] resultado;
         String[] periodo={"'I'","'II'","'III'"};
         String[] titulos = new String [] {"Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"};
-        sql= "select m.nombremateria,c.parcial1,c.parcial2,c.trabajoextraclase,c.trabajocotidiano,c.asistencia,c.concepto,(c.parcial1+c.parcial2+c.trabajoextraclase+c.trabajocotidiano+c.asistencia+c.concepto) total\n" +
+        
+        //try{
+        String elId=(String) resultadoE[EstudianteSeleccion.getSelectedIndex()][1];
+        //1er Periodo, 2do Periodo, 3er Periodo
+        String sql= "select m.nombremateria,c.parcial1,c.parcial2,c.trabajoextraclase,c.trabajocotidiano,c.asistencia,c.concepto,(c.parcial1+c.parcial2+c.trabajoextraclase+c.trabajocotidiano+c.asistencia+c.concepto) total\n" +
         "from materias m, calificacionesasignadas ca,calificaciones c\n" +
         "where m.idmateria=ca.idmateria\n" +
         "and ca.idcalificacion=c.idcalificacion\n" +
-        "and ca.idestudiante='"+idPersona+"'"+
+        "and ca.idestudiante='"+elId+"'"+
         "and ca.periodo=";
 
         resultado = conexion.getDatosConsulta(sql+periodo[0]);
@@ -57,7 +88,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         "	from materias m, calificacionesasignadas ca,calificaciones c \n" +
         "	where m.idmateria=ca.idmateria \n" +
         "	and ca.idcalificacion=c.idcalificacion\n" +
-        "	and ca.idestudiante='"+idPersona+"'\n" +
+        "	and ca.idestudiante='"+elId+"'\n" +
         "	and ca.periodo='I'\n" +
         ") x,\n" +
         "(\n" +
@@ -65,7 +96,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         "from materias m, calificacionesasignadas ca,calificaciones c \n" +
         "where m.idmateria=ca.idmateria \n" +
         "and ca.idcalificacion=c.idcalificacion\n" +
-        "and ca.idestudiante='"+idPersona+"'\n" +
+        "and ca.idestudiante='"+elId+"'\n" +
         "and ca.periodo='II'\n" +
         ") y,\n" +
         "(\n" +
@@ -73,7 +104,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         "from materias m, calificacionesasignadas ca,calificaciones c \n" +
         "where m.idmateria=ca.idmateria \n" +
         "and ca.idcalificacion=c.idcalificacion\n" +
-        "and ca.idestudiante='"+idPersona+"'\n" +
+        "and ca.idestudiante='"+elId+"'\n" +
         "and ca.periodo='III'\n" +
         ") z\n" +
         "where x.nombremateria=y.nombremateria\n" +
@@ -84,9 +115,8 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         TAnual.setModel(modelo);
         
         this.repaint();
-
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
