@@ -8,6 +8,13 @@ package Interface;
 import BaseDatos.ConexionBase;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,13 +25,18 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
     /**
      * Creates new form CalificacionesGrupo
      */
-    private Object[][] resultadoG;
-    private Object[][] resultadoM;
-    private Object[][] resultadoE;
+    private Object[][] resultadoG; //Combobox grupo
+    private Object[][] resultadoM; //Combobox Materia
+    private Object[][] resultadoE; //Combobox Estudiante
+    private Object[][] resultadoGrupal; //Resultado query Grupo
+    private Object[][] resultadoEP1; //Resultado query periodo1
+    private Object[][] resultadoEP2; //Resultado query periodo2
+    private Object[][] resultadoEP3; //Resultado query periodo3
+    private Object[][] resultadoEPA; //Resultado query anual
     private String idPersona;
     ConexionBase conexion;
     
-    public CalificacionesGrupo(String idPersona) {
+    public CalificacionesGrupo(String idPersona){
         initComponents();
         this.idPersona=idPersona;
     //String sql;
@@ -148,9 +160,9 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         "order by idestudiante,periodo\n" +
         ")";
         String[] titulos = {"Estudiante", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"};
-        Object[][] resultado = conexion.getDatosConsulta(sql);
+        resultadoGrupal = conexion.getDatosConsulta(sql);
         javax.swing.table.DefaultTableModel modelo;
-        modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
+        modelo = new javax.swing.table.DefaultTableModel(resultadoGrupal,titulos);
         TGrupo.setModel(modelo);
         
         this.repaint();
@@ -161,7 +173,6 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
     }
 
     public void CargarEstudiante(){
-        Object[][] resultado;
         String[] periodo={"'I'","'II'","'III'"};
         String[] titulos = new String [] {"Materia", "Parcial I", "Parcial II", "T. Extraclase", "T. Cotidiano", "Asistencia", "Concepto", "Total"};
         
@@ -175,16 +186,16 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         "and ca.idestudiante='"+elId+"'"+
         "and ca.periodo=";
 
-        resultado = conexion.getDatosConsulta(sql+periodo[0]);
-        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
+        resultadoEP1 = conexion.getDatosConsulta(sql+periodo[0]);
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(resultadoEP1,titulos);
         TPeriodo1Est.setModel(modelo);
         
-        resultado = conexion.getDatosConsulta(sql+periodo[1]);
-        modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
+        resultadoEP2 = conexion.getDatosConsulta(sql+periodo[1]);
+        modelo = new javax.swing.table.DefaultTableModel(resultadoEP2,titulos);
         TPeriodo2Est.setModel(modelo);
         
-        resultado = conexion.getDatosConsulta(sql+periodo[2]);
-        modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
+        resultadoEP3 = conexion.getDatosConsulta(sql+periodo[2]);
+        modelo = new javax.swing.table.DefaultTableModel(resultadoEP3,titulos);
         TPeriodo3Est.setModel(modelo);
         
         //Anual
@@ -216,12 +227,91 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         "where x.nombremateria=y.nombremateria\n" +
         "and y.nombremateria=z.nombremateria";
         
-        resultado = conexion.getDatosConsulta(sql);
-        modelo = new javax.swing.table.DefaultTableModel(resultado,titulos);
+        resultadoEPA = conexion.getDatosConsulta(sql);
+        modelo = new javax.swing.table.DefaultTableModel(resultadoEPA,titulos);
         TAnualEst.setModel(modelo);
         
         this.repaint();
     }
+    
+    public void ReporteEstudiante() throws IOException {
+	File fout = new File("Reporte_"+ComboEstudiante.getSelectedItem().toString()+".txt");
+	FileOutputStream fos = new FileOutputStream(fout);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        
+        bw.write(ComboEstudiante.getSelectedItem().toString());
+        bw.newLine();
+        bw.newLine();
+        
+        bw.write("Periodo I");
+        bw.newLine();
+        bw.newLine();
+        
+	for (int i=0; resultadoEP1!= null && i<resultadoEP1.length; i++) {
+            for (int j=0; j<8; j++){
+		bw.write(resultadoEP1[i][j]+" ");
+            }
+            bw.newLine();
+	}
+        
+        bw.newLine();
+        bw.write("Periodo II");
+        bw.newLine();
+        bw.newLine();
+        
+        for (int i=0; resultadoEP2!= null && i < resultadoEP2.length; i++) {
+            for (int j=0; j<8; j++){
+		bw.write(resultadoEP2[i][j]+" ");
+            }
+            bw.newLine();
+	}
+        
+        bw.newLine();
+        bw.write("Periodo III");
+        bw.newLine();
+        bw.newLine();
+        
+        for (int i=0; resultadoEP3!= null && i < resultadoEP3.length; i++) {
+            for (int j=0; j<8; j++){
+		bw.write(resultadoEP3[i][j]+" ");
+            }
+            bw.newLine();
+	}
+        
+        bw.newLine();
+        bw.write("Anual");
+        bw.newLine();
+        bw.newLine();
+        
+        for (int i=0; resultadoEPA!= null && i < resultadoEPA.length; i++) {
+            for (int j=0; j<8; j++){
+		bw.write(resultadoEPA[i][j]+" ");
+            }
+            bw.newLine();
+	}
+	
+        bw.close();
+}
+    
+    public void ReporteGrupo() throws IOException {
+	File fout = new File("Reporte_"+ComboGrupo.getSelectedItem().toString()+".txt");
+	FileOutputStream fos = new FileOutputStream(fout);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        
+        bw.write(ComboGrupo.getSelectedItem().toString());
+        bw.newLine();
+        bw.newLine();
+        
+	for (int i=0; resultadoGrupal!= null && i<resultadoGrupal.length; i++) {
+            for (int j=0; j<8; j++){
+		bw.write(resultadoGrupal[i][j]+" ");
+            }
+            bw.newLine();
+	}
+	
+        bw.close();
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,7 +322,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        TabGrupal = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TGrupo = new javax.swing.JTable();
         ComboGrupo = new javax.swing.JComboBox();
@@ -345,12 +435,12 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout TabGrupalLayout = new javax.swing.GroupLayout(TabGrupal);
+        TabGrupal.setLayout(TabGrupalLayout);
+        TabGrupalLayout.setHorizontalGroup(
+            TabGrupalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(TabGrupalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -365,11 +455,11 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addComponent(ComboPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        TabGrupalLayout.setVerticalGroup(
+            TabGrupalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TabGrupalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(TabGrupalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ComboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -381,7 +471,7 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Vista Grupal", jPanel2);
+        jTabbedPane1.addTab("Vista Grupal", TabGrupal);
 
         TPeriodo1Est.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -526,6 +616,11 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
         Guardar.setText("Guardar");
 
         Reporte.setText("Generar Reporte");
+        Reporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ReporteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -575,6 +670,20 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_ComboPeriodoMouseClicked
 
+    private void ReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReporteMouseClicked
+        try {
+            if(TabGrupal.isShowing()){
+                ReporteGrupo();
+            }else{
+                ReporteEstudiante();
+            }
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(CalificacionesGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboEstudiante;
@@ -590,13 +699,13 @@ public class CalificacionesGrupo extends javax.swing.JInternalFrame {
     private javax.swing.JTable TPeriodo1Est;
     private javax.swing.JTable TPeriodo2Est;
     private javax.swing.JTable TPeriodo3Est;
+    private javax.swing.JPanel TabGrupal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
