@@ -24,7 +24,7 @@ public class VistaCalificaciones extends javax.swing.JInternalFrame {
         conexion = new ConexionBase();
         
         //Combobox
-        String sql="select nombre1||' '||apellido1||' '||apellido2||,idpersona,tipoperfil from persona where idpersona='"+idPersona+"';";
+        String sql="select nombre1||' '||apellido1||' '||apellido2,idpersona,tipoperfil from persona where idpersona='"+idPersona+"';";
         resultadoE = conexion.getDatosConsulta(sql);
 
         if(resultadoE[0][2].toString().equals("E")){
