@@ -132,7 +132,7 @@ public class EditPerfProf extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Editar Perfil Profesor");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/boss.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
 
         jSplitPane1.setDividerLocation(200);
 

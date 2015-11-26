@@ -68,6 +68,7 @@ public class AsignacionesEst extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        setClosable(true);
         setIconifiable(true);
         setResizable(true);
         setTitle("Asignaciones");

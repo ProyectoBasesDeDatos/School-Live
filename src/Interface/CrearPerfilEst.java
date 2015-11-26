@@ -358,7 +358,7 @@ public class CrearPerfilEst extends javax.swing.JInternalFrame {
             }
             
             
-            if(res>=4){
+            if(res>=3){
                 JOptionPane.showMessageDialog(null,"Se agregó exitosamente el nuevo estudiante","Exito",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
