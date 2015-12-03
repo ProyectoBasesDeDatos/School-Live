@@ -383,10 +383,11 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             int ind = LAsignaciones.getSelectedIndex();
             
             base.editarAsignacion(tipo,descripcion,hora,fecha,idGrupo,this.idPersona,idMateria,asignaciones[ind][0]);
-            actualizarLista();
+            
         }catch(IllegalArgumentException	e){
             System.err.printf("Error al crear Asignacion");
         }
+        this.dispose();
     }//GEN-LAST:event_BGuardarActionPerformed
 
     private void LAsignacionesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LAsignacionesValueChanged

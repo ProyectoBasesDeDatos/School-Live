@@ -269,20 +269,20 @@ public class EditarEventos extends javax.swing.JInternalFrame {
             int ind = LEventos.getSelectedIndex();
             
             base.editarEventos(tipo, fecha, horaIn, horaFi, descripcion, idPersona,eventos[ind][0]);
-            actualizarListaEventos();     
-            LEventos.setSelectedIndex(0);
+            this.dispose();
             
         }catch(IllegalArgumentException	e){
             System.err.printf("Error al Editar Evento");
             error++;
+            this.dispose();
         }
         
         if (error==0) {
                 JOptionPane.showMessageDialog(null, "Se actualizo el evento seleccionado", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "No se logró actualizar correctamente el evento", "Error ", JOptionPane.ERROR_MESSAGE);
         }
+        this.dispose();
     }//GEN-LAST:event_BGuardarActionPerformed
 
     private void LEventosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LEventosValueChanged
